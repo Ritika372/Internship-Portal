@@ -1,0 +1,17 @@
+<%- include('partials/headers') %>
+<form action="/registerStudent" , method="POST">
+    <div class="form-group">
+        <label>Roll Number</label>
+        <input type="text" class="form-control" name = "rollno">
+      </div>
+    <div class="form-group">
+      <label>Email address (Use your official mail ID)</label>
+      <input type="email" class="form-control" name = "studentuser">
+    </div>
+    <div class="form-group">
+      <label>Set Password</label>
+      <input type="password" class="form-control" name = "password">
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+<%- include('partials/footer') %>
