@@ -2,15 +2,12 @@ body{
     background: rgb(244,245,245);
     background: radial-gradient(circle, rgba(244,245,245,1) 70%, rgba(197,202,210,1) 100%);
     overflow: hidden;
-}
-.main{
-    height: 100%;
-    width: 100%;
     background-image: url("https://www.nitj.ac.in/images/menu_content/dsc_0707.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 0.8;
 }
+
 a:hover{
     color: white;
 }
@@ -64,7 +61,7 @@ a:hover{
     border-bottom: 1px solid rgba(0,0,0,.2);
 }
 .loginContainer{
-    top: 120px;
+    top: 150px;
     position: absolute;
     left: 230px;
     background-color: white;
@@ -97,4 +94,9 @@ a:hover{
 .navbar .flex-right{
     margin: 3px;
     padding: 40px;
+}
+.dropdown-menu{
+    background: rgb(233, 248, 248);
+    position: absolute;
+    z-index: 100;
 }
