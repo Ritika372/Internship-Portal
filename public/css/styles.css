@@ -1,6 +1,10 @@
 body{
     background: rgb(244,245,245);
     background: radial-gradient(circle, rgba(244,245,245,1) 70%, rgba(197,202,210,1) 100%);
+    overflow: hidden;
+}
+a:hover{
+    color: white;
 }
 .login{
     margin-top: 170px;
@@ -10,10 +14,11 @@ body{
 .btn-group{
     padding-top: 20px;
 }
-.navbar a {
+.flex-right {
     color: white;
 }
 .navbar{
+    position: sticky;
     background: #373B44;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -36,24 +41,19 @@ a:hover{
     height: 100%;
     transition: .3s;
 }
-ul{
+.sidebar ul{
     margin: 0;
     padding: 20px;
 }
-ul li{
+.sidebar ul li{
     list-style: none;
 }
-ul a{
+.sidebar ul a{
     padding: 10px 20px;
     color : black;
     display: block;
     text-decoration: none;
     border-bottom: 1px solid rgba(0,0,0,.2);
-}
-.careerheading{
-    position: absolute;
-    left: 450px;
-    color: whitesmoke;
 }
 .loginContainer{
     top: 100px;
@@ -73,4 +73,20 @@ ul a{
 }
 .btn a{
     color: white;
+}
+.navbar ul{
+    display: flex;
+}
+.navbar ul li{
+    list-style: none;
+    text-decoration: none;
+    flex-direction: column;
+}
+.navbar .flex-left{
+    font-size: 25px;
+    color: white;
+}
+.navbar .flex-right{
+    margin: 3px;
+    padding: 40px;
 }
