@@ -1,3 +1,7 @@
+body{
+    background: rgb(244,245,245);
+    background: radial-gradient(circle, rgba(244,245,245,1) 70%, rgba(197,202,210,1) 100%);
+}
 .login{
     margin-top: 170px;
     margin-left : 450px;
@@ -6,6 +10,67 @@
 .btn-group{
     padding-top: 20px;
 }
-a {
+.navbar a {
+    color: white;
+}
+.navbar{
+    background: #373B44;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: 70px;
+}
+.nitj{
+    position: absolute;
+    right :20px;
+}
+a:hover{
+    text-decoration: none;
+    color: dark-blue;
+}
+.sidebar{
+    position: fixed;
+    left : 0px;
+    top: 90px;
+    background: white;
+    width: 250px;
+    height: 100%;
+    transition: .3s;
+}
+ul{
+    margin: 0;
+    padding: 20px;
+}
+ul li{
+    list-style: none;
+}
+ul a{
+    padding: 10px 20px;
+    color : black;
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+}
+.careerheading{
+    position: absolute;
+    left: 450px;
+    color: whitesmoke;
+}
+.loginContainer{
+    top: 100px;
+    position: absolute;
+    left: 300px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 6%;
+    width: 800px;
+    height: 360px;
+}
+.loginContainer .container{
+    margin: 20px;
+}
+.form-group{
+    width: 700px;
+}
+.btn a{
     color: white;
 }

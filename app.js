@@ -21,6 +21,10 @@ app.get('/' , (req,res) => {
     res.render("opening");
 });
 
+app.get('/opening' , (req,res) => {
+    res.redirect("/");
+});
+
 app.get('/loginStudent' ,(req,res) => {
     res.render("loginStudent");
 });

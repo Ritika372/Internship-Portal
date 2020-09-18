@@ -1,5 +1,6 @@
 <%- include('partials/headers') %>
-<form action="/registerStudent" , method="POST">
+<form class = "loginContainer" action = "/registerStudent" , method="POST">
+  <div class = "container">
     <div class="form-group">
         <label>Roll Number</label>
         <input type="text" class="form-control" name = "rollno">
@@ -13,5 +14,6 @@
       <input type="password" class="form-control" name = "password">
     </div>
     <button type="submit" class="btn btn-primary">Register</button>
+    </div>
   </form>
 <%- include('partials/footer') %>
