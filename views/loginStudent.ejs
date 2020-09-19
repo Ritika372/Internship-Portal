@@ -1,5 +1,5 @@
 <%- include('partials/headers') %>
-<form class = "loginContainer" action = "/loginStudent" , method="POST">
+<form class = "loginContainer" action = "/api/studentapi/loginStudent" , method="POST">
   <div class = "container">
     <div class="form-group">
       <label>Roll Number</label>
@@ -10,7 +10,7 @@
       <input type="password" class="form-control" name = "password">
     </div>
     <button type="submit" class="btn btn-primary">Log In</button>
-    <button type="submit" class="btn btn-primary"><a href="/registerStudent">Register</a></button>
+    <button type="submit" class="btn btn-primary"><a href="/api/studentapi/registerStudent">Register</a></button>
   </div>
   </form>
 <%- include('partials/footer') %>
