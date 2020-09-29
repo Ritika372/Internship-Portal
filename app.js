@@ -25,8 +25,8 @@ app.get('/opening' , (req,res) => {
     res.redirect("/");
 });
 
-app.use('/api/studentapi/registerStudent' , require('./routes/api/studentApi/registerStudent'));
-app.use('/api/studentapi/loginStudent' , require('./routes/api/studentApi/loginStudent.js'));
+app.use('/api/studentapi/registerStudent' , require('./routes/api/studentapi/registerStudent'));
+app.use('/api/studentapi/loginStudent' , require('./routes/api/studentapi/loginStudent'));
 
 app.listen(3000 , () => {
     console.log("Server started on port 3000");
