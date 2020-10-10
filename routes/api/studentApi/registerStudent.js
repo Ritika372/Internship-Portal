@@ -41,7 +41,7 @@ app.post('/enterdetails' , (req,res) => {
             return res.json({msg: "Something went wrong!"});
         }
         else{
-            res.redirect('/api/studentapi/registerStudent/studentprofile');
+            res.redirect('/student/register/studentprofile');
         }
     });
 });
@@ -65,7 +65,7 @@ app.post('/' , (req,res) => {
                 console.log(err);
             }
             else{
-                res.redirect('/api/studentapi/registerStudent/enterdetails');
+                res.redirect('/student/register/enterdetails');
             }
         });
     });

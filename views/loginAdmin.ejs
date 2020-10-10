@@ -1,0 +1,15 @@
+<%- include('partials/headers') %>
+<form class = "loginContainer" action = "/admin/login" , method="POST">
+  <div class = "container">
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" class="form-control" name = "emailAdmin" >
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" name = "passAdmin">
+    </div>
+    <button type="submit" class="btn btn-primary">Log In</button>
+  </div>
+  </form>
+<%- include('partials/footer') %>

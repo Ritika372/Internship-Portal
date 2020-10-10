@@ -27,7 +27,7 @@ app.post("/" , (req,res)=>{
             if(foundStudent){
                 bcrypt.compare(password, foundStudent.password , (err,result) => {
                     if(result){
-                        res.redirect('/api/studentapi/loginStudent/studentprofile');
+                        res.redirect('/student/login/studentprofile');
                     }
                     else if(err){
                         console.log(err);
