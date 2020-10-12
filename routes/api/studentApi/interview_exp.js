@@ -10,13 +10,12 @@ app.use(bodyparser.urlencoded({
 app.use(express.static("public"));
 
 app.get('/' , (req,res) => {
-    res.send("Welcome to expereinces");
     InterviewExp.find({confirmed: true} , (err,experience) => {
         if(err){
             console.log(err);
         }
         else{
-            res.send(experience);
+            res.render("Experiences" , {experience: experience});
         }
     });
 });

@@ -10,22 +10,25 @@ app.use(bodyparser.urlencoded({
 
 app.use(express.static("public"));
 app.get('/' , (req,res) => {
-    res.send("Welcome to exp");
+    res.render("submitExp");
 });
 app.post('/', (req,res) => {
-    let company = req.body.company;
+    let company = req.body.companyname;
     let branch = req.body.branch;
-    let exp = req.body.exp;
+    let exp = req.body.experience;
+    let choice = req.body.choice;
     const Experience = new InterviewExp({
         company: company,
-        branch: branch
+        branch: branch,
+        exp :exp,
+        choice: choice
     });
     Experience.save((err) => {
         if(err){
             console.log(err);
         }
         else{
-            res.send("Success");
+            res.send("Experience submitted successfully!. Please wait for the admin to confirm.")
         }
     });
 });

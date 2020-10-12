@@ -3,6 +3,9 @@ const InterviewSchema = new mongoose.Schema({
     company: {
         type: String
     },
+    choice: {
+        type: String
+    },
     branch: {
         type: String
     },
@@ -11,7 +14,7 @@ const InterviewSchema = new mongoose.Schema({
     },
     confirmed: {
         type: Boolean,
-        default: true
+        default: false
     }
 });
 

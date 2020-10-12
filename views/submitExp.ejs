@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Submit Experience</title>
+</head>
+<body>
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-md-9 offset-md-2 align-self-center">
+                <h2>Enter following details to get your experience published!</h2>
+            </div>
+        </div>
+        <div class = "row">
+            <div class= "col-md-9">
+                <form action="/student/submitExp" method="POST">
+                    <div class = "form-group row">
+                        <label for="companyname" class = "col-md-3 col-form-label">Company Name</label>
+                        <div class = "col-md-9">
+                            <input type="text" class = "form-control" id = "companyname" name = "companyname" placeholder="Company Name" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label for="branch" class = "col-md-3 col-form-label">Branch</label>
+                        <div class = "col-md-9">
+                            <input type="text" class = "form-control" id = "branch" name = "branch" placeholder="Branch" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label for="choice" class = "col-md-3 col-form-label">Internship Or Placement</label>
+                        <div class = "col-md-9">
+                            <input type="text" class = "form-control" id = "choice" name = "choice" placeholder="Internship or Placement" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label for="experience" class = "col-md-3 col-form-label">Enter your experience</label>
+                        <div class = "col-md-9">
+                            <textarea class="form-control" id="experience" rows="6" name = "experience"></textarea>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <div class = "offset-md-3 col-md-9">
+                            <button class = "btn btn-primary" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
