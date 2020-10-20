@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Enter Details</title>
+</head>
+<body>
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-md-9 offset-md-2 align-self-center">
+                <h2>Company details</h2>
+            </div>
+        </div>
+        <div class = "row">
+            <div class= "col-md-9">
+                <form action="/student/register/enterdetails" method="POST">
+                    <div class = "form-group row">
+                        <label for="companyname" class = "col-md-2 col-form-label">Company Name</label>
+                        <div class = "col-md-10">
+                            <input type="text" class = "form-control" id = "companyname" name = "companyname" placeholder="Company Name" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label for="website" class = "col-md-2 col-form-label">Company Website's Link</label>
+                        <div class = "col-md-10">
+                            <input type="text" class = "form-control" id = "website" name = "website" placeholder="Company Website's Link" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label for="org_type" class = "col-md-2 col-form-label">Organisation Type</label>
+                        <div class = "col-md-10">
+                            <select class="form-control" name= "org_type">
+                                <option value="">-- Select Organization Type --</option>
+                                <option>Private sector</option>
+                                <option>Start-up</option>
+                                <option>Govt. owned</option>
+                                <option>Public sector</option>
+                                <option>MNC (Indian or Foreign)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label for="industry_sector" class = "col-md-2 col-form-label">Industry Sector</label>
+                        <div class = "col-md-10">
+                            <select class="form-control" name = "industry_sector">
+                                <option value=""> -- Select Industry Sector --</option>
+                                <option>Analytics</option>
+                                <option>Consulting</option>
+                                <option>Core (Technical)</option>
+                                <option>Finance</option>
+                                <option>IT</option>
+                                <option>Business Development</option>
+                                <option>Sales & Marketing</option>
+                                <option>Management</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label for="about_company" class = "col-md-2 col-form-label">About Company</label>
+                        <div class = "col-md-10">
+                            <textarea name = "grad" rows="5" required></textarea>
+                        </div>
+                    </div>
+                    <div class = "row">
+                        <div class = "col-md-9 offset-md-2 align-self-center">
+                            <h2>Job Profile details</h2>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label for="job_profile" class = "col-md-2 col-form-label">Enter Job Profile</label>
+                        <div class = "col-md-10">
+                            <input type="text" class = "form-control" id = "job_profile" name = "job_profile" placeholder="Job Profile" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label for="batch" class = "col-md-2 col-form-label">Passout Batch</label>
+                        <div class = "col-md-10">
+                            <select class="form-control" name="batch" required>
+                                <option value=""> -- Select Batch --</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Recruitment</label>
+                        <div class = "col-md-10">
+                            <select class="form-control" ng-model="addNewCompany.newCompanyData.recruitment">
+                                <option value=""> -- Select Recruitment --</option>
+                                <option value="Internship">Internship</option>
+                                <option value="Placement">Placement</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label for="job_profile" class = "col-md-2 col-form-label">Enter Job Profile</label>
+                        <div class = "col-md-10">
+                            <input type="text" class = "form-control" id = "job_profile" name = "job_profile" placeholder="Job Profile" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Duration</label>
+                        <div class = "col-md-10">
+                            <input type="text" class = "form-control" name = "duration" placeholder="Duration" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Location of Posting</label>
+                        <div class = "col-md-10">
+                            <input type="text" class = "form-control" name = "location" placeholder="Location" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Tentative date of joining</label>
+                        <div class = "col-md-10">
+                            <input type="text" class = "form-control" name = "date" placeholder="Date" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Job Description</label>
+                        <div class = "col-md-10">
+                            <textarea type="text" class = "form-control" rows="5" name = "description" required></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -9,113 +9,125 @@
 <body>
     <div class = "container">
         <div class = "row">
-            <div class = "col-md-9 offset-md-2 align-self-center">
-                <h2>Enter follwing details</h2>
-            </div>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" href=<%= profile %> >Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href= <%= read_experience %> >Read Expereinces</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=<%= write_experience %> >Write Expereinces</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href=<%= edit_profile%> >Edit Profile</a>
+                </li>
+              </ul>
         </div>
+    </div><br><br>
         <div class = "row">
             <div class= "col-md-9">
                 <form action=<%= link %> method="POST">
                     <div class = "form-group row">
                         <label for="firstname" class = "col-md-2 col-form-label">First Name</label>
                         <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "firstname" name = "firstname" placeholder="First Name" required>
+                            <input type="text" class = "form-control" id = "firstname" name = "firstname" placeholder="First Name" required  value=<%= firstname %>>
                         </div>
                     </div>
                     <div class = "form-group row">
                         <label for="lastname" class = "col-md-2 col-form-label">Last Name</label>
                         <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "lastname" name = "lastname" placeholder="Last Name" required>
+                            <input type="text" class = "form-control" id = "lastname" name = "lastname" placeholder="Last Name" required value=<%= lastname %>>
                         </div>
                     </div>
                     <div class = "form-group row">
                         <label for="college_id" class = "col-md-2 col-form-label">Roll Number</label>
                         <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "college_id" name = "college_id" placeholder="Roll Number" required  value=<%= rollno %> >
+                            <input type="text" class = "form-control" id = "college_id" name = "college_id" placeholder="Roll Number" required  value=<%= college_id %> >
                         </div>
                     </div>
                     <div class = "form-group row">
                         <label for="degree" class = "col-md-2 col-form-label">Degree</label>
                         <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "degree" name = "degree" placeholder="Degree" required>
+                            <input type="text" class = "form-control" id = "degree" name = "degree" placeholder="Degree" required value=<%= degree %>>
                         </div>
                     </div>
                     <div class = "form-group row">
                         <label for="grad" class = "col-md-2 col-form-label">Expected graduation</label>
                         <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "grad" name = "grad" placeholder="Expected Graduation" required>
+                            <input type="text" class = "form-control" id = "grad" name = "grad" placeholder="Expected Graduation" required value=<%= grad %>>
                         </div>
                     </div>
                     <div class = "form-group row">
                         <label for="branch" class = "col-md-2 col-form-label">Branch</label>
                         <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "branch" name = "branch" placeholder="Branch" required>
+                            <input type="text" class = "form-control" id = "branch" name = "branch" placeholder="Branch" required value=<%= branch %>>
                         </div>
                     </div>
                     <div class = "form-group row">
                         <label for="personal_email" class = "col-md-2 col-form-label">Personal EMail</label>
                         <div class = "col-md-10">
-                            <input type="email" class = "form-control" id = "personal_email" name = "personal_email" placeholder="Personal Email" required value="<%= email %> ">
+                            <input type="email" class = "form-control" id = "personal_email" name = "personal_email" placeholder="Personal Email" required value="<%= personal_email %> ">
                         </div>
                     </div>
                     <div class = "form-group row">
                         <label for="contact_no" class = "col-md-2 col-form-label">Contact Number</label>
                         <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "contact_no" name = "contact_no" placeholder="Contact Number" required>
+                            <input type="text" class = "form-control" id = "contact_no" name = "contact_no" placeholder="Contact Number" required value=<%= contact_no %> >
                         </div>
                     </div>
                     <div class = "form-group row">
                         <label for="cgpa" class = "col-md-2 col-form-label">Current CGPA</label>
                         <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "cgpa" name = "cgpa" placeholder="CGPA" required>
+                            <input type="text" class = "form-control" id = "cgpa" name = "cgpa" placeholder="CGPA" required value=<%= cgpa %>>
                         </div>
                     </div>
                     <div class = "form-group row">
                         <label for="active_backlogs" class = "col-md-2 col-form-label">Active Backlogs</label>
                         <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "active_backlogs" name = "active_backlogs" placeholder="Active Backlogs" required>
+                            <input type="text" class = "form-control" id = "active_backlogs" name = "active_backlogs" placeholder="Active Backlogs" required value=<%= active_backlogs %>>
                         </div>
                     </div>
                     <div class = "form-group row">
                         <label for="tenth" class = "col-md-2 col-form-label">10th Class</label>
                         <div class = "col-md-4">
-                            <input type="text" class = "form-control" id = "percent_10" name = "percent_10" placeholder= "10th percentage" required>
+                            <input type="text" class = "form-control" id = "percent_10" name = "percent_10" placeholder= "10th percentage" required value=<%= percent_10 %>>
                         </div>
                         <div class = "col-md-4 offset-md-2">
-                            <input type="text" class = "form-control" id = "board_10" name = "board_10" placeholder="Board" required>
+                            <input type="text" class = "form-control" id = "board_10" name = "board_10" placeholder="Board" required value =<%= board_10 %>>
                         </div>
                     </div>
                     <div class = "form-group row">
                         <label for="twelth" class = "col-md-2 col-form-label">12th Class</label>
                         <div class = "col-md-4">
-                            <input type="text" class = "form-control" id = "percent_12" name = "percent_12" placeholder= "12th percentage" required>
+                            <input type="text" class = "form-control" id = "percent_12" name = "percent_12" placeholder= "12th percentage" required  value =<%= percent_12 %>>
                         </div>
                         <div class = "col-md-4 offset-md-2">
-                            <input type="text" class = "form-control" id = "board_12" name = "board_12" placeholder="Board" required>
+                            <input type="text" class = "form-control" id = "board_12" name = "board_12" placeholder="Board" required  value =<%= board_12 %> >
                         </div>
                     </div>
                     <div class = "form-group row">
                         <label for="address" class = "col-md-2 col-form-label">Address</label>
                         <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "address" name = "address" placeholder="Address" required>
+                            <input type="text" class = "form-control" id = "address" name = "address" placeholder="Address" required value =<%= address %> >
                         </div>
                     </div>
                     <div class = "form-group row">
                         <label for="residence" class = "col-md-2 col-form-label">Residence</label>
                         <div class = "col-md-2">
-                            <input type="text" class = "form-control" id = "city" name = "city" placeholder= "City" required>
+                            <input type="text" class = "form-control" id = "city" name = "city" placeholder= "City" required  value =<%= city %>>
                         </div>
                         <div class = "col-md-3 offset-md-1">
-                            <input type="text" class = "form-control" id = "state" name = "state" placeholder="State" required>
+                            <input type="text" class = "form-control" id = "state" name = "state" placeholder="State" required value =<%= state %>>
                         </div>
                         <div class = "col-md-3 offset-md-1">
-                            <input type="text" class = "form-control" id = "country" name = "country" placeholder="Country" required> 
+                            <input type="text" class = "form-control" id = "country" name = "country" placeholder="Country" required value =<%= country %>> 
                         </div>
                     </div>
                     <div class = "form-group row">
                         <label for="linkdin" class = "col-md-2 col-form-label">Linkdin Profile</label>
                         <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "linkdin" name = "linkdin" placeholder="Linkdin Profile Link" required>
+                            <input type="text" class = "form-control" id = "linkdin" name = "linkdin" placeholder="Linkdin Profile Link" required  value =<%= linkdin %> >  
                         </div>
                     </div>
                     <div class = "form-group row">

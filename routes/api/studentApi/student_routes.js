@@ -11,6 +11,4 @@ app.use(express.static("public"));
 
 app.use('/login' , require('./loginStudent'));
 app.use('/register' , require('./registerStudent'));
-app.use('/experiences' , require('./interview_exp'));
-app.use('/submitExp' , require('./submitExp'));
 module.exports = app;
