@@ -19,9 +19,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href=<%= write_experience %> >Write Expereinces</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href=<%= company_apply%> >Company </a>
+                  </li>
                 <li class="nav-item">
                   <a class="nav-link" href=<%= edit_profile%> >Edit Profile</a>
                 </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href=<%= log_out%> >Log Out</a>
+                  </li>
               </ul>
         </div>
         <br><br>
@@ -35,6 +42,7 @@
                                     <h5 class="card-title"><%= exp.company %></h5>
                                     <h6 class="card-subtitle"><%= exp.branch %></h6><br>
                                     <h6 class="card-subtitle"><%= exp.choice %></h6><br>
+                                    <h6 class="card-subtitle"> <%=exp.rollno %></h6><br>
                                     <p class = "card-text"><%= exp.exp %></p>
                                 </div>
                             </div>
