@@ -42,8 +42,9 @@ app.post('/' , (req,res) => {
               const token = jwt.sign({id, password }, "rohitMittalisthebest", {
                expiresIn:  '7d',
                });
+               const msg ="Please Click on the given button to register";
                const link ="http://localhost:3000/student/register/confirm/"+token; 
-                 sendemails(email,link);
+                 sendemails(email,link,msg);
                 res.redirect('/student/register/'+newStudent._id+'/enterdetails');
             }
         
