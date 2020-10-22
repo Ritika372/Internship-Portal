@@ -70,45 +70,17 @@ const verifyMail = async (req, res, next) => {
             }
             else{
                 if(company){
-                             if(company.confirmed)
+                             if(company.confirmed&&company.confirmedbyAdmin)
                                {
                                     next();
                                }
-                              else{
-                                   return res.send("First COnfirm Your Mail");
-                             }
-                       }else{
-                           return res.send("Not registered company");
-
-            }}
-        })
-    
-    }
-    
-  };
-
-/*Verify that the company has been confirmed  by admin*/
-const verifiedByadmin = async (req, res, next) => {
-    const id=req.params.id||"";
-    if(!id)
-    {
-       return res.send("First Register");
-    }
-    else{
-        Company.findById({_id:id},(err,company)=>{
-            if(err)
-            {
-                 console.log(err);
-            }
-            else{
-                if(company){
-                             if(company.confirmedbyAdmin)
-                               {
-                                    next();
-                               }
-                              else{
+                              else if(company.confirmed){
                                    return res.send("Plz wait for admin to confirm");
                              }
+                             else
+                             {
+                                return res.send("First Confirm Your Mail");
+                             }
                        }else{
                            return res.send("Not registered company");
 
@@ -118,7 +90,6 @@ const verifiedByadmin = async (req, res, next) => {
     }
     
   };
-
 
 
 /* Verify the token in the cookies */
@@ -146,7 +117,6 @@ const verifyToken = async (req, res, next) => {
   };
 
 app.use("/:id",verifyMail);
-app.use("/:id",verifiedByadmin);
 app.use("/:id",verifyToken);
 
 
