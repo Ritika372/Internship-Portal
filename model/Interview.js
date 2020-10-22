@@ -9,6 +9,9 @@ const InterviewSchema = new mongoose.Schema({
     branch: {
         type: String
     },
+    rollno: {
+        type: String
+    },
     exp: {
         type: String
     },

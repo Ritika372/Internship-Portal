@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const CompanySchema = new mongoose.Schema({
     email:{
-        type: String
+        type: String,
+        unique: true
     },
     password: {
         type: String
@@ -14,6 +15,9 @@ const CompanySchema = new mongoose.Schema({
         type: String
     },
     org_type:{
+        type: String
+    },
+    industry_sector:{
         type: String
     },
     about_company:{
@@ -41,6 +45,10 @@ const CompanySchema = new mongoose.Schema({
         type: String
     },
     confirmed: {
+        type: Boolean,
+        default: false
+    },
+    confirmedbyAdmin: {
         type: Boolean,
         default: false
     }
