@@ -65,7 +65,12 @@ const StudentSchema = new mongoose.Schema({
     },
     grad: {
         type: Number
+    },
+    confirmed: {
+        type: Boolean,
+        default: false
     }
+    
 });
 
 const Student = mongoose.model('student', StudentSchema);

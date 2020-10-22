@@ -1,13 +1,18 @@
 const bodyparser = require("body-parser");
 const Student = require('../../../model/Student');
+const sendemails=require('./email');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const cookieParser=require("cookie-parser");
+const jwt = require('jsonwebtoken');
 const express = require('express');
 const app = express();
 app.set('view engine', 'ejs');
+
 app.use(bodyparser.urlencoded({
   extended: true
 }));
+app.use(cookieParser());
 
 app.use(express.static("public"));
 //Renders the starting register page
@@ -30,19 +35,58 @@ app.post('/' , (req,res) => {
                 console.log(err);
             }
             else{
-                console.log(newStudent._id);
+
+                //import jwt from 'jsonwebtoken'; 
+               const expiration =  604800000;
+               const id=newStudent._id;
+              const token = jwt.sign({id, password }, "rohitMittalisthebest", {
+               expiresIn:  '7d',
+               });
+               const link ="http://localhost:3000/student/register/confirm/"+token; 
+                 sendemails(email,link);
                 res.redirect('/student/register/'+newStudent._id+'/enterdetails');
             }
-        });
+        
     });
 });
+});
+
+const verify =async(req,res) =>{
+    const token=req.params.token||"";
+    try{
+        if(!token)
+        {
+            return res.send("Wrong Link ");
+        }
+        const decrypt = await jwt.verify(token,  "rohitMittalisthebest");
+        Student.findByIdAndUpdate({_id : decrypt.id}, {$set : 
+            {confirmed : true}}, {new: true} ,(err,student) => {
+                if(err){
+                    return res.json({msg: "Something went wrong!"});
+                }
+                else{
+                    return res.json({msg: "Confirmed!"});
+                }
+            
+        });
+    } catch(error)
+    {
+        console.log(error);
+        res.json({msg: "Something went wrong!"});
+    }
+   
+    };
+
+
+
+
+app.get("/confirm/:token",verify);
+
 
 //Renders the enterdetails page with the email rollno according to saved data
 app.get('/:id/enterdetails' , (req,res) => {
-    console.log(req.params.id);
     //link given the direction so that post button works
     const link="/student/register/"+req.params.id+"/enterdetails";
-    console.log(link);
     Student.findById({_id : req.params.id}, (err,student) => {
         if(err)
         {
@@ -87,10 +131,13 @@ app.post('/:id/enterdetails' , (req,res) => {
         }
         else{
             //redirects to student profile
+           
+
+
             res.redirect('/student/login/'+req.params.id+'/studentprofile');
         }
     });
 });
 
 
-module.exports = app;
+module.exports = app ;

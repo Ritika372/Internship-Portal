@@ -27,6 +27,7 @@ app.get('/opening' , (req,res) => {
 
 app.use('/student' , require('./routes/api/studentapi/student_routes'));
 app.use('/admin',  require('./routes/api/Admin/admin_routes'));
+app.use('/company', reuqire('./routes/api/Company/company_routes'));
 app.listen(3000 , () => {
     console.log("Server started on port 3000");
 });

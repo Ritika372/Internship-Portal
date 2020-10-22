@@ -15,11 +15,11 @@
         </div>
         <div class = "row">
             <div class= "col-md-9">
-                <form action="/student/register/enterdetails" method="POST">
+                <form action= <%= link %> method="POST">
                     <div class = "form-group row">
                         <label for="companyname" class = "col-md-2 col-form-label">Company Name</label>
                         <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "companyname" name = "companyname" placeholder="Company Name" required>
+                            <input type="text" class = "form-control" id = "companyname" name = "companyname" value = <%= companyname %> required>
                         </div>
                     </div>
                     <div class = "form-group row">
@@ -60,7 +60,7 @@
                     <div class = "form-group row">
                         <label for="about_company" class = "col-md-2 col-form-label">About Company</label>
                         <div class = "col-md-10">
-                            <textarea name = "grad" rows="5" required></textarea>
+                            <textarea name = "about_company" rows="5" required></textarea>
                         </div>
                     </div>
                     <div class = "row">
@@ -89,17 +89,11 @@
                     <div class = "form-group row">
                         <label class = "col-md-2 col-form-label">Recruitment</label>
                         <div class = "col-md-10">
-                            <select class="form-control" ng-model="addNewCompany.newCompanyData.recruitment">
+                            <select class="form-control" name= "recruitment">
                                 <option value=""> -- Select Recruitment --</option>
                                 <option value="Internship">Internship</option>
                                 <option value="Placement">Placement</option>
                             </select>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="job_profile" class = "col-md-2 col-form-label">Enter Job Profile</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "job_profile" name = "job_profile" placeholder="Job Profile" required>
                         </div>
                     </div>
                     <div class = "form-group row">
@@ -124,6 +118,11 @@
                         <label class = "col-md-2 col-form-label">Job Description</label>
                         <div class = "col-md-10">
                             <textarea type="text" class = "form-control" rows="5" name = "description" required></textarea>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <div class = "offset-md-2 col-md-10">
+                            <button class = "btn btn-primary" type="submit">Submit Details</button>
                         </div>
                     </div>
                 </form>
