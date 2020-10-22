@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 const ejs =require("ejs");
+const path = require('path');
 require('dotenv').config();
 const sendMails = (email, text,msg) =>{
 
