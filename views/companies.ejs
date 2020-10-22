@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Experiences</title>
+</head>
+<body>
+    <div class = "container">
+        <div class = "row">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" href=<%= profile %> >Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href= <%= read_experience %> >Read Expereinces</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=<%= write_experience %> >Write Expereinces</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href=<%= company_apply%> >Company </a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href=<%= edit_profile%> >Edit Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href=<%= log_out%> >Log Out</a>
+                  </li>
+              </ul>
+        </div>
+        <br><br>
+        <div class = "row">
+            <div class = "col-12">
+                <% companies.forEach( (company) => { %>
+                    <div class = "row">
+                        <div class = "col-md-8 offset-md-2">
+                            <div class = "card">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= company.companyname %></h5>
+                                    <h6 class="card-subtitle"><%= company.recruitment %></h6>
+                                    <h6 class="card-subtitle"><%= company.batch %></h6>
+                                    <h6 class="card-subtitle"> <%= company.date %></h6><br>
+                                    <h6 class = "card-text"><%= company.job_profile %></h6>
+                                    <h6 class = "card-text"><%= company.org_type %></h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <br>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
