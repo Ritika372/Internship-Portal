@@ -10,6 +10,6 @@ app.use(bodyparser.urlencoded({
 app.use(express.static("public"));
 
 app.use('/login' , require('./loginAdmin'));
-app.use('/confirmexp' , require('./confirmexp'));
-app.use('/deleteexp' , require('./deleteexp'));
+app.use('/exp' , require('./exp'));
+app.use('/Company',require('./company'))
 module.exports = app;
