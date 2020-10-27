@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Students</title>
+</head>
+<body>
+    <div class = "container">
+        <div class = "container">
+            <div class = "row">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                      <a class="nav-link active" href=<%= profile %> >Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href=<%= edit_profile%> >Edit Profile</a>
+                    </li>       
+                    <li class="nav-item">
+                        <a class="nav-link" href=<%= applied_students%> >Applied Students</a>
+                      </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=<%= log_out%> >Log Out</a>
+                      </li>
+                  </ul>
+            </div>
+        </div><br><br>
+        <div class = "row">
+            <div class = "col-12">
+                <% students.forEach( (student) => { %>
+                    <div class = "row">
+                        <div class = "col-md-8 offset-md-2">
+                            <div class = "card">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle"><%= student.firstname %> <%= student.lastname %>       <%= student.email %>       <%= student.rollno %> <%= student.cgpa %> </h6>                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div> <br>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
