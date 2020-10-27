@@ -1,5 +1,6 @@
 const bodyparser = require("body-parser");
 const Company = require('../../../model/Company');
+const Student= require('../../../model/Student');
 const cookieParser=require("cookie-parser");
 const generateToken = require('./generateToken');
 const jwt = require('jsonwebtoken');
@@ -126,6 +127,7 @@ app.get('/:id/companyprofile' , (req,res) => {
 //profile read_experience write_experience edit_profile are the links given to the buttons on the company profile
     const profile = '/company/login/'+req.params.id+'/companyprofile';
     const edit_profile= '/company/login/'+req.params.id+'/editProfile';
+    const applied_students= '/company/login/'+req.params.id+'/appliedStudents';
     const log_out='/company/login/'+req.params.id+'/logOut';
     Company.findById({_id: req.params.id} , (err,company) => {
         if(err){
@@ -136,6 +138,7 @@ app.get('/:id/companyprofile' , (req,res) => {
             res.render("companyprofile" , {
                 profile:profile,
                 edit_profile:edit_profile,
+                applied_students:applied_students,
                 log_out:log_out,
                 email:company.email,
                 companyname: company.companyname , 
@@ -162,6 +165,7 @@ app.get('/:id/editProfile' , (req,res) => {
       //profile read_experience write_experience edit_profile are the links given to the buttons on the company profile
       const profile = '/company/login/'+req.params.id+'/companyprofile';
       const edit_profile= '/company/login/'+req.params.id+'/editProfile';
+    const applied_students= '/company/login/'+req.params.id+'/appliedStudents';
       const log_out='/company/login/'+req.params.id+'/logOut';
     //it is for the post button so that app.post works
     const link = '/company/login/'+req.params.id+'/editProfile';
@@ -172,6 +176,7 @@ app.get('/:id/editProfile' , (req,res) => {
         else{
             res.render("editCompanyProfile" , {
                 profile:profile,
+                applied_students:applied_students,
                 edit_profile:edit_profile,
                 log_out:log_out,
                 link:link,
@@ -223,7 +228,44 @@ app.post('/:id/editProfile' , (req,res) => {
     });
 });
 
+app.get("/:id/appliedStudents",(req,res)=>
+{
+    const profile = '/company/login/'+req.params.id+'/companyprofile';
+    const edit_profile= '/company/login/'+req.params.id+'/editProfile';
+  const applied_students= '/company/login/'+req.params.id+'/appliedStudents';
+    const log_out='/company/login/'+req.params.id+'/logOut';
+   Company.findById({_id:req.params.id},(err,company)=>
+   {
+       if(err)
+       {
+           res.send("Something wrong happened");
+       }
+       else{
+           if(company)
+           {
+               
+               Student.find({_id: { $in:company.students}},(error,students)=>
+               {
+                if(err){
+                    return res.json({msg: "Something went wrong!"});
+                }
+                else{
+                    res.render("applied_students" , {
+                        profile:profile,
+                        applied_students:applied_students,
+                        edit_profile:edit_profile,
+                        log_out:log_out,
+                        students:students
+                      });
+                }
+               })
+           }
+       }
+   }
+   )
 
+
+})
 app.get("/:id/logOut",(req,res)=>{
     res.clearCookie('CompanyLogin');
    res.redirect('/company/login');
