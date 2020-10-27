@@ -51,6 +51,10 @@ const CompanySchema = new mongoose.Schema({
     confirmedbyAdmin: {
         type: Boolean,
         default: false
+    },
+    students:{
+          type:Array,
+          default:[]
     }
 });
 

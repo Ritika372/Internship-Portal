@@ -9,6 +9,10 @@ const StudentSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
+    companies_applied: {
+         type:Array,
+         default:[]
+    },
     password: {
         type: String,
     },
