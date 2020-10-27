@@ -348,26 +348,51 @@ app.get("/:id/Company",(req,res)=>{
     const edit_profile= '/student/login/'+req.params.id+'/editProfile';
     const company_apply=  '/student/login/'+req.params.id+'/Company';
     const log_out='/student/login/'+req.params.id+'/logOut';
-    Company.find({confirmed: true,confirmedbyAdmin: true} , (err,company) => {
-        if(err){
-            console.log(err);
-        }
+    Student.findById({_id:req.params.id},(error,student)=>{
+        if(error){res.send("Something wrong happened");}
         else{
-            res.render("companies" , {
-                profile:profile,
-                read_experience:read_experience,
-                write_experience:write_experience,
-                edit_profile:edit_profile,
-                company_apply:company_apply,
-                log_out:log_out,
-                companies: company});
+        Company.find({confirmed: true,confirmedbyAdmin: true, _id: { $nin:student.companies_applied}} , (err,company) => {
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log(company);
+                res.render("companies" , {
+                    profile:profile,
+                    read_experience:read_experience,
+                    write_experience:write_experience,
+                    edit_profile:edit_profile,
+                    company_apply:company_apply,
+                    studentId: req.params.id,
+                    log_out:log_out,
+                    companies: company});
+            }
+        });
         }
-    });
+    })
+    
 })
 
 
 
 
+app.get("/:id/:companyId/apply",(req,res)=>
+{
+   Company.findByIdAndUpdate({_id:req.params.companyId},{ $push: { students: req.params.id }},{new: true} ,(err,c) => {
+    if(err){
+        return res.json({msg: "Something went wrong!"});
+    }
+    else{
+    Student.findByIdAndUpdate({_id:req.params.id},{$push: { companies_applied :req.params.companyId}},{new:true},(error,s) => {
+        if(error){
+            return res.json({msg: "Something went wrong!"});
+        }
+        else{
+        res.redirect('/student/login/'+req.params.id+'/Company');
+       } })
+    }
+})
+})
 
 
 app.get("/:id/logOut",(req,res)=>{
