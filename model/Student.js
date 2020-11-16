@@ -73,8 +73,10 @@ const StudentSchema = new mongoose.Schema({
     confirmed: {
         type: Boolean,
         default: false
+    },
+    resume :{
+        type: Buffer
     }
-    
 });
 
 const Student = mongoose.model('student', StudentSchema);

@@ -1,4 +1,5 @@
 const bodyparser = require("body-parser");
+const upload = require('./upload');
 const Student = require('../../../model/Student');
 const sendemails=require('./email');
 const bcrypt = require("bcrypt");
@@ -15,6 +16,24 @@ app.use(bodyparser.urlencoded({
 app.use(cookieParser());
 
 app.use(express.static("public"));
+
+const uploadFile = async (req, res) => {
+  try {
+    await upload(req, res);
+
+    console.log(req.resume);
+    if (req.resume == undefined) {
+      return res.send(`You must select a file.`);
+    }
+  } catch (error) {
+    console.log(error);
+    return res.send(`Error when trying upload image: ${error}`);
+  }
+};
+
+// module.exports = {
+//   uploadFile: uploadFile
+// };
 //Renders the starting register page
 app.get('/' , (req,res) => {
     res.render("registerStudent");
@@ -125,7 +144,8 @@ app.post('/:id/enterdetails' , (req,res) => {
         state: req.body.state,
         country: req.body.country,
         linkdin: req.body.linkdin,
-        grad: req.body.grad
+        grad: req.body.grad,
+        resume: uploadFile(req,res)
     }}  ,{new: true} ,(err,student) => {
         if(err){
             return res.json({msg: "Something went wrong!"});
@@ -133,8 +153,6 @@ app.post('/:id/enterdetails' , (req,res) => {
         else{
             //redirects to student profile
            
-
-
             res.redirect('/student/login/'+req.params.id+'/studentprofile');
         }
     });

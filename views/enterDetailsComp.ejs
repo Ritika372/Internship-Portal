@@ -120,6 +120,91 @@
                             <textarea type="text" class = "form-control" rows="5" name = "description" required></textarea>
                         </div>
                     </div>
+                    
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Eligible Programs</label>
+                        <div class = "col-md-10">
+                            <select class="form-control" name = "eligible_prog" multiple>
+                                <option value=""> -- Programs --</option>
+                                <option>B.tech</option>
+                                <option>M.tech</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Eligible Branches</label>
+                        <div class = "col-md-10">
+                            <select class="form-control" name = "eligible_branch" multiple>
+                                <option value=""> -- Branches --</option>
+                                <option>Computer Science</option>
+                                <option>IT</option>
+                                <option>Electronics</option>
+                                <option>Instrumentation</option>
+                                <option>Mechanical</option>
+                                <option>Civil</option>
+                                <option>Chemical</option>
+                                <option>Biotech</option>
+                                <option>Textile</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Minimum CGPA</label>
+                        <div class = "col-md-10">
+                            <input type="text" class = "form-control" name = "min_cgpa" placeholder= "Minimum Cgpa" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Minimum marks in 10th</label>
+                        <div class = "col-md-10">
+                            <input type="text" class = "form-control" name = "min_10_percent" placeholder="Min marks in 10th" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Minimum marks in 12th</label>
+                        <div class = "col-md-10">
+                            <input type="text" class = "form-control" name = "min_12_percent" placeholder="Min marks in 12th" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Medical Requirement</label>
+                        <div class = "col-md-10">
+                            <select class="form-control" name = "medical_requirement" >
+                                <option value=""> -- Select Medical requiremnet --</option>
+                                <option value  = "Yes">Yes</option>
+                                <option value = "No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Package</label>
+                        <div class = "col-md-10">
+                            <input type="text" class = "form-control" name = "package" placeholder="ENter package" required>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Company Accomodation</label>
+                        <div class = "col-md-10">
+                            <select class="form-control" name = "company_accommodation" >
+                                <option value=""> -- Select company Accomodation --</option>
+                                <option value  = "Yes">Yes</option>
+                                <option calue = "No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Extra Facility</label>
+                        <div class = "col-md-10">
+                            <input type="text" class = "form-control" name = "other_facility" placeholder="Enter extra facility">
+                        </div>
+                    </div>
+                    <div class = "form-group row">
+                        <label class = "col-md-2 col-form-label">Last Date to apply</label>
+                        <div class = "col-md-10">
+                            <input type="date" class = "form-control" name = "deadline_date" placeholder="Deadline date">
+                        </div>
+                    </div>
+
                     <div class = "form-group row">
                         <div class = "offset-md-2 col-md-10">
                             <button class = "btn btn-primary" type="submit">Submit Details</button>

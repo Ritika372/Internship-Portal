@@ -118,8 +118,18 @@ app.post('/:id/enterdetails' , (req,res) => {
         industry_sector:req.body.industry_sector,
         location:req.body.location,
         date:req.body.date,
-        description:req.body.description
-    }}  ,{new: true} ,(err,student) => {
+        description:req.body.description,
+        eligible_prog : req.body.eligible_prog,
+        eligible_branch : req.body.eligible_branch,
+        min_cgpa : req.body.min_cgpa,
+        min_10_percent: req.body.min_10_percent,
+        min_12_percent: req.body.min_12_percent,
+        medical_requirement : req.body.medical_requirement,
+        package: req.body.package,
+        company_accommodation : req.body.company_accommodation,
+        other_facility: req.body.other_facility,
+        deadline_date: req.body.deadline_date
+    }}  ,{new: true} ,(err) => {
         if(err){
             return res.json({msg: "Something went wrong!"});
         }

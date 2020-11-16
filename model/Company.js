@@ -55,6 +55,62 @@ const CompanySchema = new mongoose.Schema({
     students:{
           type:Array,
           default:[]
+    },
+    eligible_prog : {
+        type: Array,
+        default: []
+    },
+    eligible_branch : {
+        type : Array,
+        default: []
+    },
+    min_cgpa : {
+        type : String // todo convert float
+    },
+    min_10_percent : {
+        type : String
+    },
+    min_12_percent : {
+        type : String
+    },
+    medical_requirement : {
+        type : String
+    },
+    // service_agreement : {
+    //     type : String
+    // },
+    // service_agreement_duration : {
+    //     type : String
+    // },
+    // other_eligibility : {
+    //     type : String
+    // },
+
+    // Package Details
+    package : {
+        type : Number
+    },
+    company_accommodation : {
+        type : String
+    },
+    other_facility : {
+        type : String
+    },
+    // Selection Process
+    // selection_process : {
+    //     type : Object
+    // },
+    // waitlist : {
+    //     type : String
+    // },
+    // final_offer : {
+    //     type : String
+    // },
+
+    // registration deadline
+    deadline_date : {
+        type : Date,
+        required : true
     }
 });
 
