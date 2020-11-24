@@ -1,7 +1,7 @@
-const config =  require("config");
+const config = require("config");
 const mongoose = require("mongoose");
 const db = config.get("mongo");
-const connectdb = async() => {
+const connectdb = async () => {
     try {
         await mongoose.connect(db, {
             useNewUrlParser: true,
@@ -16,5 +16,4 @@ const connectdb = async() => {
         process.exit(1);
     }
 }
-
 module.exports = connectdb;

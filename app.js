@@ -25,9 +25,10 @@ app.get('/opening' , (req,res) => {
     res.redirect("/");
 });
 
-app.use('/student' , require('./routes/api/studentapi/student_routes'));
+app.use('/student' , require('./routes/api/studentApi/student_routes'));
 app.use('/admin',  require('./routes/api/Admin/admin_routes'));
 app.use('/company', require('./routes/api/Company/company_routes'));
+
 app.listen(3000 , () => {
     console.log("Server started on port 3000");
 });

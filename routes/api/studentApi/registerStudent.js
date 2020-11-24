@@ -1,5 +1,5 @@
 const bodyparser = require("body-parser");
-const upload = require('./upload');
+const uploadFile = require('./upload');
 const Student = require('../../../model/Student');
 const sendemails=require('./email');
 const bcrypt = require("bcrypt");
@@ -16,20 +16,20 @@ app.use(bodyparser.urlencoded({
 app.use(cookieParser());
 
 app.use(express.static("public"));
-
-const uploadFile = async (req, res) => {
-  try {
-    await upload(req, res);
-
-    console.log(req.resume);
-    if (req.resume == undefined) {
-      return res.send(`You must select a file.`);
-    }
-  } catch (error) {
-    console.log(error);
-    return res.send(`Error when trying upload image: ${error}`);
-  }
-};
+//
+// const uploadFile = async (req, res) => {
+//   try {
+//     await upload(req, res);
+//
+//     console.log(req.resume);
+//     if (req.resume == undefined) {
+//       return res.send(`You must select a file.`);
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     return res.send(`Error when trying upload image: ${error}`);
+//   }
+// };
 
 // module.exports = {
 //   uploadFile: uploadFile
@@ -113,10 +113,10 @@ app.get('/:id/enterdetails' , (req,res) => {
             return res.json({msg: "Something went wrong!"});
         }
         else{
-            res.render("enterdetails" , {
+            res.render("enterDetails" , {
                 link:link,
                 email: student.email,
-                rollno: rollno     
+                rollno: student.rollno
               });
         }
     });
@@ -124,8 +124,7 @@ app.get('/:id/enterdetails' , (req,res) => {
     
 
 //saves the data of the user
-app.post('/:id/enterdetails' , (req,res) => {
- 
+app.post('/:id/enterdetails', uploadFile.single("resume") , async (req,res) => {
     Student.findByIdAndUpdate({_id : req.params.id} , {$set : {
         firstname : req.body.firstname , 
         lastname :req.body.lastname,
@@ -145,9 +144,10 @@ app.post('/:id/enterdetails' , (req,res) => {
         country: req.body.country,
         linkdin: req.body.linkdin,
         grad: req.body.grad,
-        resume: uploadFile(req,res)
+        resume: req.body.resume
     }}  ,{new: true} ,(err,student) => {
         if(err){
+            console.log({err});
             return res.json({msg: "Something went wrong!"});
         }
         else{

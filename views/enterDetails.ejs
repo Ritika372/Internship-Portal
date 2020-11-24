@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <title>Enter Details</title>
     <style>
         div.preview-images > img {
@@ -12,15 +13,16 @@
       </style>
 </head>
 <body>
-    <div class = "container">
-        <div class = "row">
-            <div class = "col-md-9 offset-md-2 align-self-center">
-                <h2>Enter follwing details</h2>
+
+    <div class = "container detailsContainer">
+        <div class = "row p-2">
+            <div class = "col-12">
+                <h2 class="form-title">Enter your details</h2>
             </div>
         </div>
         <div class = "row">
-            <div class= "col-md-9">
-                <form action=<%= link %> method="POST">
+            <div class= "col-12">
+                <form action=<%= link %> method="POST" enctype="multipart/form-data"::>
                     <div class = "form-group row">
                         <label for="firstname" class = "col-md-2 col-form-label">First Name</label>
                         <div class = "col-md-10">
@@ -138,7 +140,7 @@
                       </div>
                     <div class = "form-group row">
                         <div class = "offset-md-2 col-md-10">
-                            <button class = "btn btn-primary" type="submit">Submit Details</button>
+                            <button class = "button button-pri" type="submit">Submit Details</button>
                         </div>
                     </div>
                 </form>

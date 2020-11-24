@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="01ebb19c-0805-46ea-91b9-53a9ffb22138" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/Admin/company.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/Admin/company.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/Company/email.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/Company/email.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/Company/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/Company/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/studentApi/registerStudent.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/studentApi/registerStudent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api/studentApi/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api/studentApi/upload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/applied_students.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/applied_students.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/companies.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/companies.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/enterDetails.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterDetails.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/loginCompany.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/loginCompany.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/loginStudent.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/loginStudent.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/opening.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/opening.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/headers.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/headers.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/registerComp.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/registerComp.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/registerStudent.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/registerStudent.ejs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1kh4PXESQ9HQUzTx0dykrUuwpOA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="01ebb19c-0805-46ea-91b9-53a9ffb22138" name="Default Changelist" comment="" />
+      <created>1606139474039</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606139474039</updated>
+      <workItem from="1606139481449" duration="1459000" />
+      <workItem from="1606178817878" duration="5523000" />
+      <workItem from="1606235822459" duration="71000" />
+      <workItem from="1606235974315" duration="1619000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="997" height="522" key="GridCell.Tab.0.bottom" timestamp="1606139958399">
+      <screen x="0" y="30" width="1024" height="738" />
+    </state>
+    <state width="997" height="522" key="GridCell.Tab.0.bottom/0.30.1024.738@0.30.1024.738" timestamp="1606139958399" />
+    <state width="997" height="522" key="GridCell.Tab.0.center" timestamp="1606139958398">
+      <screen x="0" y="30" width="1024" height="738" />
+    </state>
+    <state width="997" height="522" key="GridCell.Tab.0.center/0.30.1024.738@0.30.1024.738" timestamp="1606139958398" />
+    <state width="997" height="522" key="GridCell.Tab.0.left" timestamp="1606139958397">
+      <screen x="0" y="30" width="1024" height="738" />
+    </state>
+    <state width="997" height="522" key="GridCell.Tab.0.left/0.30.1024.738@0.30.1024.738" timestamp="1606139958397" />
+    <state width="997" height="522" key="GridCell.Tab.0.right" timestamp="1606139958398">
+      <screen x="0" y="30" width="1024" height="738" />
+    </state>
+    <state width="997" height="522" key="GridCell.Tab.0.right/0.30.1024.738@0.30.1024.738" timestamp="1606139958398" />
+    <state x="30" y="34" key="SettingsEditor" timestamp="1606235905986">
+      <screen x="0" y="30" width="1024" height="738" />
+    </state>
+    <state x="30" y="34" key="SettingsEditor/0.30.1024.738@0.30.1024.738" timestamp="1606235905986" />
+  </component>
+</project>

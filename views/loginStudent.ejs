@@ -1,6 +1,6 @@
 <%- include('partials/headers') %>
+<div class = "container">
 <form class = "loginContainer" action = "/student/login" , method="POST">
-  <div class = "container">
     <div class="form-group">
       <label>Roll Number</label>
       <input type="text" class="form-control" name = "rollno" >
@@ -9,9 +9,14 @@
       <label>Password</label>
       <input type="password" class="form-control" name = "password">
     </div>
-    <button type="submit" class="btn btn-primary">Log In</button>
-    <button type="submit" class="btn btn-primary"><a href="/student/register">Register</a></button>
-    <button type="submit" class="btn btn-primary"><a href="/student/forgot_pass">Forgot password</a></button>
-  </div>
+    <div class="d-flex form-cta">
+      <button type="submit" class="button button-pri">Log In</button>
+      <button class="button button-sec"><a href="/student/register">Register</a></button>
+      <button class="button button-sec"><a href="/student/forgot_pass">Forgot password</a></button>
+    </div>
+
   </form>
+
+</div>
+
 <%- include('partials/footer') %>

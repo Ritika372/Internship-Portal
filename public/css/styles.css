@@ -1,16 +1,12 @@
 body{
     background: rgb(244,245,245);
     background: radial-gradient(circle, rgba(244,245,245,1) 70%, rgba(197,202,210,1) 100%);
-    overflow: hidden;
-    background-image: url("https://www.nitj.ac.in/images/menu_content/dsc_0707.jpg");
+    /*background-image: url("https://www.nitj.ac.in/images/menu_content/dsc_0707.jpg");*/
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 0.8;
 }
 
-a:hover{
-    color: white;
-}
 .login{
     margin-top: 170px;
     margin-left : 450px;
@@ -22,20 +18,42 @@ a:hover{
 .flex-right {
     color: white;
 }
-.navbar{
+.navbar {
     position: sticky;
     background: #373B44;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    height: 70px;
+    height:max-content;
+    padding: 1rem 0.5rem;
 }
+
+.navbar ul {
+    margin: 0;
+}
+
+.nav-option {
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: all 0.4s ease;
+}
+
+.nav-option:hover {
+    color:red;
+}
+.logo {
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+
 .nitj{
     position: absolute;
     right :20px;
 }
 a:hover{
     text-decoration: none;
-    color: dark-blue;
+    color: red;
 }
 .sidebar{
     position: fixed;
@@ -60,22 +78,61 @@ a:hover{
     text-decoration: none;
     border-bottom: 1px solid rgba(0,0,0,.2);
 }
-.loginContainer{
-    top: 150px;
-    position: absolute;
-    left: 230px;
+
+.loginContainer {
+    max-width: 500px;
+    margin-right: auto;
+    height: max-content;
+    padding:1rem;
+    margin-left:auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+
     background-color: white;
     border: 1px solid white;
-    border-radius: 6%;
-    width: 800px;
-    height: 330px;
+    border-radius: 8px;
 }
-.loginContainer .container{
-    margin: 20px;
+
+.button {
+    background-color:#ffffff;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    outline: none;
+    color: #111111;
+    margin: 0.3rem;
+    transition: all 0.3s linear;
 }
-.form-group{
-    width: 700px;
+
+.button-pri {
+    background-color: #4286f4;
+    color: #ffffff;
+    border: 2px solid #4286f4;
 }
+
+.button-sec {
+    border: 2px solid #111111;
+}
+
+.button-sec a {
+    color: #111111;
+}
+
+.button-sec:hover {
+    background-color: #111111;
+    color: #ffffff;
+}
+
+.button-sec:hover a {
+    color: #ffffff;
+}
+
+.button-pri:hover {
+    transform: scale(1.1);
+}
+
+
 .btn a{
     color: white;
 }
@@ -105,4 +162,51 @@ a:hover{
     padding: 50px 0px 50px 0px;
     border-bottom: 1px ridge;
     min-height:400px;
+}
+
+.opening-hero {
+    margin-top: 5rem;
+    text-align: center;
+}
+
+.opening-hero p {
+    font-size: 1.6rem;
+    color: #111111;
+    font-family: Arial, sans-serif;
+    padding-left: 1rem;
+    margin-bottom: 0;
+}
+
+.opening-hero .wel {
+    font-size: 2.6rem;
+    font-weight: bold;
+}
+
+.opening-hero .wel span {
+    color: red;
+}
+
+.cta-section {
+    margin-top: 2rem;
+    padding-left: 2rem;
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+}
+
+
+.form-title {
+    color: #111111;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    text-align: left;
+}
+
+.detailsContainer {
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    max-width: 800px;
 }
