@@ -3,7 +3,7 @@ const ejs =require("ejs");
 const path = require('path');
 require('dotenv').config();
 const sendMails = (email, text,msg) =>{
-
+    console.log(process.env.SENDMAIL);
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {

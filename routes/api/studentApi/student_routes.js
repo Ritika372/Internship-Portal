@@ -10,5 +10,6 @@ app.use(bodyparser.urlencoded({
 app.use(express.static("public"));
 
 app.use('/login' , require('./loginStudent'));
+app.use('/forgot_pass' , require('./forgotpassword'));
 app.use('/register' , require('./registerStudent'));
 module.exports = app;
