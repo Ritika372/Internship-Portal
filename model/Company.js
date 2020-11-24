@@ -110,7 +110,7 @@ const CompanySchema = new mongoose.Schema({
     // registration deadline
     deadline_date : {
         type : Date,
-        required : true
+     //   required : true
     }
 });
 
