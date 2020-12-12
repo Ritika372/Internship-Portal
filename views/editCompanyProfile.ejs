@@ -12,10 +12,10 @@
             <div class = "row">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                      <a class="nav-link active" href=<%= profile %> >Home</a>
+                      <a class="nav-link" href=<%= profile %> >Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href=<%= edit_profile%> >Edit Profile</a>
+                      <a class="nav-link active" href=<%= edit_profile%> >Edit Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href=<%= applied_students%> >Applied Students</a>
@@ -24,11 +24,11 @@
                         <a class="nav-link" href=<%= log_out%> >Log Out</a>
                       </li>
                   </ul>
-            </div>
+            </div> <br><br>
             <div class = "col-md-9 offset-md-2 align-self-center">
                 <h2>Company details</h2>
             </div>
-        </div>
+        </div><br><br>
         <div class = "row">
             <div class= "col-md-9">
                 <form action= <%= link %> method="POST">
@@ -76,14 +76,16 @@
                     <div class = "form-group row">
                         <label for="about_company" class = "col-md-2 col-form-label">About Company</label>
                         <div class = "col-md-10">
-                            <textarea name = "about_company" rows="5" required   ><%=  about_company%></textarea>
+                            <textarea class="form-control" name = "about_company" rows="5" required   ><%=  about_company%></textarea>
                         </div>
                     </div>
+                    <br><br>
                     <div class = "row">
                         <div class = "col-md-9 offset-md-2 align-self-center">
                             <h2>Job Profile details</h2>
                         </div>
                     </div>
+                    <br><br>
                     <div class = "form-group row">
                         <label for="job_profile" class = "col-md-2 col-form-label">Enter Job Profile</label>
                         <div class = "col-md-10">

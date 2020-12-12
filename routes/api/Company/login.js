@@ -243,7 +243,7 @@ app.get("/:id/appliedStudents",(req,res)=>
        else{
            if(company)
            {
-               
+               //console.log(company.students);
                Student.find({_id: { $in:company.students}},(error,students)=>
                {
                 if(err){

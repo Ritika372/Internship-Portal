@@ -131,6 +131,7 @@ app.get('/:id/studentprofile' , (req,res) => {
     const company_apply=  '/student/login/'+req.params.id+'/Company';
     const edit_profile= '/student/login/'+req.params.id+'/editProfile';
     const log_out='/student/login/'+req.params.id+'/logOut';
+    const applied='/student/login/'+req.params.id+'/applied';
     Student.findById({_id: req.params.id} , (err,student) => {
         if(err){
             return res.json({msg: "Something went wrong!"});
@@ -144,6 +145,7 @@ app.get('/:id/studentprofile' , (req,res) => {
                 edit_profile:edit_profile,
                 company_apply:company_apply,
                 log_out:log_out,
+                applied: applied,
                 firstname : student.firstname , 
                 lastname :student.lastname , 
                 branch: student.branch, 
@@ -177,6 +179,7 @@ app.get('/:id/experiences' , (req,res) => {
             const write_experience = '/student/login/'+req.params.id+'/submitexperience';
             const edit_profile= '/student/login/'+req.params.id+'/editProfile';
             const company_apply=  '/student/login/'+req.params.id+'/Company';
+            const applied='/student/login/'+req.params.id+'/applied';
             const log_out='/student/login/'+req.params.id+'/logOut';
         if(err){
             console.log(err);
@@ -185,6 +188,7 @@ app.get('/:id/experiences' , (req,res) => {
         else{
             res.render("Experiences" , {
                 profile:profile,
+                applied:applied,
                 read_experience:read_experience,
                 write_experience:write_experience,
                 company_apply:company_apply,
@@ -207,8 +211,10 @@ app.get('/:id/submitexperience' , (req,res) => {
     const company_apply=  '/student/login/'+req.params.id+'/Company';
     const edit_profile= '/student/login/'+req.params.id+'/editProfile';
     const log_out='/student/login/'+req.params.id+'/logOut';
+    const applied='/student/login/'+req.params.id+'/applied';
     res.render("submitExp",{
         profile:profile,
+        applied:applied,
         read_experience:read_experience,
         write_experience:write_experience,
         company_apply:company_apply,
@@ -268,6 +274,7 @@ app.get('/:id/editProfile' , (req,res) => {
     const edit_profile= '/student/login/'+req.params.id+'/editProfile';
     const company_apply=  '/student/login/'+req.params.id+'/Company';
     const log_out='/student/login/'+req.params.id+'/logOut';
+    const applied='/student/login/'+req.params.id+'/applied';
     //it is for the post button so that app.post works
     const link = '/student/login/'+req.params.id+'/editProfile';
     Student.findById({_id: req.params.id} , (err,student) => {
@@ -277,6 +284,7 @@ app.get('/:id/editProfile' , (req,res) => {
         else{
             res.render("editProfile" , {
                 profile:profile,
+                applied:applied,
                 read_experience:read_experience,
                 write_experience:write_experience,
                 edit_profile:edit_profile,
@@ -348,6 +356,7 @@ app.get("/:id/Company",(req,res)=>{
     const edit_profile= '/student/login/'+req.params.id+'/editProfile';
     const company_apply=  '/student/login/'+req.params.id+'/Company';
     const log_out='/student/login/'+req.params.id+'/logOut';
+    const applied='/student/login/'+req.params.id+'/applied';
     Student.findById({_id:req.params.id},(error,student)=>{
         if(error){res.send("Something wrong happened");}
         else{
@@ -359,6 +368,7 @@ app.get("/:id/Company",(req,res)=>{
                 console.log(company);
                 res.render("companies" , {
                     profile:profile,
+                    applied:applied,
                     read_experience:read_experience,
                     write_experience:write_experience,
                     edit_profile:edit_profile,
@@ -378,6 +388,7 @@ app.get("/:id/Company",(req,res)=>{
 
 app.get("/:id/:companyId/apply",(req,res)=>
 {
+    console.log(req.params.companyId);
    Company.findByIdAndUpdate({_id:req.params.companyId},{ $push: { students: req.params.id }},{new: true} ,(err,c) => {
     if(err){
         return res.json({msg: "Something went wrong!"});
@@ -389,11 +400,88 @@ app.get("/:id/:companyId/apply",(req,res)=>
         }
         else{
         res.redirect('/student/login/'+req.params.id+'/Company');
-       } })
+        //res.send("Applied!");
+       } });
     }
+    
 })
 })
 
+app.get( "/:id/applied",(req,res)=>{
+    const profile = '/student/login/'+req.params.id+'/studentprofile';
+    const read_experience = '/student/login/'+req.params.id+'/experiences';
+    const write_experience = '/student/login/'+req.params.id+'/submitexperience';
+    const edit_profile= '/student/login/'+req.params.id+'/editProfile';
+    const company_apply=  '/student/login/'+req.params.id+'/Company';
+    const log_out='/student/login/'+req.params.id+'/logOut';
+    const applied='/student/login/'+req.params.id+'/applied';
+    Student.findById({_id : req.params.id} , (error,student)=>{
+        if(error){
+            console.log(error);
+            res.send("Something wrong happened");}
+        else{
+                console.log(student.companies_applied);
+                Company.find({_id : {$in: student.companies_applied}}, (err, company) => {
+                    if(err){console.log(err);}
+                    else{
+                        //console.log(companies);
+                        res.render("Applied_companies" , {
+                            profile:profile,
+                            applied:applied,
+                            read_experience:read_experience,
+                            write_experience:write_experience,
+                            edit_profile:edit_profile,
+                            company_apply:company_apply,
+                            studentId: req.params.id,
+                            log_out:log_out,
+                            companies: company});
+                    }
+                })
+            }
+        });
+    
+    });
+
+    app.get( "/:id/details",(req,res)=>{
+        const companyid = req.body.id;
+        const profile = '/student/login/'+req.params.id+'/studentprofile';
+        const read_experience = '/student/login/'+req.params.id+'/experiences';
+        const write_experience = '/student/login/'+req.params.id+'/submitexperience';
+        const edit_profile= '/student/login/'+req.params.id+'/editProfile';
+        const company_apply=  '/student/login/'+req.params.id+'/Company';
+        const log_out='/student/login/'+req.params.id+'/logOut';
+        const applied='/student/login/'+req.params.id+'/applied';
+        Company.findById({_id : companyid} , (error,company)=>{
+            if(error){
+                console.log(error);
+                res.send("Something wrong happened");}
+            else{
+                            res.render("CompanyDetails_stud" , {
+                                profile:profile,
+                                applied:applied,
+                                read_experience:read_experience,
+                                write_experience:write_experience,
+                                edit_profile:edit_profile,
+                                company_apply:company_apply,
+                                log_out:log_out,
+                                companyname: company.companyname , 
+                                about_company :company.about_company , 
+                                email: company.email, 
+                                website_link : company.website, 
+                                organization_type : company.org_type, 
+                                industry_sector: company.industry_sector,
+                                about_company : company.about_company,
+                                job_profile: company.job_profile,
+                                duration:company.duration,
+                                pass_out_batch : company.batch,
+                                recruitment_type: company.recruitment,
+                                location : company.location,
+                                tentative_joining_date: company.date,
+                                job_description: company.description
+                                });
+                        }
+        })
+});
 
 app.get("/:id/logOut",(req,res)=>{
     res.clearCookie('studentLogin');

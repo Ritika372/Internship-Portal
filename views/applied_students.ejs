@@ -12,13 +12,13 @@
             <div class = "row">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                      <a class="nav-link active" href=<%= profile %> >Home</a>
+                      <a class="nav-link" href=<%= profile %> >Home</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href=<%= edit_profile%> >Edit Profile</a>
                     </li>       
                     <li class="nav-item">
-                        <a class="nav-link" href=<%= applied_students%> >Applied Students</a>
+                        <a class="nav-link active" href=<%= applied_students%> >Applied Students</a>
                       </li>
                     <li class="nav-item">
                         <a class="nav-link" href=<%= log_out%> >Log Out</a>
@@ -28,7 +28,7 @@
         </div><br><br>
         <div class = "row">
             <div class = "col-12">
-                <% students.forEach( (student) => { %>
+                <!-- <% students.forEach( (student) => { %>
                     <div class = "row">
                         <div class = "col-md-8 offset-md-2">
                             <div class = "card">
@@ -38,7 +38,29 @@
                             </div>
                         </div>
                     </div> <br>
-                <% }) %>
+                <% }) %> -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Roll Number</th>
+                        <th scope="col">FirstName</th>
+                        <th scope="col">LastName</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Branch</th>
+                      </tr>
+                    </thead>
+                <% students.forEach( (student) => { %>
+                    <tbody>
+                      <tr>
+                        <th scope="row"><%= student.rollno %></th>
+                        <td><%= student.firstname %></td>
+                        <td><%= student.lastname %></td>
+                        <td><%= student.personal_email %></td>
+                        <td><%= student.branch %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <% }) %>
             </div>
         </div>
     </div>
