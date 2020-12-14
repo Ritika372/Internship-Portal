@@ -21,6 +21,7 @@ app.post('/' , (req,res)=> {
         res.render('adminHome');
     }
     else{
+       // res.redirect("/","true")
         res.json({msg : "Incorrect pass or email"});
     }
 });
