@@ -11,5 +11,5 @@ app.use(express.static("public"));
 
 app.use('/login' , require('./loginAdmin'));
 app.use('/exp' , require('./exp'));
-app.use('/Company',require('./company'))
+app.use('/ConfirmCompany',require('./company'))
 module.exports = app;
