@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/student.css">
+    <title>Companies</title>
+</head>
+<body>
+    <div class = "container">
+        <div class = "container">
+            <div class = "row">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/admin/exp">Experiences</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/admin/ConfirmCompany"> Confirm Companies</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/admin/login/Students">Students</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active" href="/admin/login/Companies">Companies</a>
+                        </li>
+                  </ul>
+            </div>
+        </div><br><br>
+        <div class = "row">
+            <div class = "col-12">
+
+                <table id="example" class="display" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Minimum CGPA</th>
+                        <th scope="col">Branches</th>
+                        <th scope="col">Package</th>
+                        <th scope="col">Deadline Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                <% companies.forEach( (company) => { %>
+                      <tr>
+                        <th scope="row"><%= company.companyname %></th>
+                        <td><%= company.email%></td>
+                        <td><%= company.min_cgpa %></td>
+                        <td><%= company.eligible_branch %></td>
+                        <td><%= company.package %></td>
+                        <td><%= company.deadline_date  %></td>
+                      </tr>
+                    
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          $('#example').DataTable( {
+              dom: 'Bfrtip',
+              buttons: [
+                  'copyHtml5',
+                  'excelHtml5',
+                  'csvHtml5',
+                  'pdfHtml5'
+              ]
+          } );
+      } );
+    </script>
+</body>
+</html>
