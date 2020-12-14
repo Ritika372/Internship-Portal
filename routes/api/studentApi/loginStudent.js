@@ -286,7 +286,7 @@ app.post('/:id/submitexperience', (req, res) => {
     });
 
 });
-
+///5fd71e5297826d07dcaad5d0/5fbd6e3400fa334978e2a7cb/details
 //Renderes the edit profile page with the last given data by the student
 app.get('/:id/editProfile', (req, res) => {
     //profile read_experience write_experience edit_profile are the links given to the buttons on the student profile
@@ -409,9 +409,6 @@ app.get("/:id/Company", (req, res) => {
 
 })
 
-
-
-
 app.get("/:id/:companyId/apply", (req, res) => {
     console.log(req.params.companyId);
     Company.findByIdAndUpdate({ _id: req.params.companyId }, { $push: { students: req.params.id } }, { new: true }, (err, c) => {
@@ -432,6 +429,53 @@ app.get("/:id/:companyId/apply", (req, res) => {
 
     })
 })
+
+app.get("/:id/:companyId/details", (req, res) => {
+ //   console.log()
+    const companyid = req.params.companyId;
+    const profile = '/student/login/' + req.params.id + '/studentprofile';
+    const read_experience = '/student/login/' + req.params.id + '/experiences';
+    const write_experience = '/student/login/' + req.params.id + '/submitexperience';
+    const edit_profile = '/student/login/' + req.params.id + '/editProfile';
+    const company_apply = '/student/login/' + req.params.id + '/Company';
+    const log_out = '/student/login/' + req.params.id + '/logOut';
+    const applied = '/student/login/' + req.params.id + '/applied';
+    Company.findById({ _id: companyid }, (error, company) => {
+        if (error) {
+            console.log(error);
+            res.send("Something wrong happened");
+        }
+        else {
+            res.render("CompanyDetails_stud", {
+                profile: profile,
+                applied: applied,
+                read_experience: read_experience,
+                write_experience: write_experience,
+                edit_profile: edit_profile,
+                company_apply: company_apply,
+                log_out: log_out,
+                companyname: company.companyname,
+                about_company: company.about_company,
+                email: company.email,
+                website_link: company.website,
+                organization_type: company.org_type,
+                industry_sector: company.industry_sector,
+                about_company: company.about_company,
+                job_profile: company.job_profile,
+                duration: company.duration,
+                pass_out_batch: company.batch,
+                recruitment_type: company.recruitment,
+                location: company.location,
+                tentative_joining_date: company.date,
+                job_description: company.description,
+                studentId: req.params.id,
+                companyId:companyid
+                
+            });
+        }
+    })
+});
+
 
 app.get("/:id/applied", (req, res) => {
     const profile = '/student/login/' + req.params.id + '/studentprofile';
@@ -469,48 +513,8 @@ app.get("/:id/applied", (req, res) => {
     });
 
 });
-
-app.get("/:id/details", (req, res) => {
-    const companyid = req.body.id;
-    const profile = '/student/login/' + req.params.id + '/studentprofile';
-    const read_experience = '/student/login/' + req.params.id + '/experiences';
-    const write_experience = '/student/login/' + req.params.id + '/submitexperience';
-    const edit_profile = '/student/login/' + req.params.id + '/editProfile';
-    const company_apply = '/student/login/' + req.params.id + '/Company';
-    const log_out = '/student/login/' + req.params.id + '/logOut';
-    const applied = '/student/login/' + req.params.id + '/applied';
-    Company.findById({ _id: companyid }, (error, company) => {
-        if (error) {
-            console.log(error);
-            res.send("Something wrong happened");
-        }
-        else {
-            res.render("CompanyDetails_stud", {
-                profile: profile,
-                applied: applied,
-                read_experience: read_experience,
-                write_experience: write_experience,
-                edit_profile: edit_profile,
-                company_apply: company_apply,
-                log_out: log_out,
-                companyname: company.companyname,
-                about_company: company.about_company,
-                email: company.email,
-                website_link: company.website,
-                organization_type: company.org_type,
-                industry_sector: company.industry_sector,
-                about_company: company.about_company,
-                job_profile: company.job_profile,
-                duration: company.duration,
-                pass_out_batch: company.batch,
-                recruitment_type: company.recruitment,
-                location: company.location,
-                tentative_joining_date: company.date,
-                job_description: company.description
-            });
-        }
-    })
-});
+// /student/login/5fd71e5297826d07dcaad5d0/Company
+// /student/login/5fd71e5297826d07dcaad5d0/5fbd6e3400fa334978e2a7cb/details
 
 app.get("/:id/logOut", (req, res) => {
     res.clearCookie('studentLogin');
