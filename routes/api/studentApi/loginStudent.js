@@ -468,6 +468,12 @@ app.get("/:id/:companyId/details", (req, res) => {
                 location: company.location,
                 tentative_joining_date: company.date,
                 job_description: company.description,
+                eligible_branch :company.eligible_branch, 
+                min_cgpa :company.min_cgpa,
+                min_10_percent :  company.min_10_percent,
+                min_12_percent : company.min_12_percent,
+                package :  company.package,
+                deadline_date : company.deadline_date,
                 studentId: req.params.id,
                 companyId:companyid
                 
