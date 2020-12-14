@@ -153,7 +153,13 @@ app.get('/:id/companyprofile' , (req,res) => {
                 recruitment_type: company.recruitment,
                 location : company.location,
                 tentative_joining_date: company.date,
-                job_description: company.description
+                job_description: company.description,
+                eligible_branch :company.eligible_branch, 
+                min_cgpa :company.min_cgpa,
+                min_10_percent :  company.min_10_percent,
+                min_12_percent : company.min_12_percent,
+                package :  company.package,
+                deadline_date : company.deadline_date
               });
         }
     }});
@@ -202,8 +208,6 @@ app.get('/:id/editProfile' , (req,res) => {
 
 //Changes the data according to the gievn data and redirects the user to his profile
 app.post('/:id/editProfile' , (req,res) => {
-
-
     Company.findByIdAndUpdate({_id : req.params.id} , {$set : {
         companyname: req.body.companyname , 
         about_company :req.body.about_company , 
