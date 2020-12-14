@@ -171,7 +171,56 @@
                         <div class = "col-md-6">
                             <h6><%=job_description %> </h6>
                         </div>
-                    </div>
+                    </div></div>
+                    <div class = "col-md-9 offset-md-1">
+                        <div class = "card">
+                         <div class="card-header">
+                             Student Details
+                         </div>
+                         <div class = "card-body">
+                          <div class = "row row-content">
+                              <div class = "col-md-3">
+                                  <h6>Eligible Branches : </h6>
+                              </div>
+                              <div class = "col-md-6">
+                                  <h6><%= eligible_branch %></h6>
+                              </div>
+                           </div>
+                          <div class = "row row-content">
+                            <div class = "col-md-3">
+                                <h6>Minimum CGPA : </h6>
+                            </div>
+                            <div class = "col-md-6">
+                                <h6><%= min_cgpa %></h6>
+                            </div>
+                        </div>
+                        <div class = "row row-content">
+                            <div class = "col-md-3">
+                                <h6>10th marks: </h6>
+                            </div>
+                            <div class = "col-md-6">
+                                <h6><%= min_10_percent %> </h6>
+                            </div>
+                        </div>
+                        <div class = "row row-content">
+                           <div class = "col-md-3">
+                               <h6>12th marks: </h6>
+                           </div>
+                           <div class = "col-md-6">
+                               <h6><%= min_12_percent %> </h6>
+                           </div>
+                       </div>
+                        <div class = "row row-content">
+                            <div class = "col-md-3">
+                                <h6>Deadline Date : </h6>
+                            </div>
+                            <div class = "col-md-6">
+                                <h6><%= deadline_date %> </h6>
+                            </div>
+                        </div>
+                       </div>
+                      </div>
+                   </div>
                     <div class = "row row-content">
                         <div class = "col-md-6">
                             <button type="submit" class="btn btn-primary"><a style = "color:white;" href= "/student/login/<%= studentId %>/<%=companyId %>/apply" >Apply</a></button>
