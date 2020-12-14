@@ -5,6 +5,8 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 0.8;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
 }
 
 .login{

@@ -243,13 +243,16 @@ app.get("/:id/appliedStudents",(req,res)=>
        else{
            if(company)
            {
-               //console.log(company.students);
-               Student.find({_id: { $in:company.students}},(error,students)=>
+               let studentIds = company.students;
+               let newStudentIds = studentIds.map(s => s.trim());
+               Student.find({_id: { $in:newStudentIds}},(error,students)=>
                {
-                if(err){
+                if(error){
+                    console.log(error);
                     return res.json({msg: "Something went wrong!"});
                 }
                 else{
+                    console.log(students);
                     res.render("applied_students" , {
                         profile:profile,
                         applied_students:applied_students,

@@ -4,13 +4,15 @@
     <meta name="viewport" conten="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Profile</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/student.css">
     <style>
         .row-content {
-    margin:0px auto;
-    padding: 10px 0px 10px 0px;
-    border-bottom: 1px ridge;
-    min-height:30px;
-}
+            margin:0px auto;
+            padding: 10px 0px 10px 0px;
+            border-bottom: 1px ridge;
+            min-height:30px;
+        }
     </style>
 </head>
 <body>
@@ -48,8 +50,8 @@
                 <h2>Student Profile</h2>
             </div>
         </div>
-        <div class = "row">
-            <div class = "col-md-3 offset-md-4">
+        <div class = "row justify-content-center">
+            <div class = "col-md-3">
                 <div class = "card">
                     <img class="card-header card-img-top" src="/img/blank_profile.png" alt="Profile">
                     <div class="card-body">
@@ -60,8 +62,8 @@
             </div>
         </div>
         <br>
-       <div class ="row">
-           <div class = "col-md-9 offset-md-1">
+       <div class ="row justify-content-center">
+           <div class = "col-md-9">
                <div class = "card">
                   <div class="card-header">
                       Personal Information
@@ -186,6 +188,14 @@
                         </div>
                         <div class = "col-md-6">
                             <h6><%= linkdin %> </h6>
+                        </div>
+                    </div>
+                    <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>Resume : </h6>
+                        </div>
+                        <div class = "col-md-6">
+                            <h6> <a class="btn" href="<%= resumeUrl %>">Download Resume</a></h6>
                         </div>
                     </div>
                   </div>

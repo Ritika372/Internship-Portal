@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
 
+const ResumeSchema = mongoose.Schema({
+    filename : String,
+    id : String
+});
+
 const StudentSchema = new mongoose.Schema({
     rollno: {
         type: String,
@@ -75,7 +80,7 @@ const StudentSchema = new mongoose.Schema({
         default: false
     },
     resume :{
-        type: Buffer
+        type : ResumeSchema
     }
 });
 

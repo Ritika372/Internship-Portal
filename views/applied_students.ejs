@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/student.css">
     <title>Students</title>
 </head>
 <body>
@@ -28,18 +32,8 @@
         </div><br><br>
         <div class = "row">
             <div class = "col-12">
-                <!-- <% students.forEach( (student) => { %>
-                    <div class = "row">
-                        <div class = "col-md-8 offset-md-2">
-                            <div class = "card">
-                                <div class="card-body">
-                                    <h6 class="card-subtitle"><%= student.firstname %> <%= student.lastname %>       <%= student.email %>       <%= student.rollno %> <%= student.cgpa %> </h6>                                  
-                                </div>
-                            </div>
-                        </div>
-                    </div> <br>
-                <% }) %> -->
-                <table class="table">
+           
+                <table id="example" class="display" style="width:100%">
                     <thead>
                       <tr>
                         <th scope="col">Roll Number</th>
@@ -49,8 +43,9 @@
                         <th scope="col">Branch</th>
                       </tr>
                     </thead>
-                <% students.forEach( (student) => { %>
                     <tbody>
+
+                <% students.forEach( (student) => { %>
                       <tr>
                         <th scope="row"><%= student.rollno %></th>
                         <td><%= student.firstname %></td>
@@ -58,11 +53,32 @@
                         <td><%= student.personal_email %></td>
                         <td><%= student.branch %></td>
                       </tr>
-                    </tbody>
-                  </table>
+                    
                   <% }) %>
+                </tbody>
+              </table>
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          $('#example').DataTable( {
+              dom: 'Bfrtip',
+              buttons: [
+                  'copyHtml5',
+                  'excelHtml5',
+                  'csvHtml5',
+                  'pdfHtml5'
+              ]
+          } );
+      } );
+    </script>
 </body>
 </html>

@@ -21,6 +21,7 @@
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
     "express-validator": "^6.6.1",
+    "gridfs-stream": "^1.1.1",
     "init": "^0.1.2",
     "jsonwebtoken": "^8.5.1",
     "jwt-simple": "^0.5.6",
