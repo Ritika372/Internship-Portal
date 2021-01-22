@@ -248,6 +248,7 @@ app.get("/:id/appliedStudents",(req,res)=>
            if(company)
            {
                let studentIds = company.students;
+               console.log()
                let newStudentIds = studentIds.map(s => s.trim());
                Student.find({_id: { $in:newStudentIds}},(error,students)=>
                {
@@ -256,13 +257,28 @@ app.get("/:id/appliedStudents",(req,res)=>
                     return res.json({msg: "Something went wrong!"});
                 }
                 else{
-                    console.log(students);
+                    for(student in students)
+                    {
+                        if(student.resume)
+                        {
+                            console.log(student.resume);
+                        }
+                    }
+                  // console.log(students[1].resume)
+                    let newStudents = students.map((student)=>{
+                        if(student.resume)
+                        {
+                            student.resumeURL="http://localhost:3000/"+student.resume.id+"/file";
+                        }
+                        return student;
+                        })
+            
                     res.render("applied_students" , {
                         profile:profile,
                         applied_students:applied_students,
                         edit_profile:edit_profile,
                         log_out:log_out,
-                        students:students
+                        students:newStudents
                       });
                 }
                })
