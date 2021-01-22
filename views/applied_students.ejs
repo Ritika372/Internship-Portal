@@ -42,6 +42,8 @@
                         <th scope="col">Email</th>
                         <th scope="col">CGPA</th>
                         <th scope="col">Branch</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Resume</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -54,6 +56,8 @@
                         <td><%= student.personal_email %></td>
                         <td><%= student.cgpa %></td>
                         <td><%= student.branch %></td>
+                        <td><%= student.contact_no %></td>
+                        <td><a href="<%= student.resumeURL %>">Resume</a></td>  
                       </tr>
                     
                   <% }) %>
