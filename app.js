@@ -6,6 +6,7 @@ const Student = require('./model/Student');
 const app = express();
 const connectdb = require("./config/db");
 const bcrypt = require("bcrypt");
+const { createGridFSReadStream, getGridFSFiles } = require('./config/db');
 const saltRounds = 10;
 
 app.set('view engine', 'ejs');
@@ -24,6 +25,20 @@ app.get('/' , (req,res) => {
 app.get('/opening' , (req,res) => {
     res.redirect("/");
 });
+
+app.get('/:id/file', async (req, res) => {
+    console.log(req.params.id);
+    try {
+        const file = await getGridFSFiles(req.params.id);
+        res.setHeader("content-type", file.contentType);
+        const readStream = createGridFSReadStream(req.params.id);
+        readStream.pipe(res);
+    }catch(error) {
+        console.log(error);
+        res.status(404).send({ message: "file not found" });
+    }   
+})
+
 
 app.use('/student' , require('./routes/api/studentApi/student_routes'));
 app.use('/admin',  require('./routes/api/Admin/admin_routes'));
