@@ -8,6 +8,9 @@ const jwt = require('jsonwebtoken');
 const InterviewExp = require('../../../model/Interview');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+var session=require("express-session")
+var flash=require("connect-flash")
+
 
 const express = require('express');
 const app = express();
@@ -17,17 +20,29 @@ app.use(bodyparser.urlencoded({
 }));
 app.use(cookieParser());
 
+
 app.use(express.static("public"));
+
+app.use(session({
+    secret:'secret',
+    cookie:{maxAge:6000},
+    resave:false,
+    saveUninitialized:false
+}));
+
+app.use(flash());
+
+
 /*page rendered for login */
 app.get('/', (req, res) => {
-    res.render("loginStudent");
+    var k=req.flash('message');
+    res.render("loginStudent",{message : k});
 });
 
 
 
 
 app.get('/:id/file', async (req, res) => {
-    console.log(req.params.id);
     try {
         const file = await getGridFSFiles(req.params.id);
         res.setHeader("content-type", file.contentType);
@@ -69,7 +84,8 @@ app.post("/", (req, res) => {
                 });
             }
             else {
-                res.send("First Register yourself");
+                req.flash("message","First Register yourself");
+                res.redirect("/student/login")
             }
         }
     });
@@ -79,7 +95,9 @@ app.post("/", (req, res) => {
 const verifyMail = async (req, res, next) => {
     const id = req.params.id || "";
     if (!id) {
-        return res.send("First Register");
+        req.flash("message","First Register yourself");
+    
+        return    res.redirect("/student/login");
     }
     else {
         Student.findById({ _id: id }, (err, student) => {
@@ -92,10 +110,12 @@ const verifyMail = async (req, res, next) => {
                         next();
                     }
                     else {
-                        return res.send("First COnfirm Your Mail");
+                        req.flash("message","First Confirm Your Mail");
+                        return  res.redirect("/student/login");
                     }
                 } else {
-                    return res.send("Not registered student");
+                    req.flash("message","Not registered student");
+                    return  res.redirect("/student/login");
 
                 }
             }
@@ -121,7 +141,6 @@ const verifyToken = async (req, res, next) => {
             next();
         }
         else {
-            console.log("in else");
             return res.redirect('/student/login');
         }
     } catch (err) {
@@ -215,12 +234,45 @@ app.get('/:id/experiences', (req, res) => {
                 company_apply: company_apply,
                 edit_profile: edit_profile,
                 log_out: log_out,
+                studentId: req.params.id,
                 experience: experience
             });
         }
     });
 });
 
+app.get('/:id/experiences/:experienceId/details', (req, res) => {
+    InterviewExp.findById({ _id: req.params.experienceId }, (err, experience) => {
+        //profile read_experience write_experience edit_profile are the links given to the buttons on the student profile
+        const profile = '/student/login/' + req.params.id + '/studentprofile';
+        const read_experience = '/student/login/' + req.params.id + '/experiences';
+        const write_experience = '/student/login/' + req.params.id + '/submitexperience';
+        const edit_profile = '/student/login/' + req.params.id + '/editProfile';
+        const company_apply = '/student/login/' + req.params.id + '/Company';
+        const applied = '/student/login/' + req.params.id + '/applied';
+        const log_out = '/student/login/' + req.params.id + '/logOut';
+        if (err) {
+            console.log(err);
+
+        }
+        else {
+            res.render("experience_det", {
+                profile: profile,
+                applied: applied,
+                read_experience: read_experience,
+                write_experience: write_experience,
+                company_apply: company_apply,
+                edit_profile: edit_profile,
+                log_out: log_out,
+                choice:experience.choice,
+                company: experience.company,
+                branch:experience.branch,
+                exp:experience.exp
+
+            });
+        }
+    });
+});
 
 
 
@@ -273,7 +325,6 @@ app.post('/:id/submitexperience', (req, res) => {
                     }
                     else {
                         res.redirect('/student/login/' + req.params.id + '/studentprofile');
-                        console.log("Experience submitted");
                         // res.send("Experience submitted successfully!. Please wait for the admin to confirm.")
                     }
                 });
@@ -390,7 +441,6 @@ app.get("/:id/Company", (req, res) => {
                     console.log(err);
                 }
                 else {
-                    console.log(company);
                     res.render("companies", {
                         profile: profile,
                         applied: applied,
@@ -410,7 +460,6 @@ app.get("/:id/Company", (req, res) => {
 })
 
 app.get("/:id/:companyId/apply", (req, res) => {
-    console.log(req.params.companyId);
     Company.findByIdAndUpdate({ _id: req.params.companyId }, { $push: { students: req.params.id } }, { new: true }, (err, c) => {
         if (err) {
             return res.json({ msg: "Something went wrong!" });
@@ -431,7 +480,6 @@ app.get("/:id/:companyId/apply", (req, res) => {
 })
 
 app.get("/:id/:companyId/details", (req, res) => {
- //   console.log()
     const companyid = req.params.companyId;
     const profile = '/student/login/' + req.params.id + '/studentprofile';
     const read_experience = '/student/login/' + req.params.id + '/experiences';
@@ -497,11 +545,9 @@ app.get("/:id/applied", (req, res) => {
             res.send("Something wrong happened");
         }
         else {
-            console.log(student.companies_applied);
             Company.find({ _id: { $in: student.companies_applied } }, (err, company) => {
                 if (err) { console.log(err); }
                 else {
-                    //console.log(companies);
                     res.render("Applied_companies", {
                         profile: profile,
                         applied: applied,
