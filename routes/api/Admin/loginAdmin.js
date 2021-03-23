@@ -15,17 +15,20 @@ app.get('/' , (req,res) => {
     res.render('loginAdmin');
 });
 
+
 app.post('/' , (req,res)=> {
     console.log(process.env.EMAIL);
     if(req.body.emailAdmin === process.env.EMAIL && req.body.passAdmin === process.env.PASS){
-        res.render('adminHome');
+        res.render('adminHome',{name:"admin"});
     }
     else{
-       // res.redirect("/","true")
         res.json({msg : "Incorrect pass or email"});
     }
 });
 
+app.get('/home/',(req,res)=>{
+    res.render('adminHome',{name:"admin"});
+});
 
 app.get('/Students/' , (req,res)=> {
     Student.find({},(error,students)=>

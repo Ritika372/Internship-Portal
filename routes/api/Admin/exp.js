@@ -20,7 +20,6 @@ app.get('/' , (req,res) => {
     });
 });
 app.post('/confirmexp', (req,res) => {
-    console.log(req.body.id);
    InterviewExp.findByIdAndUpdate({_id : req.body.id}, {confirmed: true} , (err) => {
        if(err){
            console.log(err);

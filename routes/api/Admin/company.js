@@ -20,13 +20,11 @@ app.get('/' , (req,res) => {
     });
 });
 app.post('/confirmcompany', (req,res) => {
-    console.log(req.body.id);
    Company.findByIdAndUpdate({_id : req.body.id}, {confirmedbyAdmin: true} , (err) => {
        if(err){
            console.log(err);
        }
        else{
-           console.log("updated successfully");
              Company.find({confirmed: true,confirmedbyAdmin: false} , (err,company) => {
         if(err){
             console.log(err);
@@ -46,7 +44,6 @@ app.post('/deletecompany', (req,res) => {
            console.log(err);
        }
        else{
-        console.log("Deleted successfully");
         Company.find({confirmed: true,confirmedbyAdmin: false} , (err,company) => {
         if(err){
               console.log(err);
