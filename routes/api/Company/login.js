@@ -6,19 +6,37 @@ const generateToken = require('./generateToken');
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+var session=require("express-session")
+var flash=require("connect-flash")
 
 const express = require('express');
 const app = express();
 app.set('view engine', 'ejs');
+
 app.use(bodyparser.urlencoded({
   extended: true
 }));
 app.use(cookieParser());
 
 app.use(express.static("public"));
+
+
+
+
+app.use(session({
+    secret:'secret',
+    cookie:{maxAge:6000},
+    resave:false,
+    saveUninitialized:false
+}));
+
+app.use(flash());
+
+
 /*page rendered for login */
 app.get('/' , (req,res) => {
-    res.render("loginCompany");
+    var k=req.flash('message');
+    res.render("loginCompany",{message : k});
 });
 
 /*Login of a company */
@@ -28,7 +46,6 @@ app.post("/" , (req,res)=>{
     Company.findOne({email : email }, (err ,foundcompany) => {
         if(err){
             res.send("Something Wrong Happened");
-            console.log(err);
         }
         else{
             if(foundcompany){
@@ -50,7 +67,8 @@ app.post("/" , (req,res)=>{
                 });
             }
             else{
-                res.send("First Register yourself");
+                req.flash("message","First Register yourself");
+                res.redirect("/company/login")
             }
         }
     });
@@ -61,7 +79,8 @@ const verifyMail = async (req, res, next) => {
     const id=req.params.id||"";
     if(!id)
     {
-       return res.send("First Register");
+        req.flash("message","First Register yourself");
+        res.redirect("/company/login")
     }
     else{
         Company.findById({_id:id},(err,company)=>{
@@ -76,14 +95,17 @@ const verifyMail = async (req, res, next) => {
                                     next();
                                }
                               else if(company.confirmed){
-                                   return res.send("Plz wait for admin to confirm");
+                                req.flash("message","Plz wait for admin to confirm");
+                                return res.redirect("/company/login");
                              }
                              else
                              {
-                                return res.send("First Confirm Your Mail");
+                                req.flash("message","First Confirm Your Mail");
+                                return res.redirect("/company/login");
                              }
                        }else{
-                           return res.send("Not registered company");
+                        req.flash("message","Not registered company");
+                        return res.redirect("/company/login");
 
             }}
         })
@@ -108,7 +130,6 @@ const verifyToken = async (req, res, next) => {
       }
       else
       {
-          console.log("in else");
         return res.redirect('/company/login');  
       }
     } catch (err) {
@@ -248,7 +269,6 @@ app.get("/:id/appliedStudents",(req,res)=>
            if(company)
            {
                let studentIds = company.students;
-               console.log()
                let newStudentIds = studentIds.map(s => s.trim());
                Student.find({_id: { $in:newStudentIds}},(error,students)=>
                {
@@ -264,7 +284,6 @@ app.get("/:id/appliedStudents",(req,res)=>
                             console.log(student.resume);
                         }
                     }
-                  // console.log(students[1].resume)
                     let newStudents = students.map((student)=>{
                         if(student.resume)
                         {

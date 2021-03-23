@@ -14,8 +14,6 @@ const sendMails = (email, text,msg) =>{
         }
       });
 
-      /*Please set the right path I dont know how to do */
-      //Reply -- setttttttttt!!!!!!!!
      ejs.renderFile(path.join(__dirname + "../../../../views/confirmationMail.ejs"),{confirmation_link:text,msg:msg} ,function (err, data) {
         if (err) {
             console.log(err);
