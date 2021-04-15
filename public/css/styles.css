@@ -1,218 +1,227 @@
-body{
-    background: rgb(244,245,245);
-    background: radial-gradient(circle, rgba(244,245,245,1) 70%, rgba(197,202,210,1) 100%);
-    /*background-image: url("https://www.nitj.ac.in/images/menu_content/dsc_0707.jpg");*/
-    background-repeat: no-repeat;
-    background-size: cover;
-    opacity: 0.8;
-    min-height: 100vh;
-    font-family: 'Roboto', sans-serif;
+body {
+  background: rgb(244, 245, 245);
+  background: radial-gradient(
+    circle,
+    rgba(244, 245, 245, 1) 70%,
+    rgba(197, 202, 210, 1) 100%
+  );
+  /*background-image: url("https://www.nitj.ac.in/images/menu_content/dsc_0707.jpg");*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.8;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
 
-.login{
-    margin-top: 170px;
-    margin-left : 450px;
-    padding: 20px;
+.login {
+  margin-top: 170px;
+  margin-left: 450px;
+  padding: 20px;
 }
-.btn-group{
-    padding-top: 20px;
+.btn-group {
+  padding-top: 20px;
 }
 .flex-right {
-    color: white;
+  color: white;
 }
 .navbar {
-    position: sticky;
-    background: #373B44;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #4286f4, #373B44); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    height:max-content;
-    padding: 1rem 0.5rem;
+  position: sticky;
+  background: #373b44; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #4286f4,
+    #373b44
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #4286f4,
+    #373b44
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  height: max-content;
+  padding: 1rem 0.5rem;
 }
 
 .navbar ul {
-    margin: 0;
+  margin: 0;
 }
 
 .nav-option {
-    font-size: 1.2rem;
-    font-weight: 600;
-    transition: all 0.4s ease;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: all 0.4s ease;
 }
 
 .nav-option:hover {
-    color:red;
+  color: red;
 }
 .logo {
-    color: #ffffff;
-    font-size: 1.6rem;
-    font-weight: 800;
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: 800;
 }
 
-
-.nitj{
-    position: absolute;
-    right :20px;
+.nitj {
+  position: absolute;
+  right: 20px;
 }
-a:hover{
-    text-decoration: none;
-    color: red;
+a:hover {
+  text-decoration: none;
+  color: red;
 }
-.sidebar{
-    position: fixed;
-    left : 0px;
-    top: 90px;
-    background: white;
-    width: 250px;
-    height: 100%;
-    transition: .3s;
+.sidebar {
+  position: fixed;
+  left: 0px;
+  top: 90px;
+  background: white;
+  width: 250px;
+  height: 100%;
+  transition: 0.3s;
 }
-.sidebar ul{
-    margin: 0;
-    padding: 20px;
+.sidebar ul {
+  margin: 0;
+  padding: 20px;
 }
-.sidebar ul li{
-    list-style: none;
+.sidebar ul li {
+  list-style: none;
 }
-.sidebar ul a{
-    padding: 10px 20px;
-    color : black;
-    display: block;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(0,0,0,.2);
+.sidebar ul a {
+  padding: 10px 20px;
+  color: black;
+  display: block;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .loginContainer {
-    max-width: 500px;
-    margin-right: auto;
-    height: max-content;
-    padding:1rem;
-    margin-left:auto;
-    display: flex;
-    flex-direction: column;
-    margin-top: 3rem;
+  max-width: 500px;
+  margin-right: auto;
+  height: max-content;
+  padding: 1rem;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
 
-    background-color: white;
-    border: 1px solid white;
-    border-radius: 8px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 8px;
 }
 
 .button {
-    background-color:#ffffff;
-    border-radius: 8px;
-    padding: 0.6rem 1.2rem;
-    border: none;
-    outline: none;
-    color: #111111;
-    margin: 0.3rem;
-    transition: all 0.3s linear;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  outline: none;
+  color: #111111;
+  margin: 0.3rem;
+  transition: all 0.3s linear;
 }
 
 .button-pri {
-    background-color: #4286f4;
-    color: #ffffff;
-    border: 2px solid #4286f4;
+  background-color: #4286f4;
+  color: #ffffff;
+  border: 2px solid #4286f4;
 }
 
 .button-sec {
-    border: 2px solid #111111;
+  border: 2px solid #111111;
 }
 
 .button-sec a {
-    color: #111111;
+  color: #111111;
 }
 
 .button-sec:hover {
-    background-color: #111111;
-    color: #ffffff;
+  background-color: #111111;
+  color: #ffffff;
 }
 
 .button-sec:hover a {
-    color: #ffffff;
+  color: #ffffff;
 }
 
 .button-pri:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
-
-.btn a{
-    color: white;
+.btn a {
+  color: white;
 }
-.navbar ul{
-    display: flex;
+.navbar ul {
+  display: flex;
 }
-.navbar ul li{
-    list-style: none;
-    text-decoration: none;
-    flex-direction: column;
+.navbar ul li {
+  list-style: none;
+  text-decoration: none;
+  flex-direction: column;
 }
-.navbar .flex-left{
-    font-size: 25px;
-    color: white;
+.navbar .flex-left {
+  font-size: 25px;
+  color: white;
 }
-.navbar .flex-right{
-    margin: 3px;
-    padding: 40px;
+.navbar .flex-right {
+  margin: 3px;
+  padding: 40px;
 }
-.dropdown-menu{
-    background: rgb(233, 248, 248);
-    position: absolute;
-    z-index: 100;
+.dropdown-menu {
+  background: rgb(233, 248, 248);
+  position: absolute;
+  z-index: 100;
 }
 .row-content {
-    margin:0px auto;
-    padding: 50px 0px 50px 0px;
-    border-bottom: 1px ridge;
-    min-height:400px;
+  margin: 0px auto;
+  padding: 50px 0px 50px 0px;
+  border-bottom: 1px ridge;
+  min-height: 400px;
 }
 
 .opening-hero {
-    margin-top: 5rem;
-    text-align: center;
+  margin-top: 5rem;
+  text-align: center;
 }
 
 .opening-hero p {
-    font-size: 1.6rem;
-    color: #111111;
-    font-family: Arial, sans-serif;
-    padding-left: 1rem;
-    margin-bottom: 0;
+  font-size: 1.6rem;
+  color: #111111;
+  font-family: Arial, sans-serif;
+  padding-left: 1rem;
+  margin-bottom: 0;
 }
 
 .opening-hero .wel {
-    font-size: 2.6rem;
-    font-weight: bold;
+  font-size: 2.6rem;
+  font-weight: bold;
 }
 
 .opening-hero .wel span {
-    color: red;
+  color: red;
 }
 
 .cta-section {
-    margin-top: 2rem;
-    padding-left: 2rem;
+  margin-top: 2rem;
+  padding-left: 2rem;
 }
 
 .cta-section p {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
-
 .form-title {
-    color: #111111;
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-    text-align: left;
+  color: #111111;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  text-align: left;
 }
 
 .detailsContainer {
-    background-color: #ffffff;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    max-width: 800px;
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  max-width: 800px;
 }
 .invisible {
-    display: none;
-    visibility: hidden;
+  display: none;
+  visibility: hidden;
 }
