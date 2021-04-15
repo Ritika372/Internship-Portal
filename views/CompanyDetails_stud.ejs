@@ -1,236 +1,139 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" conten="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Profile</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/student.css">
-   <style>
+    <style>
         .row-content {
-    margin:0px auto;
-    padding: 10px 0px 10px 0px;
-    border-bottom: 1px ridge;
-    min-height:30px;
-}
+            margin: 0px auto;
+            padding: 10px 0px 10px 0px;
+            border-bottom: 1px ridge;
+            min-height: 30px;
+        }
     </style>
 </head>
+
 <body>
-    <div class = "container">
-        <div class = "container">
-            <div class = "row">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                      <a class="nav-link" href=<%= profile %> >Home</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href= <%= read_experience %> >Read Experiences</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=<%= write_experience %> >Write Experiences</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link active" href=<%= company_apply%> >Company </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href=<%= applied%> >Applied Companies</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href=<%= edit_profile%> >Edit Profile</a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href=<%= log_out%> >Log Out</a>
-                      </li>
-                  </ul>
-            </div>
-        </div><br><br>
-        <div class="row">
-            <div class="col-md-6 align-self-center">
-                <h2>Company Profile</h2>
+
+    <header class="header">
+        <nav class="page__menu page__custom-settings menu">
+            <ul class="menu__list r-list">
+                <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= profile %>> Home
+                    </a></li>
+                <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  read_experience %>>Read
+                        Experiences</a></li>
+                <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  write_experience %>>Write
+                        Experiences</a></li>
+                <li class="menu__group active"><a class="menu__link r-link text-underlined"
+                        href=<%= company_apply %>>Company</a></li>
+                <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= applied %>>Applied
+                        Companies</a></li>
+                <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= edit_profile %>>Edit
+                        Profile</a></li>
+                <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= log_out %>>Logout</a></li>
+            </ul>
+        </nav>
+    </header><br><br>
+
+    <div class="container">
+        <div class="panel">
+            <div class="bio-graph-heading">
+                Company Profile
+            </div> <br><br>
+            <div class="panel-body bio-graph-info">
+                <div class="row">
+                    <div class="bio-row">
+                        <p><span>Name </span>: <%= companyname %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>About </span>: <%= about_company %> </p>
+                    </div>
+                </div>
+            </div><br><br>
+            <div class="bio-graph-heading">
+                Company Information
+            </div> <br><br>
+            <div class="panel-body bio-graph-info">
+                <div class="row">
+                    <div class="bio-row">
+                        <p><span>Email </span>: <%= email %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Website Link </span>: <%= website_link %> </p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Organisation Type </span>: <%= organization_type %> </p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Industry Sector </span>: <%= industry_sector %> </p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>About Company </span>: <%= about_company %> </p>
+                    </div>
+                </div>
+            </div> <br><br>
+            <div class="bio-graph-heading">
+                Job Profile Details
+            </div> <br><br>
+            <div class="panel-body bio-graph-info">
+                <div class="row">
+                    <div class="bio-row">
+                        <p><span>Profile </span>: <%= job_profile %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Pass out Batch </span>: <%= pass_out_batch %> </p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Recruitment Type </span>: <%=recruitment_type %> </p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Locations </span>: <%= location %> </p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Tentative Date of Joining </span>: <%=tentative_joining_date %> </p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Pass out Batch </span>: <%= pass_out_batch %> </p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Job Description </span>: <%= job_description %> </p>
+                    </div>
+                </div>
+            </div><br><br>
+            <div class="bio-graph-heading">
+                Eligibility Criteria
+            </div> <br><br>
+            <div class="panel-body bio-graph-info">
+                <div class="row">
+                    <div class="bio-row">
+                        <p><span>Eligible Branches </span>: <%= eligible_branch %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Minimum CGPA </span>: <%= min_cgpa %> </p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Class 10th Percentage</span>: <%= min_10_percent %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Class 12th Percentage</span>: <%= min_12_percent %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Last Date to Apply </span>: <%= deadline_date %></p>
+                    </div>
+
+                </div><br><br>
+
+                <div class="bio-row">
+                    <a class="btn applybtn" href="/student/login/<%= studentId %>/<%=companyId %>/apply">Apply</a>
+                </div>
             </div>
         </div>
-        <br>
-       <div class ="row justify-content-center">
-           <div class = "col-md-9 offset-md-1">
-               <div class = "card">
-                <div class = "card-body">
-                <div class = "row row-content">
-                    <div class = "col-md-3">
-                        <h6>Name : </h6>
-                    </div>
-                    <div class = "col-md-6">
-                        <h6><%= companyname %></h6>
-                    </div>
-                </div>
-                <div class = "row row-content">
-                    <div class = "col-md-3">
-                        <h6>About Company : </h6>
-                    </div>
-                    <div class = "col-md-6">
-                        <h6><%= about_company %></h6>
-                    </div>
-                </div></div>>
-                  <div class="card-header">
-                      Company Information
-                  </div>
-                  <div class = "card-body">
-                      <div class = "row row-content">
-                          <div class = "col-md-3">
-                              <h6>Email : </h6>
-                          </div>
-                          <div class = "col-md-6">
-                              <h6><%= email %></h6>
-                          </div>
-                      </div>
-                      <div class = "row row-content">
-                        <div class = "col-md-3">
-                            <h6>Website Link : </h6>
-                        </div>
-                        <div class = "col-md-6">
-                            <h6><%= website_link %></h6>
-                        </div>
-                    </div>
-                    <div class = "row row-content">
-                        <div class = "col-md-3">
-                            <h6>Organization Type : </h6>
-                        </div>
-                        <div class = "col-md-6">
-                            <h6><%= organization_type %> </h6>
-                        </div>
-                    </div>
-                    <div class = "row row-content">
-                        <div class = "col-md-3">
-                            <h6>Industry Sector : </h6>
-                        </div>
-                        <div class = "col-md-6">
-                            <h6><%= industry_sector %> </h6>
-                        </div>
-                    </div>
-                    <div class = "row row-content">
-                        <div class = "col-md-3">
-                            <h6>About Company : </h6>
-                        </div>
-                        <div class = "col-md-6">
-                            <h6><%= about_company %> </h6>
-                        </div>
-                    </div>
-                  </div>
-               </div>
-            </div>
-                  <div class = "col-md-9 offset-md-1">
-                    <div class = "card">
-                    <div class="card-header">
-                        Job Profile Details
-                     </div>
-                     <div class = "card-body">
-                    <div class = "row row-content">
-                        <div class = "col-md-3">
-                            <h6>Job Profile </h6>
-                        </div>
-                        <div class = "col-md-6">
-                            <h6><%= job_profile %></h6>
-                        </div>
-                    </div>
-                    <div class = "row row-content">
-                        <div class = "col-md-3">
-                            <h6>Pass Out Batch : </h6>
-                        </div>
-                        <div class = "col-md-6">
-                            <h6><%= pass_out_batch %> </h6>
-                        </div>
-                    </div>
-                    <div class = "row row-content">
-                        <div class = "col-md-3">
-                            <h6>Recruitment Type :</h6>
-                        </div>
-                        <div class = "col-md-6">
-                            <h6><%=recruitment_type %> </h6>
-                        </div>
-                    </div>
-                    <div class = "row row-content">
-                        <div class = "col-md-3">
-                            <h6>Location :</h6>
-                        </div>
-                        <div class = "col-md-6">
-                            <h6><%=location %> </h6>
-                        </div>
-                    </div>
-                    <div class = "row row-content">
-                        <div class = "col-md-3">
-                            <h6>Tentative Date of Joining :</h6>
-                        </div>
-                        <div class = "col-md-6">
-                            <h6><%=tentative_joining_date %> </h6>
-                        </div>
-                    </div>
-                    <div class = "row row-content">
-                        <div class = "col-md-3">
-                            <h6>Job Description :</h6>
-                        </div>
-                        <div class = "col-md-6">
-                            <h6><%=job_description %> </h6>
-                        </div>
-                    </div></div>
-                    <div class = "col-md-9 offset-md-1">
-                        <div class = "card">
-                         <div class="card-header">
-                             Student Details
-                         </div>
-                         <div class = "card-body">
-                          <div class = "row row-content">
-                              <div class = "col-md-3">
-                                  <h6>Eligible Branches : </h6>
-                              </div>
-                              <div class = "col-md-6">
-                                  <h6><%= eligible_branch %></h6>
-                              </div>
-                           </div>
-                          <div class = "row row-content">
-                            <div class = "col-md-3">
-                                <h6>Minimum CGPA : </h6>
-                            </div>
-                            <div class = "col-md-6">
-                                <h6><%= min_cgpa %></h6>
-                            </div>
-                        </div>
-                        <div class = "row row-content">
-                            <div class = "col-md-3">
-                                <h6>10th marks: </h6>
-                            </div>
-                            <div class = "col-md-6">
-                                <h6><%= min_10_percent %> </h6>
-                            </div>
-                        </div>
-                        <div class = "row row-content">
-                           <div class = "col-md-3">
-                               <h6>12th marks: </h6>
-                           </div>
-                           <div class = "col-md-6">
-                               <h6><%= min_12_percent %> </h6>
-                           </div>
-                       </div>
-                        <div class = "row row-content">
-                            <div class = "col-md-3">
-                                <h6>Deadline Date : </h6>
-                            </div>
-                            <div class = "col-md-6">
-                                <h6><%= deadline_date %> </h6>
-                            </div>
-                        </div>
-                       </div>
-                      </div>
-                   </div>
-                    <div class = "row row-content">
-                        <div class = "col-md-6">
-                            <button type="submit" class="btn btn-primary"><a style = "color:white;" href= "/student/login/<%= studentId %>/<%=companyId %>/apply" >Apply</a></button>
-                        </div>
-                    </div>
-                </div>
-                    </div>
-                  </div>
-           </div>
-    </div>
-    <div><br><br>
+
+
 </body>
+
 </html>
