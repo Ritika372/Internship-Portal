@@ -14,20 +14,26 @@
             <div class = "row">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                      <a class="nav-link" href="/admin/login/home">Home</a>
+                      <a class="nav-link " href=<%=  home %>>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/admin/exp">Experiences</a>
+                      <a class="nav-link active" href=<%=  experiencelink %>>Experiences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=<%=  confirm_companieslink %>> Confirm Companies</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="/admin/ConfirmCompany"> Confirm Companies</a>
-                        </li>
+                        <a class="nav-link" href=<%=  studentslink %> >Students</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href=<%=  companieslink %> >Companies</a>
+                      </li>
+                      <% if(main){  %>
                         <li class="nav-item">
-                          <a class="nav-link" href="/admin/login/Students">Students</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="/admin/login/Companies">Companies</a>
-                        </li>
+                            <a class="nav-link" href=<%=  settings %> >Settings</a>
+                          </li>
+                        </div>
+                      <% } %>
                   </ul>
             </div><br><br>
         <div class = "row">
@@ -44,8 +50,8 @@
                                     <p class = "card-text"><%= exp.exp %></p>
                                     <form action="/admin/confirmexp" method="POST">
                                         <input type="hidden" name = "id" value = <%= exp._id %>>
-                                    <button class="btn btn-primary" formaction="/admin/exp/confirmexp" type="submit">Confirm</button>
-                                    <button class="btn btn-danger" formaction="/admin/exp/deleteexp" type="submit">Delete</button>
+                                    <button class="btn btn-primary" formaction=<%= confirmexp %> type="submit">Confirm</button>
+                                    <button class="btn btn-danger" formaction=<%= deleteexp %> type="submit">Delete</button>
                                     </form>
                                 </div>
                             </div>
