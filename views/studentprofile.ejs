@@ -1,217 +1,335 @@
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" conten="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
+<!-- <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" conten="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Profile</title>
-    <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/student.css" />
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/student.css">
     <style>
-      .row-content {
-        margin: 0px auto;
-        padding: 10px 0px 10px 0px;
-        border-bottom: 1px ridge;
-        min-height: 30px;
-      }
+        .row-content {
+            margin:0px auto;
+            padding: 10px 0px 10px 0px;
+            border-bottom: 1px ridge;
+            min-height:30px;
+        }
     </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="container">
+</head>
+<body>
+    <div class = "container">
+        <div class = "container">
+            <div class = "row">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                      <a class="nav-link active" href=<%= profile %> >Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href= <%= read_experience %> >Read Experiences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=<%= write_experience %> >Write Experiences</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href=<%= company_apply %> >Company </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href=<%= applied%> >Applied Companies</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href=<%= edit_profile %> >Edit Profile</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href=<%= log_out %> >Log Out</a>
+                      </li>
+                  </ul>
+            </div>
+        </div><br><br>
         <div class="row">
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" href=<% ="profile" %> >Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href=<% ="read_experience" %>
-                >Read Experiences</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href=<% ="write_experience" %>
-                >Write Experiences</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href=<% ="company_apply" %> >Company </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href=<% ="applied%"> >Applied Companies</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href=<% ="edit_profile" %> >Edit Profile</a>
-            </li>
+            <div class="col-md-6 align-self-center">
+                <h2>Student Profile</h2>
+            </div>
+        </div>
+        <div class = "row justify-content-center">
+            <div class = "col-md-3">
+                <div class = "card">
+                    <img class="card-header card-img-top" src="/img/blank_profile.png" alt="Profile">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= firstname %> <%=lastname %></h5>
+                        <p class="card-text"><%= branch %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+       <div class ="row justify-content-center">
+           <div class = "col-md-9">
+               <div class = "card">
+                  <div class="card-header">
+                      Personal Information
+                  </div>
+                  <div class = "card-body">
+                      <div class = "row row-content">
+                          <div class = "col-md-3">
+                              <h6>Name : </h6>
+                          </div>
+                          <div class = "col-md-6">
+                              <h6><%= firstname %> <%= lastname %></h6>
+                          </div>
+                      </div>
+                      <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>Degree : </h6>
+                        </div>
+                        <div class = "col-md-6">
+                            <h6><%= degree %></h6>
+                        </div>
+                    </div>
+                    <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>Branch : </h6>
+                        </div>
+                        <div class = "col-md-6">
+                            <h6><%= branch %> </h6>
+                        </div>
+                    </div>
+                    <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>Expected year of graduation : </h6>
+                        </div>
+                        <div class = "col-md-6">
+                            <h6><%= grad %> </h6>
+                        </div>
+                    </div>
+                    <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>Personal Email : </h6>
+                        </div>
+                        <div class = "col-md-6">
+                            <h6><%= personal_email %></h6>
+                        </div>
+                    </div>
+                    <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>Contact Number : </h6>
+                        </div>
+                        <div class = "col-md-6">
+                            <h6><%= contact_no %> </h6>
+                        </div>
+                    </div>
+                    <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>CGPA : </h6>
+                        </div>
+                        <div class = "col-md-6">
+                            <h6><%= cgpa %></h6>
+                        </div>
+                    </div>
+                    <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>Active Backlogs : </h6>
+                        </div>
+                        <div class = "col-md-6">
+                            <h6><%= active_backlogs %> </h6>
+                        </div>
+                    </div>
+                    <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>Class 10th : </h6>
+                        </div>
+                        <div class = "col-md-3">
+                            <h6>Percentage: <%= percent_10 %> </h6>
+                        </div>
+                        <div class = "col-md-3">
+                            <h6>Board: <%= board_10 %> </h6>
+                        </div>
+                    </div>
+                    <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>Class 12th : </h6>
+                        </div>
+                        <div class = "col-md-3">
+                            <h6>Percentage: <%= percent_12 %> </h6>
+                        </div>
+                        <div class = "col-md-3">
+                            <h6>Board: <%= board_12 %> </h6>
+                        </div>
+                    </div>
+                    <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>Address : </h6>
+                        </div>
+                        <div class = "col-md-6">
+                            <h6><%= address %> </h6>
+                        </div>
+                    </div>
+                    <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>City : </h6>
+                        </div>
+                        <div class = "col-md-3">
+                            <h6><%= city %> </h6>
+                        </div>
+                        <div class = "col-md-3">
+                            <h6><%= state %> </h6>
+                        </div>
+                    </div>
+                    <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>Country : </h6>
+                        </div>
+                        <div class = "col-md-6">
+                            <h6><%= country %> </h6>
+                        </div>
+                    </div>
+                    <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>Linkedin : </h6>
+                        </div>
+                        <div class = "col-md-6">
+                            <h6><%= linkdin %> </h6>
+                        </div>
+                    </div>
+                    <div class = "row row-content">
+                        <div class = "col-md-3">
+                            <h6>Resume : </h6>
+                        </div>
+                        <div class = "col-md-6">
+                            <h6> <a class="btn" href="<%= resumeUrl %>">My Resume</a></h6>
+                        </div>
+                    </div>
+                  </div>
+               </div>
+           </div>
+       </div>
+    </div>
+</body>
+</html> -->
 
-            <li class="nav-item">
-              <a class="nav-link" href=<% ="log_out" %> >Log Out</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <br /><br />
-      <div class="row">
-        <div class="col-md-6 align-self-center">
-          <h2>Student Profile</h2>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-md-3">
-          <div class="card">
-            <img
-              class="card-header card-img-top"
-              src="/img/blank_profile.png"
-              alt="Profile"
-            />
-            <div class="card-body">
-              <h5 class="card-title"><%= firstname %> <%=lastname %></h5>
-              <p class="card-text"><%= branch %></p>
-            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" conten="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/profile.css">
+    <!-- <link rel="stylesheet" href="/css/styles.css"> -->
+    <!-- <link rel="stylesheet" href="/css/student.css"> -->
+</head>
+<body>
+
+    <header class = "header">
+            <nav class="page__menu page__custom-settings menu">
+              <ul class="menu__list r-list">
+                <li class="menu__group active"><a class="menu__link r-link text-underlined"  href=<%= profile %> > Home
+                </a></li>
+                <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  read_experience %> >Read Experiences</a></li>
+                <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  write_experience %> >Write Experiences</a></li>
+                <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= company_apply %> >Company</a></li>
+                <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= applied %> >Applied Companies</a></li>
+                <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= edit_profile %> >Edit Profile</a></li>
+                <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= log_out %> >Logout</a></li>
+              </ul>
+            </nav>          
+    </header>
+
+    <div class  = "card-student">
+        <div class="container">
+            <div class="row">
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="our-team">
+                    <div class="picture">
+                        <img class="img-fluid" src="/img/blank_profile.png">
+                      </div>
+                  <div class="team-content">
+                    <h3 class="name"><%= firstname %> <%=lastname %></h3>
+                    <h4 class="title"><%= branch %></h4>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
-      <br />
-      <div class="row justify-content-center">
-        <div class="col-md-9">
-          <div class="card">
-            <div class="card-header">Personal Information</div>
-            <div class="card-body">
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>Name :</h6>
-                </div>
-                <div class="col-md-6">
-                  <h6><%= firstname %> <%= lastname %></h6>
-                </div>
-              </div>
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>Degree :</h6>
-                </div>
-                <div class="col-md-6">
-                  <h6><%= degree %></h6>
-                </div>
-              </div>
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>Branch :</h6>
-                </div>
-                <div class="col-md-6">
-                  <h6><%= branch %></h6>
-                </div>
-              </div>
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>Expected year of graduation :</h6>
-                </div>
-                <div class="col-md-6">
-                  <h6><%= grad %></h6>
-                </div>
-              </div>
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>Personal Email :</h6>
-                </div>
-                <div class="col-md-6">
-                  <h6><%= personal_email %></h6>
-                </div>
-              </div>
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>Contact Number :</h6>
-                </div>
-                <div class="col-md-6">
-                  <h6><%= contact_no %></h6>
-                </div>
-              </div>
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>CGPA :</h6>
-                </div>
-                <div class="col-md-6">
-                  <h6><%= cgpa %></h6>
-                </div>
-              </div>
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>Active Backlogs :</h6>
-                </div>
-                <div class="col-md-6">
-                  <h6><%= active_backlogs %></h6>
-                </div>
-              </div>
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>Class 10th :</h6>
-                </div>
-                <div class="col-md-3">
-                  <h6>Percentage: <%= percent_10 %></h6>
-                </div>
-                <div class="col-md-3">
-                  <h6>Board: <%= board_10 %></h6>
-                </div>
-              </div>
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>Class 12th :</h6>
-                </div>
-                <div class="col-md-3">
-                  <h6>Percentage: <%= percent_12 %></h6>
-                </div>
-                <div class="col-md-3">
-                  <h6>Board: <%= board_12 %></h6>
-                </div>
-              </div>
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>Address :</h6>
-                </div>
-                <div class="col-md-6">
-                  <h6><%= address %></h6>
-                </div>
-              </div>
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>City :</h6>
-                </div>
-                <div class="col-md-3">
-                  <h6><%= city %></h6>
-                </div>
-                <div class="col-md-3">
-                  <h6><%= state %></h6>
-                </div>
-              </div>
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>Country :</h6>
-                </div>
-                <div class="col-md-6">
-                  <h6><%= country %></h6>
-                </div>
-              </div>
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>Linkedin :</h6>
-                </div>
-                <div class="col-md-6">
-                  <h6><%= linkdin %></h6>
-                </div>
-              </div>
-              <div class="row row-content">
-                <div class="col-md-3">
-                  <h6>Resume :</h6>
-                </div>
-                <div class="col-md-6">
-                  <h6><a class="btn" href="<%= resumeUrl %>">My Resume</a></h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
-  </body>
+    </div>
+            
+    <div class = "container">
+        <div class="panel">
+            <div class="bio-graph-heading">
+                Personal Information
+            </div> <br><br>
+            <div class="panel-body bio-graph-info">
+                <div class="row">
+                    <div class="bio-row">
+                        <p><span>Name </span>: <%= firstname %> <%= lastname %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Degree </span>: <%= degree %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Branch</span>: <%= branch %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Expected year of graduation</span>: <%= grad %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Personal Email </span>: <%= personal_email %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Mobile</span>: <%= contact_no %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>CGPA </span>: <%= cgpa %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Active Backlogs </span>: <%= active_backlogs %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Class 10th Board </span>: <%= board_10 %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Class 10th Percentage </span>: <%= percent_10 %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Class 12th Board </span>: <%= board_12 %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Class 12th Percentage </span>: <%= percent_12 %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Address </span>: <%= address %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Country </span>: <%= country %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>State </span>: <%= state %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>City </span>: <%= city %></p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>LinkdIn </span>: <%= linkdin %></p>
+                    </div>
+                    <div class="bio-row">
+                        <h6> <a class="btn resume" href="<%= resumeUrl %>">View Resume</a></h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
 </html>

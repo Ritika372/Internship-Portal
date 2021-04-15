@@ -4,7 +4,7 @@
     <meta name="viewport" conten="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Profile</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/student.css">
    <style>
         .row-content {
@@ -16,83 +16,42 @@
     </style>
 </head>
 <body>
-    <div class = "container">
-        <div class = "container">
-            <div class = "row">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                      <a class="nav-link" href=<%= profile %> >Home</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link active" href= <%= read_experience %> >Read Experiences</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=<%= write_experience %> >Write Experiences</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href=<%= company_apply%> >Company </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href=<%= applied%> >Applied Companies</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href=<%= edit_profile%> >Edit Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=<%= log_out%> >Log Out</a>
-                      </li>
-                  </ul>
-            </div>
-        </div><br><br>
-        <div class="row">
-            <div class="col-md-6 align-self-center">
-                <h2>Interview Experience</h2>
+
+    <header class = "header">
+        <nav class="page__menu page__custom-settings menu">
+          <ul class="menu__list r-list">
+            <li class="menu__group"><a class="menu__link r-link text-underlined"  href=<%= profile %> > Home
+            </a></li>
+            <li class="menu__group active"><a class="menu__link r-link text-underlined" href=<%=  read_experience %> >Read Experiences</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  write_experience %> >Write Experiences</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= company_apply %> >Company</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= applied %> >Applied Companies</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= edit_profile %> >Edit Profile</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= log_out %> >Logout</a></li>
+          </ul>
+        </nav>          
+</header>
+<br><br>
+<div class= "container">
+    <div class="panel">
+        <div class="bio-graph-heading">
+            <%=company %> Interview Experience
+        </div> <br><br>
+        <div class="panel-body bio-graph-info">
+            <div class="row">
+                <div class="bio-row">
+                    <p><span>Branch </span>: <%= branch %></p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Type </span>: <%= choice %></p>
+                </div>
+                <div class="bio-row">
+                    <p><%= exp %></p>
+                </div>
             </div>
         </div>
-        <br>
-       <div class ="row justify-content-center">
-           <div class = "col-md-9 offset-md-1">
-               <div class = "card">
-                <div class = "card-body">
-                <div class = "row row-content">
-                        <div class = "col-md-3">
-                            <h6>Branch : </h6>
-                        </div>
-                        <div class = "col-md-6">
-                            <h7><%= branch %></h7>
-                        </div>
-                    </div>
-                    <div class = "row row-content">
-                        <div class = "col-md-3">
-                            <h6>Type : </h6>
-                        </div>
-                        <div class = "col-md-6">
-                            <h7><%= choice %></h>
-                        </div>
-                    </div>    
-                <div class = "row row-content">
-                    <div class = "col-md-3">
-                        <h6>Company : </h6>
-                    </div>
-                    <div class = "col-md-6">
-                        <h7><%= company %></h7>
-                    </div>
-                </div>
-                </div></div>
-                <div class = "card">
-                    <div class = "card-body">
-                <div class = "row row-content">
-                
-                    <div >
-                        <p><%= exp %></p>
-                    </div>
-                </div></div>>
-                 
-                    </div>
-                  </div>
-
-           </div>
     </div>
-    <div><br><br>
+</div>
+
 </body>
 </html>

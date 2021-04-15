@@ -4,78 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/student.css">
     <title>Submit Experience</title>
 </head>
 <body>
-    <div class = "container">
-        <div class = "row">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                  <a class="nav-link" href=<%= profile %> >Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href= <%= read_experience %> >Read Experiences</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href=<%= write_experience %> >Write Experiences</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href=<%= company_apply%> >Company </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href=<%= applied%> >Applied Companies</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href=<%= edit_profile%> >Edit Profile</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link" href=<%= log_out%> >Log Out</a>
-                  </li>
-              </ul>
-        </div><br><br>
-        <div class = "row">
-            <div class = "col-md-12 mb-3 align-self-center">
-                <h2>Enter details</h2>
-            </div>
-        </div>
-        <div class = "row">
-            <div class= "col-md-9">
-                <form action=<%= write_experience %> method="POST">
-                    <div class = "form-group row">
-                        <label for="companyname" class = "col-md-3 col-form-label">Company Name</label>
-                        <div class = "col-md-9">
-                            <input type="text" class = "form-control" id = "companyname" name = "companyname" placeholder="Company Name" required>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="branch" class = "col-md-3 col-form-label">Branch</label>
-                        <div class = "col-md-9">
-                            <input type="text" class = "form-control" id = "branch" name = "branch" placeholder="Branch" required>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="choice" class = "col-md-3 col-form-label">Internship Or Placement</label>
-                        <div class = "col-md-9">
-                            <input type="text" class = "form-control" id = "choice" name = "choice" placeholder="Internship or Placement" required>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="experience" class = "col-md-3 col-form-label">Enter your experience</label>
-                        <div class = "col-md-9">
-                            <textarea class="form-control" id="experience" rows="6" name = "experience"></textarea>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <div class = "offset-md-3 col-md-9">
-                            <button class = "btn btn-primary" type="submit">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <header class = "header">
+
+        <nav class="page__menu page__custom-settings menu">
+          <ul class="menu__list r-list">
+            <li class="menu__group"><a class="menu__link r-link text-underlined"  href=<%= profile %> > Home
+            </a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  read_experience %> >Read Experiences</a></li>
+            <li class="menu__group active"><a class="menu__link r-link text-underlined" href=<%=  write_experience %> >Write Experiences</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= company_apply %> >Company</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= applied %> >Applied Companies</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= edit_profile %> >Edit Profile</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= log_out %> >Logout</a></li>
+          </ul>
+        </nav>          
+</header>
+
+<div class = "container">
+    <div class = "submit-exp">
+        <form class="form" action=<%= write_experience %> method="POST">
+            <h2>Submit Your Experience</h2>
+            <p>
+                <input type="text" class = "form-control" id = "companyname" name = "companyname" placeholder="Company Name" required>
+            </p>
+            <p>
+                <input type="text" class = "form-control" id = "branch" name = "branch" placeholder="Branch" required>
+            </p>
+            <p>
+                <input type="text" class = "form-control" id = "choice" name = "choice" placeholder="Internship or Placement" required>
+            </p>
+            <p>
+                <textarea class="form-control" id="experience" rows="6" name = "experience" placeholder="Write your experience"></textarea>
+            </p>
+            <button class = "btn" type="submit">Submit</button>
+          </form>
     </div>
+    
+</div>
+
+   
+     
 </body>
 </html>

@@ -4,165 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/student.css">
     <title>Enter Details</title>
 </head>
 <body>
-    <div class = "container">
-        <div class = "row">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                  <a class="nav-link" href=<%= profile %> >Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href= <%= read_experience %> >Read Experiences</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href=<%= write_experience %> >Write Experiences</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href=<%= company_apply %> >Company </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href=<%= applied%> >Applied Companies</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href=<%= edit_profile %> >Edit Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href=<%= log_out%> >Log Out</a>
-                  </li>
-              </ul>
-        </div>
-    </div><br><br>
-    <div class = "container">
-        <div class = "row">
-            <div class= "col-md-9">
-                <div class="row">
-                    <div class="col-md-6 align-self-center">
-                        <h2>Edit Profile</h2>
-                    </div>
-                </div><br>
-                <form action=<%= link %> method="POST">
-                    <div class = "form-group row">
-                        <label for="firstname" class = "col-md-2 col-form-label">First Name</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "firstname" name = "firstname" placeholder="First Name" required  value=<%= firstname %>>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="lastname" class = "col-md-2 col-form-label">Last Name</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "lastname" name = "lastname" placeholder="Last Name" required value=<%= lastname %>>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="college_id" class = "col-md-2 col-form-label">Roll Number</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "college_id" name = "college_id" placeholder="Roll Number" required  value=<%= college_id %> >
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="degree" class = "col-md-2 col-form-label">Degree</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "degree" name = "degree" placeholder="Degree" required value=<%= degree %>>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="grad" class = "col-md-2 col-form-label">Expected graduation</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "grad" name = "grad" placeholder="Expected Graduation" required value=<%= grad %>>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="branch" class = "col-md-2 col-form-label">Branch</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "branch" name = "branch" placeholder="Branch" required value=<%= branch %>>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="personal_email" class = "col-md-2 col-form-label">Personal EMail</label>
-                        <div class = "col-md-10">
-                            <input type="email" class = "form-control" id = "personal_email" name = "personal_email" placeholder="Personal Email" required value="<%= personal_email %> ">
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="contact_no" class = "col-md-2 col-form-label">Contact Number</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "contact_no" name = "contact_no" placeholder="Contact Number" required value=<%= contact_no %> >
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="cgpa" class = "col-md-2 col-form-label">Current CGPA</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "cgpa" name = "cgpa" placeholder="CGPA" required value=<%= cgpa %>>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="active_backlogs" class = "col-md-2 col-form-label">Active Backlogs</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "active_backlogs" name = "active_backlogs" placeholder="Active Backlogs" required value=<%= active_backlogs %>>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="tenth" class = "col-md-2 col-form-label">10th Class</label>
-                        <div class = "col-md-4">
-                            <input type="text" class = "form-control" id = "percent_10" name = "percent_10" placeholder= "10th percentage" required value=<%= percent_10 %>>
-                        </div>
-                        <div class = "col-md-4 offset-md-2">
-                            <input type="text" class = "form-control" id = "board_10" name = "board_10" placeholder="Board" required value =<%= board_10 %>>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="twelth" class = "col-md-2 col-form-label">12th Class</label>
-                        <div class = "col-md-4">
-                            <input type="text" class = "form-control" id = "percent_12" name = "percent_12" placeholder= "12th percentage" required  value =<%= percent_12 %>>
-                        </div>
-                        <div class = "col-md-4 offset-md-2">
-                            <input type="text" class = "form-control" id = "board_12" name = "board_12" placeholder="Board" required  value =<%= board_12 %> >
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="address" class = "col-md-2 col-form-label">Address</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "address" name = "address" placeholder="Address" required value =<%= address %> >
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="residence" class = "col-md-2 col-form-label">Residence</label>
-                        <div class = "col-md-2">
-                            <input type="text" class = "form-control" id = "city" name = "city" placeholder= "City" required  value =<%= city %>>
-                        </div>
-                        <div class = "col-md-3 offset-md-1">
-                            <input type="text" class = "form-control" id = "state" name = "state" placeholder="State" required value =<%= state %>>
-                        </div>
-                        <div class = "col-md-3 offset-md-1">
-                            <input type="text" class = "form-control" id = "country" name = "country" placeholder="Country" required value =<%= country %>> 
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="linkdin" class = "col-md-2 col-form-label">Linkdin Profile</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "linkdin" name = "linkdin" placeholder="Linkdin Profile Link" required  value =<%= linkdin %> >  
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label class = "col-md-2 col-form-label">Upload Resume in pdf format</label>
-                        <div class = "col-md-10">
-                            <input type="file" id = "resume" class = "form-control" name = "resume">
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <div class = "offset-md-2 col-md-10">
-                            <button class = "btn btn-primary" type="submit">Submit Details</button>
-                        </div>
-                    </div>
-                </form>
+    <header class = "header">
+
+        <nav class="page__menu page__custom-settings menu">
+          <ul class="menu__list r-list">
+            <li class="menu__group"><a class="menu__link r-link text-underlined"  href=<%= profile %> > Home
+            </a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  read_experience %> >Read Experiences</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  write_experience %> >Write Experiences</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= company_apply %> >Company</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= applied %> >Applied Companies</a></li>
+            <li class="menu__group active"><a class="menu__link r-link text-underlined" href=<%= edit_profile %> >Edit Profile</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= log_out %> >Logout</a></li>
+          </ul>
+        </nav>          
+</header>
+ <br><br><br>
+
+<div class = "container">
+    <div class="panel">
+        <div class="bio-graph-heading">
+            Edit your Profile Information
+        </div> <br><br>
+
+    <form class = "edit-profile-form" action=<%= link %> method="POST">
+        
+        <div class="panel-body bio-graph-info">
+            <div class="row">
+                <div class="bio-row">
+                    <p><span> First Name </span>: 
+                        <input type="text"  id = "firstname" name = "firstname" placeholder="First Name" required  value=<%= firstname %>>
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Last Name </span>: 
+                        <input type="text"  id = "lastname" name = "lastname" placeholder="Last Name" required  value=<%= lastname %>>
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Roll Number </span>: 
+                        <input type="text" id = "college_id" name = "college_id" placeholder="Roll Number" required  value=<%= college_id %> >
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Degree </span>: 
+                        <input type="text" id = "degree" name = "degree" placeholder="Degree" required value=<%= degree %>>
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Expected Graduation Year </span>: 
+                        <input type="text" id = "grad" name = "grad" placeholder="Expected Graduation" required value=<%= grad %>>
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Branch </span>: 
+                        <input type="text" id = "branch" name = "branch" placeholder="Branch" required value=<%= branch %>>
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Personal Email </span>: 
+                        <input type="email" id = "personal_email" name = "personal_email" placeholder="Personal Email" required value="<%= personal_email %> ">
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Mobile </span>: 
+                        <input type="text" id = "contact_no" name = "contact_no" placeholder="Contact Number" required value=<%= contact_no %> >
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>CGPA </span>: 
+                        <input type="text" id = "cgpa" name = "cgpa" placeholder="CGPA" required value=<%= cgpa %>>
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Active backlogs </span>: 
+                        <input type="text" id = "active_backlogs" name = "active_backlogs" placeholder="Active Backlogs" required value=<%= active_backlogs %>>
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Class 10th Percentage </span>: 
+                        <input type="text" id = "percent_10" name = "percent_10" placeholder= "10th percentage" required value=<%= percent_10 %>>
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Class 10th Board </span>: 
+                        <input type="text"  id = "board_10" name = "board_10" placeholder="Board" required value =<%= board_10 %>>
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Class 12th Percentage </span>: 
+                        <input type="text" id = "percent_12" name = "percent_12" placeholder= "12th percentage" required  value =<%= percent_12 %>>
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Class 12th Board </span>: 
+                        <input type="text" id = "board_12" name = "board_12" placeholder="Board" required  value =<%= board_12 %> >
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Address </span>: 
+                        <input type="text" id = "address" name = "address" placeholder="Address" required value =<%= address %> >
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>City </span>: 
+                        <input type="text" id = "city" name = "city" placeholder= "City" required  value =<%= city %>>
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>State </span>: 
+                        <input type="text" id = "state" name = "state" placeholder="State" required value =<%= state %>>
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Country </span>: 
+                        <input type="text" id = "country" name = "country" placeholder="Country" required value =<%= country %>> 
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>LinkdIn profile link </span>: 
+                        <input type="text" id = "linkdin" name = "linkdin" placeholder="Linkdin Profile Link" required  value =<%= linkdin %> > 
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Upload resume (PDF only) </span>: 
+                        <input type="file" id = "resume" name = "resume">
+                    </p>
+                </div>
+                <div class="bio-row">
+                    <button class = "btn" type="submit">Submit Details</button>
+                </div>
+               
+                
+            
             </div>
         </div>
+    </form>
     </div>
-    </div>
+</div>
+                    
+                   
+            
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
