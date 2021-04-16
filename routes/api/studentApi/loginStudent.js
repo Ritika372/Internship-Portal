@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const generateToken = require('./generateToken');
 const jwt = require('jsonwebtoken');
 const InterviewExp = require('../../../model/Interview');
+const notification = require('../../../model/notifications');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 var session=require("express-session")
@@ -161,6 +162,7 @@ app.get('/:id/studentprofile', async (req, res) => {
     const read_experience = '/student/login/' + req.params.id + '/experiences';
     const write_experience = '/student/login/' + req.params.id + '/submitexperience';
     const company_apply = '/student/login/' + req.params.id + '/Company';
+    const notificationlink='/student/login/' + req.params.id + '/notifications';
     const edit_profile = '/student/login/' + req.params.id + '/editProfile';
     const log_out = '/student/login/' + req.params.id + '/logOut';
     const applied = '/student/login/' + req.params.id + '/applied';
@@ -182,6 +184,7 @@ app.get('/:id/studentprofile', async (req, res) => {
                     write_experience: write_experience,
                     edit_profile: edit_profile,
                     company_apply: company_apply,
+                    notificationlink:notificationlink,
                     log_out: log_out,
                     applied: applied,
                     firstname: student.firstname,
@@ -219,6 +222,7 @@ app.get('/:id/experiences', (req, res) => {
         const write_experience = '/student/login/' + req.params.id + '/submitexperience';
         const edit_profile = '/student/login/' + req.params.id + '/editProfile';
         const company_apply = '/student/login/' + req.params.id + '/Company';
+        const notificationlink='/student/login/' + req.params.id + '/notifications';
         const applied = '/student/login/' + req.params.id + '/applied';
         const log_out = '/student/login/' + req.params.id + '/logOut';
         if (err) {
@@ -231,6 +235,7 @@ app.get('/:id/experiences', (req, res) => {
                 applied: applied,
                 read_experience: read_experience,
                 write_experience: write_experience,
+                notificationlink:notificationlink,
                 company_apply: company_apply,
                 edit_profile: edit_profile,
                 log_out: log_out,
@@ -249,6 +254,7 @@ app.get('/:id/experiences/:experienceId/details', (req, res) => {
         const write_experience = '/student/login/' + req.params.id + '/submitexperience';
         const edit_profile = '/student/login/' + req.params.id + '/editProfile';
         const company_apply = '/student/login/' + req.params.id + '/Company';
+        const notificationlink='/student/login/' + req.params.id + '/notifications';
         const applied = '/student/login/' + req.params.id + '/applied';
         const log_out = '/student/login/' + req.params.id + '/logOut';
         if (err) {
@@ -261,6 +267,7 @@ app.get('/:id/experiences/:experienceId/details', (req, res) => {
                 applied: applied,
                 read_experience: read_experience,
                 write_experience: write_experience,
+                notificationlink:notificationlink,
                 company_apply: company_apply,
                 edit_profile: edit_profile,
                 log_out: log_out,
@@ -284,6 +291,7 @@ app.get('/:id/submitexperience', (req, res) => {
     const write_experience = '/student/login/' + req.params.id + '/submitexperience';
     const company_apply = '/student/login/' + req.params.id + '/Company';
     const edit_profile = '/student/login/' + req.params.id + '/editProfile';
+    const notificationlink='/student/login/' + req.params.id + '/notifications';
     const log_out = '/student/login/' + req.params.id + '/logOut';
     const applied = '/student/login/' + req.params.id + '/applied';
     res.render("submitExp", {
@@ -291,6 +299,7 @@ app.get('/:id/submitexperience', (req, res) => {
         applied: applied,
         read_experience: read_experience,
         write_experience: write_experience,
+        notificationlink:notificationlink,
         company_apply: company_apply,
         edit_profile: edit_profile,
         log_out: log_out
@@ -349,6 +358,7 @@ app.get('/:id/editProfile', (req, res) => {
     const company_apply = '/student/login/' + req.params.id + '/Company';
     const log_out = '/student/login/' + req.params.id + '/logOut';
     const applied = '/student/login/' + req.params.id + '/applied';
+    const notificationlink='/student/login/' + req.params.id + '/notifications';
     //it is for the post button so that app.post works
     const link = '/student/login/' + req.params.id + '/editProfile';
     Student.findById({ _id: req.params.id }, (err, student) => {
@@ -361,6 +371,7 @@ app.get('/:id/editProfile', (req, res) => {
                 applied: applied,
                 read_experience: read_experience,
                 write_experience: write_experience,
+                notificationlink:notificationlink,
                 edit_profile: edit_profile,
                 company_apply: company_apply,
                 log_out: log_out,
@@ -431,6 +442,7 @@ app.get("/:id/Company", (req, res) => {
     const write_experience = '/student/login/' + req.params.id + '/submitexperience';
     const edit_profile = '/student/login/' + req.params.id + '/editProfile';
     const company_apply = '/student/login/' + req.params.id + '/Company';
+    const notificationlink='/student/login/' + req.params.id + '/notifications';
     const log_out = '/student/login/' + req.params.id + '/logOut';
     const applied = '/student/login/' + req.params.id + '/applied';
     Student.findById({ _id: req.params.id }, (error, student) => {
@@ -446,6 +458,7 @@ app.get("/:id/Company", (req, res) => {
                         applied: applied,
                         read_experience: read_experience,
                         write_experience: write_experience,
+                        notificationlink:notificationlink,
                         edit_profile: edit_profile,
                         company_apply: company_apply,
                         studentId: req.params.id,
@@ -486,6 +499,7 @@ app.get("/:id/:companyId/details", (req, res) => {
     const write_experience = '/student/login/' + req.params.id + '/submitexperience';
     const edit_profile = '/student/login/' + req.params.id + '/editProfile';
     const company_apply = '/student/login/' + req.params.id + '/Company';
+    const notificationlink='/student/login/' + req.params.id + '/notifications';
     const log_out = '/student/login/' + req.params.id + '/logOut';
     const applied = '/student/login/' + req.params.id + '/applied';
     Company.findById({ _id: companyid }, (error, company) => {
@@ -499,6 +513,7 @@ app.get("/:id/:companyId/details", (req, res) => {
                 applied: applied,
                 read_experience: read_experience,
                 write_experience: write_experience,
+                notificationlink:notificationlink,
                 edit_profile: edit_profile,
                 company_apply: company_apply,
                 log_out: log_out,
@@ -537,6 +552,7 @@ app.get("/:id/applied", (req, res) => {
     const write_experience = '/student/login/' + req.params.id + '/submitexperience';
     const edit_profile = '/student/login/' + req.params.id + '/editProfile';
     const company_apply = '/student/login/' + req.params.id + '/Company';
+    const notificationlink='/student/login/' + req.params.id + '/notifications';
     const log_out = '/student/login/' + req.params.id + '/logOut';
     const applied = '/student/login/' + req.params.id + '/applied';
     Student.findById({ _id: req.params.id }, (error, student) => {
@@ -553,6 +569,7 @@ app.get("/:id/applied", (req, res) => {
                         applied: applied,
                         read_experience: read_experience,
                         write_experience: write_experience,
+                        notificationlink:notificationlink,
                         edit_profile: edit_profile,
                         company_apply: company_apply,
                         studentId: req.params.id,
@@ -565,8 +582,45 @@ app.get("/:id/applied", (req, res) => {
     });
 
 });
-// /student/login/5fd71e5297826d07dcaad5d0/Company
-// /student/login/5fd71e5297826d07dcaad5d0/5fbd6e3400fa334978e2a7cb/details
+
+app.get("/:id/notifications/",(req,res)=>{
+    const profile = '/student/login/' + req.params.id + '/studentprofile';
+    const read_experience = '/student/login/' + req.params.id + '/experiences';
+    const write_experience = '/student/login/' + req.params.id + '/submitexperience';
+    const edit_profile = '/student/login/' + req.params.id + '/editProfile';
+    const company_apply = '/student/login/' + req.params.id + '/Company';
+    const log_out = '/student/login/' + req.params.id + '/logOut';
+    const applied = '/student/login/' + req.params.id + '/applied';
+    const notificationlink='/student/login/' + req.params.id + '/notifications';
+            notification.find({} , (err,notices) => {
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    notices.sort(function(a,b){
+                        return new Date(b.date) - new Date(a.date);
+                      });
+                    res.render("notification_student" , {
+                        profile: profile,
+                        applied: applied,
+                        read_experience: read_experience,
+                        write_experience: write_experience,
+                        edit_profile: edit_profile,
+                        company_apply: company_apply,
+                        notices:notices,
+                        notificationlink:notificationlink,
+                        log_out: log_out,
+                    });
+                }
+            })
+
+
+})
+
+
+
+
+
 
 app.get("/:id/logOut", (req, res) => {
     res.clearCookie('studentLogin');
