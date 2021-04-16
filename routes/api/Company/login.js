@@ -3,6 +3,7 @@ const Company = require('../../../model/Company');
 const Student= require('../../../model/Student');
 const cookieParser=require("cookie-parser");
 const generateToken = require('./generateToken');
+const notification = require('../../../model/notifications');
 const jwt = require('jsonwebtoken');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -149,6 +150,7 @@ app.get('/:id/companyprofile' , (req,res) => {
     const profile = '/company/login/'+req.params.id+'/companyprofile';
     const edit_profile= '/company/login/'+req.params.id+'/editProfile';
     const applied_students= '/company/login/'+req.params.id+'/appliedStudents';
+    const Addnotificationlink='/company/login/' + req.params.id + '/Addnotice';
     const log_out='/company/login/'+req.params.id+'/logOut';
     Company.findById({_id: req.params.id} , (err,company) => {
         if(err){
@@ -162,6 +164,7 @@ app.get('/:id/companyprofile' , (req,res) => {
                 applied_students:applied_students,
                 log_out:log_out,
                 email:company.email,
+                Addnotificationlink:Addnotificationlink,
                 companyname: company.companyname , 
                 about_company :company.about_company , 
                 website_link : company.website, 
@@ -194,8 +197,8 @@ app.get('/:id/editProfile' , (req,res) => {
       const edit_profile= '/company/login/'+req.params.id+'/editProfile';
     const applied_students= '/company/login/'+req.params.id+'/appliedStudents';
       const log_out='/company/login/'+req.params.id+'/logOut';
-    //it is for the post button so that app.post works
     const link = '/company/login/'+req.params.id+'/editProfile';
+    const Addnotificationlink='/company/login/' + req.params.id + '/Addnotice';
     Company.findById({_id: req.params.id} , (err,company) => {
         if(err){
             return res.json({msg: "Something went wrong!"});
@@ -207,6 +210,7 @@ app.get('/:id/editProfile' , (req,res) => {
                 edit_profile:edit_profile,
                 log_out:log_out,
                 link:link,
+                Addnotificationlink:Addnotificationlink,
                 companyname: company.companyname , 
                 about_company :company.about_company , 
                 email: company.email, 
@@ -226,6 +230,68 @@ app.get('/:id/editProfile' , (req,res) => {
     });
 
 });
+
+
+app.get("/:id/Addnotice/",(req,res)=>{
+    
+    var msg=req.flash('message');
+    const profile = '/company/login/'+req.params.id+'/companyprofile';
+    const edit_profile= '/company/login/'+req.params.id+'/editProfile';
+    const applied_students= '/company/login/'+req.params.id+'/appliedStudents';
+    const log_out='/company/login/'+req.params.id+'/logOut';
+    const Addnotificationlink='/company/login/' + req.params.id + '/Addnotice';
+    Company.findById({_id : req.params.id} , (err,ADMIN) => {
+        if(err){
+            console.log(err);
+        }
+        else{
+            notification.find({} , (err,notices) => {
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    res.render("addNewNotice_company" , {
+                        message:msg,
+                        profile:profile,
+                        applied_students:applied_students,
+                        edit_profile:edit_profile,
+                        log_out:log_out,
+                        Addnotificationlink:Addnotificationlink,
+                        notices: notices});
+                }
+            })}
+   });
+
+})
+
+
+app.post("/:id/Addnotice/",(req,res)=>{
+    const notice_body=req.body.notice;
+    Company.findById({_id : req.params.id} , (err,company) => {
+        if(err){
+            console.log(err);
+        }
+        else{
+            const created_by =company.companyname;
+            const date=new Date().getTime();
+            const notice = new notification({
+                created_by:created_by,
+                notice:notice_body,
+                date:date
+            });
+            notice.save((err) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    req.flash("message","NOTICE ADDED");
+                    res.redirect('/company/login/' + req.params.id + '/Addnotice');
+                }
+            });
+          }
+   });
+
+})
 
 //Changes the data according to the gievn data and redirects the user to his profile
 app.post('/:id/editProfile' , (req,res) => {
@@ -258,6 +324,7 @@ app.get("/:id/appliedStudents",(req,res)=>
     const profile = '/company/login/'+req.params.id+'/companyprofile';
     const edit_profile= '/company/login/'+req.params.id+'/editProfile';
   const applied_students= '/company/login/'+req.params.id+'/appliedStudents';
+  const Addnotificationlink='/company/login/' + req.params.id + '/Addnotice';
     const log_out='/company/login/'+req.params.id+'/logOut';
    Company.findById({_id:req.params.id},(err,company)=>
    {
@@ -296,6 +363,7 @@ app.get("/:id/appliedStudents",(req,res)=>
                         profile:profile,
                         applied_students:applied_students,
                         edit_profile:edit_profile,
+                        Addnotificationlink:Addnotificationlink,
                         log_out:log_out,
                         students:newStudents
                       });
@@ -305,9 +373,11 @@ app.get("/:id/appliedStudents",(req,res)=>
        }
    }
    )
-
-
 })
+
+
+
+
 app.get("/:id/logOut",(req,res)=>{
     res.clearCookie('CompanyLogin');
    res.redirect('/company/login');
