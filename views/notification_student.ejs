@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/student.css">
+    <title>Read Experiences</title>
+</head>
+<body>
+
+    <header class = "header">
+        <nav class="page__menu page__custom-settings menu">
+          <ul class="menu__list r-list">
+            <li class="menu__group"><a class="menu__link r-link text-underlined"  href=<%= profile %> > Home
+            </a></li>
+            <li class="menu__group "><a class="menu__link r-link text-underlined" href=<%=  read_experience %> >Read Experiences</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  write_experience %> >Write Experiences</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= company_apply %> >Company</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= applied %> >Applied Companies</a></li>
+            <li class="menu__group active"><a class="menu__link r-link text-underlined" href=<%= notificationlink %> >Notices</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= edit_profile %> >Edit Profile</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= log_out %> >Logout</a></li>
+          </ul>
+        </nav>          
+</header>
+
+<br><br>
+
+
+    <div class = "container">
+                <% notices.forEach( (notice) => { %>
+                    <div class = "read-exp">
+                        <div class="courses-container">
+                            <div class="course">
+                                <div class="course-preview">
+                                    <h6><%= notice.date %></h6><br>
+                                    <h6><%= notice.created_by %></h6><br>
+
+                                </div>
+                                <div class="course-info">
+                                
+                                    <p><%=notice.notice%></p> <br><br>
+                                  
+                                </div>
+                            </div>
+                    </div>
+                    
+                    </div>
+                    
+                <% }) %>
+    </div>
+</body>
+</html>

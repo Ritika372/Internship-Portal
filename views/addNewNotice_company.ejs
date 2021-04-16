@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/student.css">
+    <title>Add Notice</title>
+</head>
+<body>
+    <% if(message &&message.length>0){  %>
+        <div class="alert alert-success">
+        <%= message %>
+        </div>
+      <% } %>
+    <div class = "container">
+        
+        <div class = "container">
+            <div class = "row">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                      <a class="nav-link " href=<%= profile %> >Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href=<%= Addnotificationlink %> >Add Notice</a>
+                      </li> 
+                    <li class="nav-item">
+                      <a class="nav-link" href=<%= edit_profile%> >Edit Profile</a>
+                    </li>       
+                    <li class="nav-item">
+                        <a class="nav-link" href=<%= applied_students%> >Applied Students</a>
+                      </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=<%= log_out%> >Log Out</a>
+                      </li>
+                  </ul>
+            </div>
+        </div><br><br>
+<div class = "container">
+    <div class = "submit-exp">
+        <form class="form" action=<%= Addnotificationlink %> method="POST">
+            <h2>Add New Notice</h2>
+            <p>
+                <textarea class="form-control" id="notice" rows="6" name = "notice" placeholder="Write Notice"></textarea>
+            </p>
+            <button class = "btn" type="submit">Post</button>
+          </form>
+    </div>
+    
+</div>
+
+   
+     
+</body>
+</html>
