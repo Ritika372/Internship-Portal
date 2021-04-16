@@ -5,7 +5,7 @@ const admin = require('../../../model/admin');
 const app = express();
 const Student= require('../../../model/Student');
 const Company = require('../../../model/Company');
-
+const notification = require('../../../model/notifications');
 app.set('view engine', 'ejs');
 app.use(bodyparser.urlencoded({
   extended: true
@@ -51,7 +51,7 @@ const verifyToken = async (req, res, next) => {
         }
     } catch (err) {
         console.log(err);
-        return res.redirect('/admin/slogin');
+        return res.redirect('/admin/login');
     }
   // next();
 };
@@ -108,6 +108,7 @@ app.get('/:id/home/',(req,res)=>{
     const studentslink = '/admin/login/' + req.params.id + '/Students';
     const companieslink = '/admin/login/' + req.params.id + '/Companies';
     const settings='/admin/login/' + req.params.id + '/settings';
+    const notificationlink='/admin/login/' + req.params.id + '/notifications';
     admin.findById({_id : req.params.id} , (err,ADMIN) => {
         if(err){
             console.log(err);
@@ -120,6 +121,7 @@ app.get('/:id/home/',(req,res)=>{
                     companieslink:companieslink,
                     main:ADMIN.main_admin,
                     settings:settings,
+                    notificationlink:notificationlink,
                     name:ADMIN.name});
         }
     });
@@ -133,6 +135,7 @@ app.get('/:id/Students/' , (req,res)=> {
     const studentslink = '/admin/login/' + req.params.id + '/Students';
     const companieslink = '/admin/login/' + req.params.id + '/Companies';
     const settings='/admin/login/' + req.params.id + '/settings';
+    const notificationlink='/admin/login/' + req.params.id + '/notifications';
     admin.findById({_id : req.params.id} , (err,ADMIN) => {
         if(err){
             console.log(err);
@@ -153,6 +156,7 @@ app.get('/:id/Students/' , (req,res)=> {
         companieslink:companieslink,
         settings:settings,
         main:ADMIN.main_admin,
+        notificationlink:notificationlink,
                         students:students
                       });
                 }
@@ -167,6 +171,7 @@ app.get('/:id/Companies/' , (req,res)=> {
     const studentslink = '/admin/login/' + req.params.id + '/Students';
     const companieslink = '/admin/login/' + req.params.id + '/Companies';
     const settings='/admin/login/' + req.params.id + '/settings';
+    const notificationlink='/admin/login/' + req.params.id + '/notifications';
     admin.findById({_id : req.params.id} , (err,ADMIN) => {
         if(err){
             console.log(err);
@@ -187,6 +192,7 @@ app.get('/:id/Companies/' , (req,res)=> {
         settings:settings,
         main:ADMIN.main_admin,
         companieslink:companieslink,
+        notificationlink:notificationlink,
                         companies:companies
                       });
                 }
@@ -204,6 +210,7 @@ app.get('/:adminid/experiences' , (req,res) => {
     const confirmexp='/admin/login/' + req.params.adminid + '/confirmexp';
     const deleteexp=  '/admin/login/' + req.params.adminid +'/deleteexp';
     const settings='/admin/login/' + req.params.adminid + '/settings';
+    const notificationlink='/admin/login/' + req.params.adminid + '/notifications';
     admin.findById({_id : req.params.adminid} , (err,ADMIN) => {
         if(err){
             console.log(err);
@@ -225,6 +232,7 @@ app.get('/:adminid/experiences' , (req,res) => {
                 deleteexp:deleteexp,
                 settings:settings,
                 main:ADMIN.main_admin,
+                notificationlink:notificationlink,
                 experience: experience});
         }
     })
@@ -240,6 +248,7 @@ app.post('/:adminid/confirmexp', (req,res) => {
     const confirmexp='/admin/login/' + req.params.adminid + '/confirmexp';
     const deleteexp=  '/admin/login/' + req.params.adminid +'/deleteexp';
     const settings='/admin/login/' + req.params.adminid + '/settings';
+    const notificationlink='/admin/login/' + req.params.adminid + '/notifications';
     admin.findById({_id : req.params.adminid} , (err,ADMIN) => {
         if(err){
             console.log(err);
@@ -266,6 +275,7 @@ app.post('/:adminid/confirmexp', (req,res) => {
                     deleteexp:deleteexp,
                     settings:settings,
                     main:ADMIN.main_admin,
+                    notificationlink:notificationlink,
                     experience: experience});
         }
     })
@@ -282,6 +292,7 @@ app.post('/:adminid/deleteexp', (req,res) => {
     const confirmexp='/admin/login/' + req.params.adminid + '/confirmexp';
     const deleteexp=  '/admin/login/' + req.params.adminid +'/deleteexp';
     const settings='/admin/login/' + req.params.adminid + '/settings';
+    const notificationlink='/admin/login/' + req.params.adminid + '/notifications';
     admin.findById({_id : req.params.adminid} , (err,ADMIN) => {
         if(err){
             console.log(err);
@@ -309,6 +320,7 @@ app.post('/:adminid/deleteexp', (req,res) => {
                 deleteexp:deleteexp,
                 settings:settings,
                 main:ADMIN.main_admin,
+                notificationlink:notificationlink,
                     experience: experience});
             }
            });
@@ -329,6 +341,7 @@ app.get('/:adminid/conf_company' , (req,res) => {
     const confirmcomp = '/admin/login/' + req.params.adminid + '/confirmcompany';
     const deletecomp = '/admin/login/' + req.params.adminid + '/deletecompany';
     const settings='/admin/login/' + req.params.adminid + '/settings';
+    const notificationlink='/admin/login/' + req.params.adminid + '/notifications';
     admin.findById({_id : req.params.adminid} , (err,ADMIN) => {
         if(err){
             console.log(err);
@@ -349,6 +362,7 @@ app.get('/:adminid/conf_company' , (req,res) => {
                 settings:settings,
                 main:ADMIN.main_admin,
                 deletecomp:deletecomp,
+                notificationlink:notificationlink,
                 companies: company});
         }
     });
@@ -363,6 +377,7 @@ app.post('/:adminid/confirmcompany', (req,res) => {
     const confirmcomp = '/admin/login/' + req.params.adminid + '/confirmcompany';
     const deletecomp = '/admin/login/' + req.params.adminid + '/deletecompany';
      const settings='/admin/login/' + req.params.adminid + '/settings';
+     const notificationlink='/admin/login/' + req.params.adminid + '/notifications';
     admin.findById({_id : req.params.adminid} , (err,ADMIN) => {
         if(err){
             console.log(err);
@@ -387,7 +402,8 @@ app.post('/:adminid/confirmcompany', (req,res) => {
                 confirmcomp:confirmcomp,
                 settings:settings,
                 main:ADMIN.main_admin,
-                deletecomp:deletecomp,
+                deletecomp:deletecomp,                        
+                notificationlink:notificationlink,
                 companies: company});
         }
     });
@@ -406,6 +422,7 @@ app.post('/:adminid/deletecompany', (req,res) => {
     const confirmcomp = '/admin/login/' + req.params.adminid + '/confirmcompany';
     const deletecomp = '/admin/login/' + req.params.adminid + '/deletecompany';
     const settings='/admin/login/' + req.params.adminid + '/settings';
+    const notificationlink='/admin/login/' + req.params.adminid + '/notifications';
     admin.findById({_id : req.params.adminid} , (err,ADMIN) => {
         if(err){
             console.log(err);
@@ -431,6 +448,7 @@ app.post('/:adminid/deletecompany', (req,res) => {
         settings:settings,
         main:ADMIN.main_admin,
         deletecomp:deletecomp,
+        notificationlink:notificationlink,
         companies: company});
           }
           });
@@ -470,6 +488,7 @@ app.get('/:id/settings/' , (req,res)=> {
     const settings='/admin/login/' + req.params.id + '/settings';
     const adminlink='/admin/login/'+req.params.id+'/removeAdmin';
     const addAdminlink='/admin/login/'+req.params.id+'/addAdmin';
+    const notificationlink='/admin/login/' + req.params.id + '/notifications';
     admin.find({main_admin: false},(error,admins)=>
                {
                 if(error){
@@ -487,6 +506,7 @@ app.get('/:id/settings/' , (req,res)=> {
                        settings:settings,
                        remove:adminlink,
                        admins:admins,
+                       notificationlink:notificationlink,
                        addAdmin:addAdminlink
                       });
                 }
@@ -495,12 +515,6 @@ app.get('/:id/settings/' , (req,res)=> {
 );
 
 app.post('/:adminid/removeAdmin', (req,res) => {
-    const home = '/admin/login/' + req.params.adminid + '/home';
-    const experiencelink = '/admin/login/' + req.params.adminid + '/experiences';
-    const confirm_companieslink = '/admin/login/' + req.params.adminid + '/conf_company';
-    const studentslink = '/admin/login/' + req.params.adminid + '/Students';
-    const companieslink = '/admin/login/' + req.params.adminid + '/Companies';
-    const adminlink='/admin/login/'+req.params.id+'/removeAdmin';
    admin.deleteOne({_id : req.body.id}, (err) => {
        if(err){
            console.log(err);
@@ -551,5 +565,113 @@ app.post('/:id/addAdmin/', (req, res) => {
         });
     });
 });
+
+
+
+app.get("/:id/notifications/",(req,res)=>{
+    const home = '/admin/login/' + req.params.id + '/home';
+    const experiencelink = '/admin/login/' + req.params.id + '/experiences';
+    const confirm_companieslink = '/admin/login/' + req.params.id + '/conf_company';
+    const studentslink = '/admin/login/' + req.params.id + '/Students';
+    const companieslink = '/admin/login/' + req.params.id + '/Companies';
+    const settings='/admin/login/' + req.params.id + '/settings';
+    const notificationlink='/admin/login/' + req.params.id + '/notifications';
+    const Addnotificationlink='/admin/login/' + req.params.id + '/Addnotice';
+    admin.findById({_id : req.params.id} , (err,ADMIN) => {
+        if(err){
+            console.log(err);
+        }
+        else{
+            notification.find({} , (err,notices) => {
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    notices.sort(function(a,b){
+                        return new Date(b.date) - new Date(a.date);
+                      });
+                    res.render("notification_admin" , {
+                        home:home,
+                        experiencelink:experiencelink,
+                        confirm_companieslink:confirm_companieslink,
+                        studentslink:studentslink,
+                        companieslink:companieslink,
+                        settings:settings,
+                        main:ADMIN.main_admin,
+                        notificationlink:notificationlink,
+                        Addnotificationlink:Addnotificationlink,
+                        notices: notices});
+                }
+            })}
+   });
+
+})
+
+
+
+
+app.get("/:id/Addnotice/",(req,res)=>{
+    const home = '/admin/login/' + req.params.id + '/home';
+    const experiencelink = '/admin/login/' + req.params.id + '/experiences';
+    const confirm_companieslink = '/admin/login/' + req.params.id + '/conf_company';
+    const studentslink = '/admin/login/' + req.params.id + '/Students';
+    const companieslink = '/admin/login/' + req.params.id + '/Companies';
+    const settings='/admin/login/' + req.params.id + '/settings';
+    const notificationlink='/admin/login/' + req.params.id + '/notifications';
+    const Addnotificationlink='/admin/login/' + req.params.id + '/Addnotice';
+    admin.findById({_id : req.params.id} , (err,ADMIN) => {
+        if(err){
+            console.log(err);
+        }
+        else{
+            
+                    res.render("addNewNotice_admin" , {
+                        home:home,
+                        experiencelink:experiencelink,
+                        confirm_companieslink:confirm_companieslink,
+                        studentslink:studentslink,
+                        companieslink:companieslink,
+                        settings:settings,
+                        main:ADMIN.main_admin,
+                        notificationlink:notificationlink,
+                        Addnotificationlink:Addnotificationlink});
+                
+            }
+   });
+
+})
+
+
+
+app.post("/:id/Addnotice/",(req,res)=>{
+    const notice_body=req.body.notice;
+ 
+
+    admin.findById({_id : req.params.id} , (err,ADMIN) => {
+        if(err){
+            console.log(err);
+        }
+        else{
+            const created_by =ADMIN.name;
+            const date=new Date().getTime();
+            const notice = new notification({
+                created_by:created_by,
+                notice:notice_body,
+                date:date
+            });
+            notice.save((err) => {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    res.redirect('/admin/login/' + req.params.id + '/notifications');
+                    // res.send("Experience submitted successfully!. Please wait for the admin to confirm.")
+                }
+            });
+          }
+   });
+
+})
+
 
 module.exports = app;
