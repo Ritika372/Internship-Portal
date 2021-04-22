@@ -64,7 +64,7 @@ app.post('/', (req, res) => {
                 const msg = "Please Click on the given button to register";
                 const link = "http://localhost:3000/student/register/confirm/" + token;
                 console.log({ link })
-                sendemails(email, link, msg);
+                sendemails(email, "Verify Registration",link, msg,"Verify");
                 res.redirect('/student/register/' + newStudent._id + '/enterdetails');
             }
         });
@@ -124,7 +124,7 @@ app.get('/:id/enterdetails', (req, res) => {
 
 //saves the data of the user
 app.post('/:id/enterdetails', uploadFile.single("resume"), async (req, res) => {
-    console.log({ body : req.file });
+
     Student.findByIdAndUpdate({ _id: req.params.id }, {
         $set: {
             firstname: req.body.firstname,

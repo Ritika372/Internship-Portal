@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 const ejs =require("ejs");
 const path = require('path');
 require('dotenv').config();
-const sendMails = (email, text,msg) =>{
+const sendMails = (email, subject,text, msg,link_name) =>{
     console.log(process.env.SENDMAIL);
     var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -12,14 +12,14 @@ const sendMails = (email, text,msg) =>{
         }
       });
 
-     ejs.renderFile(path.join(__dirname + "../../../../views/confirmationMail.ejs"),{confirmation_link:text,msg:msg} ,function (err, data) {
+     ejs.renderFile(path.join(__dirname + "../../../../views/confirmationMail.ejs"),{confirmation_link:text,msg:msg,link_name:link_name} ,function (err, data) {
         if (err) {
             console.log(err);
         } else {
             var mainOptions = {
                 from: process.env.SENDMAIL,
                 to: email,
-                subject: 'Verifying Your registration',
+                subject: subject,
                 html: data
             };
             transporter.sendMail(mainOptions, function (err, info) {

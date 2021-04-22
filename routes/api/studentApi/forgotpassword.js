@@ -36,7 +36,7 @@ app.post("/" , (req,res)=>{
                 });
                 const msg ="Please Click on the given button to Change the password";
                 const link ="http://localhost:3000/student/forgot_pass/check/"+token; 
-                  sendemails(foundStudent.email,link,msg);
+                  sendemails(foundStudent.email,"Forget Password",link,msg,"New Password");
                  res.send("Check your mail");
             }
              else{

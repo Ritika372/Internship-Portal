@@ -2,6 +2,8 @@ const bodyparser = require("body-parser");
 const { createGridFSReadStream, getGridFSFiles } = require('../../../config/db');
 const Student = require('../../../model/Student');
 const Company = require('../../../model/Company');
+const uploadFile = require('./upload');
+const sendemails = require('./email');
 const cookieParser = require("cookie-parser");
 const generateToken = require('./generateToken');
 const jwt = require('jsonwebtoken');
@@ -128,6 +130,33 @@ const verifyMail = async (req, res, next) => {
 
 app.use("/:id", verifyMail);
 
+
+app.get('/:id/change_pswrd',(req,res)=>{
+    Student.findOne({_id: req.params.id }, (err ,foundStudent) => {
+        if(err){
+            res.send("Something Wrong Happened");
+            console.log(err);
+        }
+        else{
+            if(foundStudent){
+               const expiration =  604800000;
+               const id=foundStudent._id;
+               const rollno=foundStudent.rollno;
+              const token = jwt.sign({id,rollno}, "rohitMittalisthebest", {
+               expiresIn:  '7d',
+               });
+               const msg ="Please Click on the given button to Change the password";
+               const link ="http://localhost:3000/student/forgot_pass/check/"+token; 
+                 sendemails(foundStudent.email,"Change Password",link,msg,"New Password");
+                 req.flash("message","Check Your Emails");
+                 res.redirect('/student/login/' + req.params.id + '/editProfile');
+           }
+            else{
+                res.send("First Register yourself");
+            }
+        }
+    });
+})
 
 /* Verify the token in the cookies */
 
@@ -346,11 +375,14 @@ app.post('/:id/submitexperience', (req, res) => {
     });
 
 });
-///5fd71e5297826d07dcaad5d0/5fbd6e3400fa334978e2a7cb/details
+
+
+
 //Renderes the edit profile page with the last given data by the student
 app.get('/:id/editProfile', (req, res) => {
+    var msg=req.flash('message');
     //profile read_experience write_experience edit_profile are the links given to the buttons on the student profile
-
+    const upload_resume='/student/login/' + req.params.id + '/uploadResume';;
     const profile = '/student/login/' + req.params.id + '/studentprofile';
     const read_experience = '/student/login/' + req.params.id + '/experiences';
     const write_experience = '/student/login/' + req.params.id + '/submitexperience';
@@ -361,6 +393,7 @@ app.get('/:id/editProfile', (req, res) => {
     const notificationlink='/student/login/' + req.params.id + '/notifications';
     //it is for the post button so that app.post works
     const link = '/student/login/' + req.params.id + '/editProfile';
+    const change_pswrd = '/student/login/' + req.params.id + '/change_pswrd';
     Student.findById({ _id: req.params.id }, (err, student) => {
         if (err) {
             return res.json({ msg: "Something went wrong!" });
@@ -395,11 +428,37 @@ app.get('/:id/editProfile', (req, res) => {
                 state: student.state,
                 country: student.country,
                 linkdin: student.linkdin,
+                change_pswrd:change_pswrd,
+                upload_resume:upload_resume,
+                message:msg
             });
         }
     });
 
 });
+
+
+app.post('/:id/uploadResume',uploadFile.single('resume'), (req, res)=>{
+
+    console.log({'file':req.file})
+    
+    Student.findByIdAndUpdate({ _id: req.params.id }, {
+        $set: {
+            resume: req.file
+        }
+    }, { new: true }, (err, student) => {
+        if (err) {
+            console.log({ err });
+            return res.json({ msg: "Something went wrong!" });
+        }
+        else {
+            //redirects to student profile
+            req.flash("message","Resume Changed");
+            res.redirect('/student/login/' + req.params.id + '/editProfile');
+        }
+    });
+})
+
 
 //Changes the data according to the gievn data and redirects the user to his profile
 app.post('/:id/editProfile', (req, res) => {
@@ -423,7 +482,8 @@ app.post('/:id/editProfile', (req, res) => {
             state: req.body.state,
             country: req.body.country,
             linkdin: req.body.linkdin,
-            grad: req.body.grad
+            grad: req.body.grad,
+
         }
     }, { new: true }, (err, student) => {
         if (err) {
