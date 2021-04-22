@@ -9,6 +9,11 @@
     <title>Enter Details</title>
 </head>
 <body>
+    <% if(message &&message.length>0){  %>
+        <div class="alert alert-success">
+        <%= message %>
+        </div>
+      <% } %>
     <header class = "header">
 
         <nav class="page__menu page__custom-settings menu">
@@ -133,47 +138,61 @@
                     </p>
                 </div>
                 <div class="bio-row">
+                    <button class = "btn" type="submit">Submit Details</button>
+                </div>
+                <div class="bio-row">
+                </div>
+                <div class="bio-row">
+                </div>
+                <div class="bio-row">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<form class = "edit-profile-form" action=<%= upload_resume %> method="POST">
+                <div class="bio-row">
                     <p><span>Upload resume (PDF only) </span>: 
-                        <input type="file" id = "resume" name = "resume">
+                        <input type="file" id = "resume" name = 'resume'>
                     </p>
                 </div>
                 <div class="bio-row">
-                    <button class = "btn" type="submit">Submit Details</button>
+                    <button class = "btn" type="submit">Change Resume</button>
                 </div>
-               
-                
-            
-            </div>
-        </div>
-    </form>
+            </form>        
+  
+    <div class="bio-row">
+        <a class="btn" href=<%=  change_pswrd %>>Change Password</a>
+    </div>
     </div>
 </div>
                     
                    
             
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        let imagesPreview = function(input, placeToInsertImagePreview) {
-          if (input.files) {
-            let filesAmount = input.files.length;
-            for (i = 0; i < filesAmount; i++) {
-              let reader = new FileReader();
-              reader.onload = function(event) {
-                $($.parseHTML("<img>"))
-                  .attr("src", event.target.result)
-                  .appendTo(placeToInsertImagePreview);
-              };
-              reader.readAsDataURL(input.files[i]);
-            }
-          }
-        };
-        $("#resume").on("change", function() {
-          imagesPreview(this, "div.preview-images");
-        });
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+  $(document).ready(function() {
+    let imagesPreview = function(input, placeToInsertImagePreview) {
+      if (input.files) {
+        let filesAmount = input.files.length;
+        for (i = 0; i < filesAmount; i++) {
+          let reader = new FileReader();
+          reader.onload = function(event) {
+            $($.parseHTML("<img>"))
+              .attr("src", event.target.result)
+              .appendTo(placeToInsertImagePreview);
+          };
+          reader.readAsDataURL(input.files[i]);
+        }
+      }
+    };
+    $("#resume").on("change", function() {
+      imagesPreview(this, "div.preview-images");
     });
+});
+    
     
 </script>
 </body>
