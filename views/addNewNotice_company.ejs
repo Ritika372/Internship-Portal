@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/profile.css">
-    <link rel="stylesheet" href="/css/student.css">
+    <link rel="stylesheet" href="/css/company.css">
     <title>Add Notice</title>
 </head>
 <body>
@@ -14,32 +13,24 @@
         <%= message %>
         </div>
       <% } %>
-    <div class = "container">
-        
-        <div class = "container">
-            <div class = "row">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                      <a class="nav-link " href=<%= profile %> >Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href=<%= Addnotificationlink %> >Add Notice</a>
-                      </li> 
-                    <li class="nav-item">
-                      <a class="nav-link" href=<%= edit_profile%> >Edit Profile</a>
-                    </li>       
-                    <li class="nav-item">
-                        <a class="nav-link" href=<%= applied_students%> >Applied Students</a>
-                      </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=<%= log_out%> >Log Out</a>
-                      </li>
-                  </ul>
-            </div>
-        </div><br><br>
+
+      <header class = "header">
+        <nav class="page__menu page__custom-settings menu">
+          <ul class="menu__list r-list">
+            <li class="menu__group"><a class="menu__link r-link text-underlined"  href=<%= profile %> > Home
+            </a></li>
+            <li class="menu__group active"><a class="menu__link r-link text-underlined" href=<%= Addnotificationlink %> > Add Notice</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= edit_profile%> >Edit Profile</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= applied_students%> >Applied Students</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= log_out %> >Logout</a></li>
+          </ul>
+        </nav>          
+</header>
+
+
 <div class = "container">
     <div class = "submit-exp">
-        <form class="form" action=<%= Addnotificationlink %> method="POST">
+        <form class="form" style="height: 400px;" action=<%= Addnotificationlink %> method="POST">
             <h2>Add New Notice</h2>
             <p>
                 <textarea class="form-control" id="notice" rows="6" name = "notice" placeholder="Write Notice"></textarea>
