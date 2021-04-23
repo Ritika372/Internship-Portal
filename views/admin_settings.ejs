@@ -1,10 +1,10 @@
-
+<!-- 
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" conten="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <title>Profile</title>
+        <title>Settings</title>
         <link rel="stylesheet" href="/css/styles.css">
         <link rel="stylesheet" href="/css/student.css">
         <style>
@@ -87,4 +87,97 @@
             </form>
     </body>
     </html>
-    
+     -->
+
+
+
+     
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" conten="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <title>Settings</title>
+      <link rel="stylesheet" href="/css/admin.css">
+      <style>
+          .row-content {
+              margin:0px auto;
+              padding: 10px 0px 10px 0px;
+              border-bottom: 1px ridge;
+              min-height:30px;
+          }
+      </style>
+  </head>
+  <body>
+    <header class = "header">
+      <nav class="page__menu page__custom-settings menu">
+        <ul class="menu__list r-list">
+         
+          <li class="menu__group "><a class="menu__link r-link text-underlined" href=<%=  home %>>Home</a></li>
+          <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  experiencelink %>>Experiences</a></li>
+          <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  confirm_companieslink %>> Confirm Companies</a></li>
+          <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  studentslink %> >Students</a></li>
+          <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  companieslink %> >Companies</a></li>
+          <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  notificationlink %> >Notifications</a></li>
+          <li class="menu__group active">
+            <a class="menu__link r-link text-underlined" href=<%=  settings %> >Settings</a>
+          </li>
+        </ul>
+      </nav>          
+</header>
+          <br><br>
+
+          <div class = "row">
+            <div class = "col-12">
+              <% admins.forEach( (admin) => { %>
+                    <div class = "read-exp">
+                        <div class="courses-container">
+                            <div class="course">
+                                <div class="course-preview">
+                                  <form action="/admin/confirmCompany" method="POST">
+                                    <input type="hidden" name = "id" value = <%= admin._id %>>
+                                <button class="btn btn-primary" formaction=<%= remove %> type="submit">REMOVE</button>
+                                </form>
+                                </div>
+                                <div class="course-info">
+                                  <h5 class="card-title"><%= admin.name%></h5>
+                                  <h6 class="card-subtitle"><%= admin.email %></h6>
+                                  
+                                </div>
+                            </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+
+  </div>
+
+  
+<div class = "container">
+  <div class = "submit-exp">
+      <form class="form" action=<%= addAdmin %> method="POST">
+          <h2>Add Admin</h2>
+          <p>
+              <input type="text" class = "form-control" id = "name" name = "name" placeholder="Name" required>
+          </p>
+          <p>
+              <input type="text" class = "form-control" id = "email" name = "email" placeholder="Email Address (Use official mail ID)" required>
+          </p>
+          <p>
+            <input type="text" class = "form-control" id = "contact" name = "contact" placeholder="Contact No" required>
+        </p>
+          <p>
+              <input type="text" class = "form-control" id = "password" name = "password" placeholder="Set Password" required>
+          </p>          
+          <button class = "btn" type="submit">Submit</button>
+        </form>
+  </div>
+  
+</div>
+
+        
+      
+  </body>
+  </html>
+  
