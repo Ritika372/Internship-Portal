@@ -14,16 +14,15 @@
         <%= message %>
         </div>
       <% } %>
+
     <header class = "header">
 
         <nav class="page__menu page__custom-settings menu">
           <ul class="menu__list r-list">
             <li class="menu__group"><a class="menu__link r-link text-underlined"  href=<%= profile %> > Home
             </a></li>
-            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  read_experience %> >Read Experiences</a></li>
-            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  write_experience %> >Write Experiences</a></li>
-            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= company_apply %> >Company</a></li>
-            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= applied %> >Applied Companies</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  read_experience %> >Experiences</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= company_apply %> >Companies</a></li>
             <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= notificationlink %> >Notices</a></li>
             <li class="menu__group active"><a class="menu__link r-link text-underlined" href=<%= edit_profile %> >Edit Profile</a></li>
             <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= log_out %> >Logout</a></li>
@@ -33,6 +32,7 @@
  <br><br><br>
 
 <div class = "container">
+    <a class="addedlink" href=<%=  change_pswrd %>>Change Password</a><br><br><br>
     <div class="panel">
         <div class="bio-graph-heading">
             Edit your Profile Information
@@ -150,21 +150,26 @@
         </div>
     </div>
 </form>
-<form class = "edit-profile-form" action=<%= upload_resume %> method="POST" enctype = "multipart/form-data">
+<div class="panel">
+    <div class="bio-graph-heading">
+        Resume Updation
+    </div> <br><br>
+    <form class = "edit-profile-form" action=<%= upload_resume %> method="POST" enctype = "multipart/form-data">
+        
+        <div class="panel-body bio-graph-info">
+            <div class="row">
                 <div class="bio-row">
-                    <p><span>Upload resume (PDF only) </span>: 
+                    <p><span> Upload Resume </span>: 
                         <input type="file" id = "resume" name = 'resume'>
                     </p>
                 </div>
                 <div class="bio-row">
                     <button class = "btn" type="submit">Change Resume</button>
                 </div>
-            </form>        
-  
-    <div class="bio-row">
-        <a class="btn" href=<%=  change_pswrd %>>Change Password</a>
+           </div>
+        
     </div>
-    </div>
+</form> 
 </div>
                     
                    
@@ -191,6 +196,7 @@
     $("#resume").on("change", function() {
       imagesPreview(this, "div.preview-images");
     });
+    
 });
     
     
