@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -66,4 +66,72 @@
         </div>
     </div>
 </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <title>New Companies Applied</title>
+</head>
+<body>
+  <header class = "header">
+    <nav class="page__menu page__custom-settings menu">
+      <ul class="menu__list r-list">
+       
+        <li class="menu__group "><a class="menu__link r-link text-underlined" href=<%=  home %>>Home</a></li>
+        <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  experiencelink %>>Experiences</a></li>
+        <li class="menu__group active"><a class="menu__link r-link text-underlined" href=<%=  confirm_companieslink %>> Confirm Companies</a></li>
+        <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  studentslink %> >Students</a></li>
+        <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  companieslink %> >Companies</a></li>
+        <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  notificationlink %> >Notifications</a></li>
+        <% if(main){  %>
+            <li class="menu__group"><a class="menu__link r-link text-underlined"
+                href=<%=  settings %> >Settings</a>
+              </li>
+            </div>
+          <% } %>
+      </ul>
+    </nav>          
+  </header>
+            <br><br>
+
+
+            <div class = "row">
+              <div class = "col-12">
+                  <% companies.forEach( (company) => { %>
+                      <div class = "read-exp">
+                          <div class="courses-container">
+                              <div class="course">
+                                  <div class="course-preview">
+                                    <h5 class="card-title"><%= company.companyname %></h5>
+                                    <h6 class="card-subtitle"><%= company.recruitment %></h6>
+                                    <h6 class="card-subtitle"><%= company.batch %></h6>
+                                    <h6 class="card-subtitle"> <%= company.date %></h6><br>
+                                  </div>
+                                  <div class="course-info">
+                                    <h6 class = "card-text"><%= company.job_profile %></h6>
+                                    <h6 class = "card-text"><%= company.org_type %></h6>
+                                    <form action="/admin/confirmCompany" method="POST">
+                                      <input type="hidden" name = "id" value = <%= company._id %>>
+                                  <button class="btn btn-primary" formaction=<%= confirmcomp %> type="submit">Confirm</button>
+                                  <button class="btn btn-danger" formaction=<%= deletecomp %> type="submit">Delete</button>
+                                  </form>
+                                  </div>
+                              </div>
+                      </div>
+                  <% }) %>
+              </div>
+          </div>
+      </div>
+
+    </div>
+</body>
 </html>
+
+
+

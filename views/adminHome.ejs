@@ -1,5 +1,4 @@
-
-<html lang="en">
+<!-- <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" conten="width=device-width, initial-scale=1.0">
@@ -88,4 +87,71 @@
        </div>
     </div>
 </body>
-</html>
+</html>  -->
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" conten="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <header class = "header">
+        <nav class="page__menu page__custom-settings menu">
+          <ul class="menu__list r-list">
+           
+            <li class="menu__group active"><a class="menu__link r-link text-underlined" href=<%=  home %>>Home</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  experiencelink %>>Experiences</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  confirm_companieslink %>> Confirm Companies</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  studentslink %> >Students</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  companieslink %> >Companies</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  notificationlink %> >Notifications</a></li>
+            <% if(main){  %>
+                <li class="menu__group"><a class="menu__link r-link text-underlined"
+                    href=<%=  settings %> >Settings</a>
+                  </li>
+                </div>
+              <% } %>
+          </ul>
+        </nav>          
+</header>
+
+<div class  = "card-student">
+    <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="our-team">
+                <div class="picture">
+                    <img class="img-fluid" src="/img/blank_profile.png">
+                  </div>
+              <div class="team-content">
+                <h3 class="name"><%= name %> </h3>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+        
+
+      <div class = "container">
+        <div class="panel">
+            <div class="bio-graph-heading">
+                Personal Information
+            </div> <br><br>
+            <div class="panel-body bio-graph-info">
+                <div class="row">
+                    <div class="bio-row">
+                        <p><span>Name </span>: <%= name %></p>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</body>
+</html> 
