@@ -4,6 +4,130 @@
     <meta name="viewport" conten="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Profile</title>
+    <link rel="stylesheet" href="/css/company.css">
+</head>
+<body>
+    <header class = "header">
+        <nav class="page__menu page__custom-settings menu">
+          <ul class="menu__list r-list">
+            <li class="menu__group active"><a class="menu__link r-link text-underlined"  href=<%= profile %> > Home
+            </a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= Addnotificationlink %> > Add Notice</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= edit_profile%> >Edit Profile</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= applied_students%> >Applied Students</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= log_out %> >Logout</a></li>
+          </ul>
+        </nav>          
+</header>
+<div class  = "card-student">
+    <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="our-team">
+                <div class="picture">
+                    <img class="img-fluid" src="/img/blank_profile.png">
+                  </div>
+              <div class="team-content">
+                <h3 class="name"><%= companyname %></h3>
+                <h4 class="title"><%= about_company %></h4>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+
+<div class = "container">
+    <div class="panel">
+        <div class="bio-graph-heading">
+            Company Information
+        </div> <br><br>
+        <div class="panel-body bio-graph-info">
+            <div class="row">
+                <div class="bio-row">
+                    <p><span>Email </span>: <%= email %></p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Website Link </span>: <%= website_link %></p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Organization Type</span>: <%= organization_type %></p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Industry Sector</span>: <%= industry_sector %></p>
+                </div>
+                <div class="bio-row">
+                    <p><span>About Company</span>: <%= about_company %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="bio-graph-heading">
+            Job Profile Information
+        </div> <br><br>
+        <div class="panel-body bio-graph-info">
+            <div class="row">
+                <div class="bio-row">
+                    <p><span>Job Profile </span>: <%= job_profile %></p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Pass out batch </span>: <%= pass_out_batch %> </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Recruitment Type</span>: <%=recruitment_type %></p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Location</span>: <%=location %> </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Tentative Date Of Joining</span>: <%=tentative_joining_date %></p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Package</span>: <%=package %> </p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Job Description</span>: <%=job_description %> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="panel">
+    <div class="bio-graph-heading">
+        Student Details
+    </div> <br><br>
+    <div class="panel-body bio-graph-info">
+        <div class="row">
+            <div class="bio-row">
+                <p><span>Eligibile Branches </span>: <%= eligible_branch %></p>
+            </div>
+            <div class="bio-row">
+                <p><span>Minimum CGPA </span>: <%= min_cgpa %></p>
+            </div>
+            <div class="bio-row">
+                <p><span>Minimum 10th Percentage</span>: <%= min_10_percent %></p>
+            </div>
+            <div class="bio-row">
+                <p><span>Minimum 12th Percentage</span>: <%= min_12_percent %></p>
+            </div>
+            <div class="bio-row">
+                <p><span>Deadline Date</span>: <%= deadline_date %></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+                
+</body>
+</html> 
+
+<!-- <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" conten="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Profile</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/student.css">
    <style>
@@ -224,3 +348,6 @@
     <div><br><br>
 </body>
 </html>
+
+
+

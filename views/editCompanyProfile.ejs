@@ -4,154 +4,144 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/student.css">
-    <title>Enter Details</title>
+    <link rel="stylesheet" href="/css/company.css">
+    <title>Edit Details</title>
 </head>
 <body>
-    <div class = "container">
-        <div class = "row">
-            <div class = "row">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                      <a class="nav-link" href=<%= profile %> >Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=<%= Addnotificationlink %> >Add Notice</a>
-                      </li> 
-                    <li class="nav-item">
-                      <a class="nav-link active" href=<%= edit_profile%> >Edit Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=<%= applied_students%> >Applied Students</a>
-                      </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=<%= log_out%> >Log Out</a>
-                      </li>
-                  </ul>
-            </div> <br><br>
-            <div class = "col-12 mt-2 b-3">
-                <h2>Company details</h2>
-            </div>
-        </div>
-        <div class = "row">
-            <div class= "col-md-9">
-                <form action= <%= link %> method="POST">
-                    <div class = "form-group row">
-                        <label for="companyname" class = "col-md-2 col-form-label">Company Name</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "companyname" name = "companyname" required value = <%= companyname %> >
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="website" class = "col-md-2 col-form-label">Company Website's Link</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "website" name = "website" placeholder="Company Website's Link"  required value = <%= website_link %> >
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="org_type" class = "col-md-2 col-form-label">Organisation Type</label>
-                        <div class = "col-md-10">
-                            <select class="form-control" name= "org_type"   >
-                                <option value = <%= organization_type %>><%= organization_type %></option>
-                                <option>Private sector</option>
-                                <option>Start-up</option>
-                                <option>Govt. owned</option>
-                                <option>Public sector</option>
-                                <option>MNC (Indian or Foreign)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="industry_sector" class = "col-md-2 col-form-label">Industry Sector</label>
-                        <div class = "col-md-10">
-                            <select class="form-control" name = "industry_sector" >
-                                <option  value = <%= industry_sector %>> <%= industry_sector %></option>
-                                <option>Analytics</option>
-                                <option>Consulting</option>
-                                <option>Core (Technical)</option>
-                                <option>Finance</option>
-                                <option>IT</option>
-                                <option>Business Development</option>
-                                <option>Sales & Marketing</option>
-                                <option>Management</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="about_company" class = "col-md-2 col-form-label">About Company</label>
-                        <div class = "col-md-10">
-                            <textarea class="form-control" name = "about_company" rows="5" required   ><%=  about_company%></textarea>
-                        </div>
-                    </div>
-                    <br><br>
-                    <div class = "row">
-                        <div class = "col-12 mb-2 mt-3">
-                            <h2>Job Profile details</h2>
-                        </div>
-                    </div>
-                    
-                    <div class = "form-group row">
-                        <label for="job_profile" class = "col-md-2 col-form-label">Enter Job Profile</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" id = "job_profile" name = "job_profile" placeholder="Job Profile" required  value = <%=  job_profile %>>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label for="batch" class = "col-md-2 col-form-label">Passout Batch</label>
-                        <div class = "col-md-10">
-                            <select class="form-control" name="batch" required  >
-                                <option value = <%= pass_out_batch %>> <%= pass_out_batch %></option>
-                                <option value="2020">2020</option>
-                                <option value="2021">2021</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label class = "col-md-2 col-form-label">Recruitment</label>
-                        <div class = "col-md-10">
-                            <select class="form-control" name= "recruitment"  >
-                                <option value = <%= recruitment_type %>> <%= recruitment_type %></option>
-                                <option value="Internship">Internship</option>
-                                <option value="Placement">Placement</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label class = "col-md-2 col-form-label">Duration</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" name = "duration" placeholder="Duration"  required value = <%= duration %>>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label class = "col-md-2 col-form-label">Location of Posting</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" name = "location" placeholder="Location" required value = <%= location %> >
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label class = "col-md-2 col-form-label">Tentative date of joining</label>
-                        <div class = "col-md-10">
-                            <input type="text" class = "form-control" name = "date" placeholder="Date" required value =<%=tentative_joining_date %> >
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <label class = "col-md-2 col-form-label">Job Description</label>
-                        <div class = "col-md-10">
-                            <textarea type="text" class = "form-control" rows="5" name = "description"  required   ><%=job_description %></textarea>
-                        </div>
-                    </div>
-                    <div class = "form-group row">
-                        <div class = "offset-md-2 col-md-10">
-                            <button class = "btn btn-primary" type="submit">Submit Details</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <header class = "header">
+        <nav class="page__menu page__custom-settings menu">
+          <ul class="menu__list r-list">
+            <li class="menu__group"><a class="menu__link r-link text-underlined"  href=<%= profile %> > Home
+            </a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= Addnotificationlink %> > Add Notice</a></li>
+            <li class="menu__group active"><a class="menu__link r-link text-underlined" href=<%= edit_profile%> >Edit Profile</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= applied_students%> >Applied Students</a></li>
+            <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%= log_out %> >Logout</a></li>
+          </ul>
+        </nav>          
+</header>
+<br><br>
+
+<div class = "container">
+    <div class="panel">
+        <div class="bio-graph-heading">
+            Edit Company Details
+        </div> <br><br>
+
+    <form class = "edit-profile-form" action=<%= link %> method="POST">
         
-    </div>
+        <div class="panel-body bio-graph-info">
+            <div class="row">
+                <div class="bio-row">
+                    <p><span> Company Name </span>: 
+                        <input type="text"  id = "companyname" name = "companyname"  required  value=<%= companyname %>>
+                    </p>
+                </div>
+                <div class = "bio-row">
+                    <p><span>Company's website link</span>:
+                        <input type="text" id = "website" name = "website" placeholder="Company Website's Link"  required value = <%= website_link %> >
+                    </p>
+                </div>
+                <div class = "bio-row">
+                    <p><span>Organization Type </span>:
+                        <select name= "org_type"   >
+                            <option value = <%= organization_type %>><%= organization_type %></option>
+                            <option>Private sector</option>
+                            <option>Start-up</option>
+                            <option>Govt. owned</option>
+                            <option>Public sector</option>
+                            <option>MNC (Indian or Foreign)</option>
+                        </select>
+                    </p>
+                </div>
+                <div class = "bio-row">
+                    <p><span>Industry Sector</span> :
+                        <select name = "industry_sector" >
+                            <option  value = <%= industry_sector %>> <%= industry_sector %></option>
+                            <option>Analytics</option>
+                            <option>Consulting</option>
+                            <option>Core (Technical)</option>
+                            <option>Finance</option>
+                            <option>IT</option>
+                            <option>Business Development</option>
+                            <option>Sales & Marketing</option>
+                            <option>Management</option>
+                        </select>
+                    </p>
+                </div>
+                <div class = "bio-row">
+                    <p><span>About Company</span>:
+                        <input type="text" name = "about_company"required   value = <%=  about_company%> ></textarea>
+                    </p>
+                </div>
+                
+            </div>
+        </div><br>
+        <div class="panel">
+            <div class="bio-graph-heading">
+                Edit Job Details
+            </div> <br><br>
+            <div class = "bio-row">
+                <p><span>Job Profile</span>:
+                    <input type="text" id = "job_profile" name = "job_profile" placeholder="Job Profile" required  value = <%=  job_profile %>>
+                </p>
+            </div>
+            <div class = "bio-row">
+                <p><span>Pass out batches</span>:
+                    <select name="batch" required  >
+                        <option value = <%= pass_out_batch %>> <%= pass_out_batch %></option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                    </select>
+                </p>
+            </div>
+            <div class = "bio-row">
+                <p><span>Company's website link</span>:
+                    <input type="text" id = "website" name = "website" placeholder="Company Website's Link"  required value = <%= website_link %> >
+                </p>
+            </div>
+            <div class = "bio-row">
+                <p><span>Recruitment Type</span>:
+                    <select name= "recruitment"  >
+                        <option value = <%= recruitment_type %>> <%= recruitment_type %></option>
+                        <option value="Internship">Internship</option>
+                        <option value="Placement">Placement</option>
+                    </select>
+                </p>
+            </div>
+            <div class = "bio-row">
+                <p><span>Duration</span>:
+                    <input type="text" name = "duration" placeholder="Duration"  required value = <%= duration %>>
+                </p>
+            </div>
+            <div class = "bio-row">
+                <p><span>Location of Posting</span>:
+                    <input type="text" name = "location" placeholder="Location" required value = <%= location %> >
+                </p>
+            </div>
+            <div class = "bio-row">
+                <p><span>Tentative Date of joining</span>:
+                    <input type="text" name = "date" placeholder="Date" required value =<%=tentative_joining_date %> >
+                </p>
+            </div>
+            <div class = "bio-row">
+                <p><span>Job Description</span>:
+                    <input type="text" rows="5" name = "description"  required value = <%=job_description %> ></input>
+                </p>
+            </div>
+        </div>
+        <div class="bio-row">
+            <button class = "btn" type="submit">Submit Details</button>
+        </div>
+</form>
+</div>
+</div>
+
+                    
+        
+                    
+        
 </body>
 </html>
