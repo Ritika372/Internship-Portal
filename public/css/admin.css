@@ -586,6 +586,7 @@ body {
 /* Table Styles */
 .table-wrapper {
   margin: 2%;
+  overflow: auto !important;
 }
 
 .fl-table {

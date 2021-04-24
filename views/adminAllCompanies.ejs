@@ -133,7 +133,7 @@
 <br><br>
 
 <div class="table-wrapper">
-  <table id="example" class="fl-table">
+  <table id="example" style="overflow-x: visible;" class="fl-table">
       <thead>
                     <tr>
                       <th scope="col">Name</th>
@@ -142,6 +142,8 @@
                         <th scope="col">Branches</th>
                         <th scope="col">Package</th>
                         <th scope="col">Deadline Date</th>
+                        <th scope="col">Website Link</th>
+                        <th scope="col">Location</th>
                     </tr>
                   </thead>
       <tbody>
@@ -152,7 +154,9 @@
                         <td><%= company.min_cgpa %></td>
                         <td><%= company.eligible_branch %></td>
                         <td><%= company.package %></td>
-                        <td><%= company.deadline_date  %></td>
+                        <td><%= company.deadline_date %></td>
+                        <td><%= company.website %></td>
+                        <td><%= company.location %></td>
           </tr>
         
       <% }) %>
@@ -179,6 +183,7 @@
                   'pdfHtml5'
               ]
           } );
+          // $('#example_wrapper').removeClass('dataTables_wrapper')
       } );
     </script>
 </body>

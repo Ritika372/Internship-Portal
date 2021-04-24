@@ -114,5 +114,16 @@ const CompanySchema = new mongoose.Schema({
   },
 });
 
+//works on save and create not on insert many
+CompanySchema.pre('save', function (next) {
+  this.deadline_date = this.deadline_date.toLocaleString('en-us', {
+    month: 'long',
+    year: 'numeric',
+    day: 'numeric',
+    timeZone: 'UTC',
+    timeZoneName: 'short',
+  });
+  next();
+});
 const Company = mongoose.model('company', CompanySchema);
 module.exports = Company;
