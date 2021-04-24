@@ -71,7 +71,7 @@
                 </div>
                 <div class = "bio-row">
                     <p><span>About Company</span>:
-                        <input type="text" name = "about_company"required   value = <%=  about_company%> ></textarea>
+                        <input type="text" name = "about_company"required   value = <%=  about_company%> >
                     </p>
                 </div>
                 
@@ -88,7 +88,7 @@
             </div>
             <div class = "bio-row">
                 <p><span>Pass out batches</span>:
-                    <select name="batch" required  >
+                    <select name="batch" required multiple >
                         <option value = <%= pass_out_batch %>> <%= pass_out_batch %></option>
                         <option value="2020">2020</option>
                         <option value="2021">2021</option>
@@ -123,7 +123,7 @@
             </div>
             <div class = "bio-row">
                 <p><span>Tentative Date of joining</span>:
-                    <input type="text" name = "date" placeholder="Date" required value =<%=tentative_joining_date %> >
+                    <input type="date" name = "date" placeholder="Date" required value =<%=tentative_joining_date %> >
                 </p>
             </div>
             <div class = "bio-row">

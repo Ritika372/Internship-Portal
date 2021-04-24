@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -215,5 +215,392 @@
         </div>
         
     </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Raleway'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <link rel="stylesheet" href="/css/company.css">
+    <title>Enter Details</title>
+</head>
+<body>
+
+    <div class = "container">
+        <div class = "panel">
+            <div class="bio-graph-heading">
+                Enter Company Details
+            </div> <br><br>
+            <form class = "edit-profile-form" action= <%= link %> method="POST">
+                <div class="panel-body bio-graph-info">
+                    <div class="row">
+                        <div class="bio-row">
+                            <p><span> Company Name </span>: 
+                                <input type="text"  id = "companyname" name = "companyname"  required  value=<%= companyname %> readonly >
+                            </p>
+                        </div>
+                        <div class = "bio-row">
+                            <p><span>Company's website link</span>:
+                                <input type="text" id = "website" name = "website" placeholder="Company Website's Link"  required >
+                            </p>
+                        </div>
+                        <div class = "bio-row">
+                            <p><span>Organization Type </span>:
+                                <select name= "org_type"   >
+                                    <option value  = ""></option>
+                                    <option>Private sector</option>
+                                    <option>Start-up</option>
+                                    <option>Govt. owned</option>
+                                    <option>Public sector</option>
+                                    <option>MNC (Indian or Foreign)</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div class = "bio-row">
+                            <p><span>Industry Sector</span> :
+                                <select name = "industry_sector" >
+                                    <option  value = ""> </option>
+                                    <option>Analytics</option>
+                                    <option>Consulting</option>
+                                    <option>Core (Technical)</option>
+                                    <option>Finance</option>
+                                    <option>IT</option>
+                                    <option>Business Development</option>
+                                    <option>Sales & Marketing</option>
+                                    <option>Management</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div class = "bio-row">
+                            <p><span>About Company</span>:
+                                <input type="text" name = "about_company"required >
+                            </p>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="panel">
+                    <div class="bio-graph-heading">
+                        Edit Job Details
+                    </div> <br><br>
+                    <div class = "bio-row">
+                        <p><span>Job Profile</span>:
+                            <input type="text" id = "job_profile" name = "job_profile" placeholder="Job Profile" required >
+                        </p>
+                    </div>
+                    <div class = "bio-row">
+                        <p><span>Pass out batches</span>:
+                            <select name="batch" required multiple = "multiple" id="myMulti1" >
+                                <option value = ""></option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </p>
+                    </div>
+                    <div class = "bio-row">
+                        <p><span>Recruitment Type</span>:
+                            <select name= "recruitment"  >
+                                <option value = ""> </option>
+                                <option value="Internship">Internship</option>
+                                <option value="Placement">Placement</option>
+                            </select>
+                        </p>
+                    </div>
+                    <div class = "bio-row">
+                        <p><span>Duration</span>:
+                            <input type="text" name = "duration" placeholder="Duration"  required>
+                        </p>
+                    </div>
+                    <div class = "bio-row">
+                        <p><span>Location of Posting</span>:
+                            <input type="text" name = "location" placeholder="Location" required >
+                        </p>
+                    </div>
+                    <div class = "bio-row">
+                        <p><span>Tentative Date of joining</span>:
+                            <input type="date" name = "date" placeholder="Date" required >
+                        </p>
+                    </div>
+                    <div class = "bio-row">
+                        <p><span>Job Description</span>:
+                            <input type="text" rows="5" name = "description"  required >
+                      </p>
+                    </div>
+                    <div class = "bio-row">
+                     <p><span>Eligible programs</span>:
+                        <select name = "eligible_prog" multiple = "multiple" id="myMulti2">
+                            <option value=""></option>
+                            <option>B.tech</option>
+                            <option>M.tech</option>
+                        </select>
+                     </p>
+                    </div>
+                <div class = "bio-row">
+                    <p><span>Eligible branches</span>:
+                        <select name = "eligible_branch" multiple = "multiple" id="myMulti3">
+                            <option value=""></option>
+                            <option>Computer Science</option>
+                            <option>IT</option>
+                            <option>Electronics</option>
+                            <option>Instrumentation</option>
+                            <option>Mechanical</option>
+                            <option>Civil</option>
+                            <option>Chemical</option>
+                            <option>Biotech</option>
+                            <option>Textile</option>
+                        </select>
+                    </p>
+                </div>
+                <div class = "bio-row">
+                    <p><span>Minimum CGPA</span>:
+                        <input type="text"  name = "min_cgpa" placeholder= "Minimum Cgpa" required>
+                  </p>
+               </div>
+               <div class = "bio-row">
+                   <p><span>Minimum marks in 10th</span>:
+                    <input type="text" name = "min_10_percent" placeholder="Min marks in 10th" required>
+                   </p>
+            </div>
+            <div class = "bio-row">
+                <p><span>Minimum marks in 12th</span>:
+                    <input type="text" name = "min_12_percent" placeholder="Min marks in 12th" required>
+                </p>
+            </div>
+            <div class = "bio-row">
+                <p><span>Medical Requirement</span>:
+                    <select name = "medical_requirement" >
+                        <option value=""></option>
+                        <option value  = "Yes">Yes</option>
+                        <option value = "No">No</option>
+                    </select>
+                </p>
+            </div>
+            <div class = "bio-row">
+                <p><span>Package</span>:
+                    <input type="text" name = "package" placeholder="Enter package" required>
+                </p>
+            </div>
+            <div class = "bio-row">
+                <p><span>Company Accomodation</span>:
+                    <select name = "company_accommodation" >
+                        <option value=""></option>
+                        <option value  = "Yes">Yes</option>
+                        <option calue = "No">No</option>
+                    </select>
+                </p>
+            </div>
+            <div class = "bio-row">
+                <p><span>Extra Facility</span>:
+                    <input type="text" name = "other_facility" placeholder="Enter extra facility">
+                </p>
+            </div>
+            <div class = "bio-row">
+                <p><span>Last Date to Apply</span>: 
+                    <input type="date" name = "deadline_date" placeholder="Deadline date">
+                </p>
+            </div>    
+                </div>
+                <div class="bio-row">
+                    <button class = "btn" type="submit">Submit Details</button>
+                </div>
+            </form>
+        </div>
+    </div>    
+                    
+    <script>
+       var $ = {
+   get: function(selector){ 
+      var ele = document.querySelectorAll(selector);
+      for(var i = 0; i < ele.length; i++){
+         this.init(ele[i]);
+      }
+      return ele;
+   },
+   template: function(html){
+      var template = document.createElement('div');
+      template.innerHTML = html.trim();
+      return this.init(template.childNodes[0]);
+   },
+   init: function(ele){
+      ele.on = function(event, func){ this.addEventListener(event, func); }
+      return ele;
+   }
+};
+
+//Build the plugin
+var drop = function(info){var o = {
+   options: info.options,
+   selected: info.selected || [],
+   preselected: info.preselected || [],
+   open: false,
+   html: {
+      select: $.get(info.selector)[0],
+      options: $.get(info.selector + ' option'),
+      parent: undefined,
+   },
+   init: function(){
+      //Setup Drop HTML
+      this.html.parent = $.get(info.selector)[0].parentNode
+      this.html.drop = $.template('<div class="drop"></div>')
+      this.html.dropDisplay = $.template('<div class="drop-display">Display</div>')
+      this.html.dropOptions = $.template('<div class="drop-options">Options</div>')
+      this.html.dropScreen = $.template('<div class="drop-screen"></div>')
+      
+      this.html.parent.insertBefore(this.html.drop, this.html.select)
+      this.html.drop.appendChild(this.html.dropDisplay)
+      this.html.drop.appendChild(this.html.dropOptions)
+      this.html.drop.appendChild(this.html.dropScreen)
+      //Hide old select
+      this.html.drop.appendChild(this.html.select);
+      
+      //Core Events
+      var that = this;
+      this.html.dropDisplay.on('click', function(){ that.toggle() });
+      this.html.dropScreen.on('click', function(){ that.toggle() });
+      //Run Render
+      this.load()
+      this.preselect()
+      this.render();
+   },
+   toggle: function(){
+      this.html.drop.classList.toggle('open');
+   },
+   addOption: function(e, element){ 
+      var index = Number(element.dataset.index);
+      this.clearStates()
+      this.selected.push({
+         index: Number(index),
+         state: 'add',
+         removed: false
+      })
+      this.options[index].state = 'remove';
+      this.render()
+   },
+   removeOption: function(e, element){
+      e.stopPropagation();
+      this.clearStates()
+      var index = Number(element.dataset.index);
+      this.selected.forEach(function(select){
+         if(select.index == index && !select.removed){
+            select.removed = true
+            select.state = 'remove'
+         }
+      })
+      this.options[index].state = 'add'
+      this.render();
+   },
+   load: function(){
+      this.options = [];
+      for(var i = 0; i < this.html.options.length; i++){
+         var option = this.html.options[i]
+         this.options[i] = {
+            html:  option.innerHTML,
+            value: option.value,
+            selected: option.selected,
+            state: ''
+         }
+      }
+   },
+   preselect: function(){
+      var that = this;
+      this.selected = [];
+      this.preselected.forEach(function(pre){
+         that.selected.push({
+            index: pre,
+            state: 'add',
+            removed: false
+         })
+         that.options[pre].state = 'remove';
+      })
+   },
+   render: function(){
+      this.renderDrop()
+      this.renderOptions()
+   },
+   renderDrop: function(){ 
+      var that = this;
+      var parentHTML = $.template('<div></div>')
+      this.selected.forEach(function(select, index){ 
+         var option = that.options[select.index];
+         var childHTML = $.template('<span class="item '+ select.state +'">'+ option.html +'</span>')
+         var childCloseHTML = $.template(
+            '<i class="material-icons btnclose" data-index="'+select.index+'">&#xe5c9;</i></span>')
+         childCloseHTML.on('click', function(e){ that.removeOption(e, this) })
+         childHTML.appendChild(childCloseHTML)
+         parentHTML.appendChild(childHTML)
+      })
+      this.html.dropDisplay.innerHTML = ''; 
+      this.html.dropDisplay.appendChild(parentHTML)
+   },
+   renderOptions: function(){  
+      var that = this;
+      var parentHTML = $.template('<div></div>')
+      this.options.forEach(function(option, index){
+         var childHTML = $.template(
+            '<a data-index="'+index+'" class="'+option.state+'">'+ option.html +'</a>')
+         childHTML.on('click', function(e){ that.addOption(e, this) })
+         parentHTML.appendChild(childHTML)
+      })
+      this.html.dropOptions.innerHTML = '';
+      this.html.dropOptions.appendChild(parentHTML)
+   },
+   clearStates: function(){
+      var that = this;
+      this.selected.forEach(function(select, index){ 
+         select.state = that.changeState(select.state)
+      })
+      this.options.forEach(function(option){ 
+         option.state = that.changeState(option.state)
+      })
+   },
+   changeState: function(state){
+      switch(state){
+         case 'remove':
+            return 'hide'
+         case 'hide':
+            return 'hide'
+         default:
+            return ''
+       }
+   },
+   isSelected: function(index){
+      var check = false
+      this.selected.forEach(function(select){ 
+         if(select.index == index && select.removed == false) check = true
+      })
+      return check
+   }
+}; o.init(); return o;}
+
+
+//Set up some data
+var options = [
+   { html: 'cats', value: 'cats' },
+   { html: 'fish', value: 'fish' },
+   { html: 'squids', value: 'squids' },
+   { html: 'cats', value: 'whales' },
+   { html: 'cats', value: 'bikes' },
+];
+
+var myDrop1 = new drop({
+   selector:  '#myMulti1',
+});
+var myDrop2 = new drop({
+   selector:  '#myMulti2',
+});
+var myDrop3 = new drop({
+   selector:  '#myMulti3',
+});
+ myDrop1.toggle();
+ myDrop2.toggle();
+ myDrop3.toggle();
+    </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -145,6 +145,171 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        let imagesPreview = function(input, placeToInsertImagePreview) {
+          if (input.files) {
+            let filesAmount = input.files.length;
+            for (i = 0; i < filesAmount; i++) {
+              let reader = new FileReader();
+              reader.onload = function(event) {
+                $($.parseHTML("<img>"))
+                  .attr("src", event.target.result)
+                  .appendTo(placeToInsertImagePreview);
+              };
+              reader.readAsDataURL(input.files[i]);
+            }
+          }
+        };
+        $("#resume").on("change", function() {
+          imagesPreview(this, "div.preview-images");
+        });
+    });
+    
+</script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <title>Enter Details</title>
+    <style>
+        div.preview-images > img {
+          width: 30%;
+        }
+      </style>
+</head>
+<body>
+
+    <div class = "container">
+        <div class = 'panel'>
+            <div class="bio-graph-heading">
+                Enter your profile details
+            </div> <br><br>
+            <form class = "edit-profile-form" action=<%= link %> method="POST" enctype="multipart/form-data">
+                <div class="panel-body bio-graph-info">
+                    <div class="row">
+                        <div class="bio-row">
+                            <p><span> First Name </span>: 
+                                <input type="text"  id = "firstname" name = "firstname" placeholder="First Name" required>
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Last Name </span>: 
+                                <input type="text"  id = "lastname" name = "lastname" placeholder="Last Name" required >
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Roll Number </span>: 
+                                <input type="text" id = "college_id" name = "college_id" placeholder="Roll Number" required  value=<%= rollno %> readonly >
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Degree </span>: 
+                                <input type="text" id = "degree" name = "degree" placeholder="Degree" required>
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Expected Graduation Year </span>: 
+                                <input type="text" id = "grad" name = "grad" placeholder="Expected Graduation" required>
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Branch (Format eg: Computer Science) </span>: 
+                                <input type="text" id = "branch" name = "branch" placeholder="Branch" required>
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Personal Email </span>: 
+                                <input type="email" id = "personal_email" name = "personal_email" placeholder="Personal Email" required value="<%= email %> " readonly>
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Mobile </span>: 
+                                <input type="text" id = "contact_no" name = "contact_no" placeholder="Contact Number" required  >
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>CGPA </span>: 
+                                <input type="text" id = "cgpa" name = "cgpa" placeholder="CGPA" required>
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Active backlogs </span>: 
+                                <input type="text" id = "active_backlogs" name = "active_backlogs" placeholder="Active Backlogs" required>
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Class 10th Percentage </span>: 
+                                <input type="text" id = "percent_10" name = "percent_10" placeholder= "10th percentage" required>
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Class 10th Board </span>: 
+                                <input type="text"  id = "board_10" name = "board_10" placeholder="Board" required>
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Class 12th Percentage </span>: 
+                                <input type="text" id = "percent_12" name = "percent_12" placeholder= "12th percentage" required >
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Class 12th Board </span>: 
+                                <input type="text" id = "board_12" name = "board_12" placeholder="Board" required  >
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Address </span>: 
+                                <input type="text" id = "address" name = "address" placeholder="Address" required >
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>City </span>: 
+                                <input type="text" id = "city" name = "city" placeholder= "City" required >
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>State </span>: 
+                                <input type="text" id = "state" name = "state" placeholder="State" required >
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Country </span>: 
+                                <input type="text" id = "country" name = "country" placeholder="Country" required > 
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>LinkdIn profile link </span>: 
+                                <input type="text" id = "linkdin" name = "linkdin" placeholder="Linkdin Profile Link" required  > 
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <p><span>Upload resume in PDF format </span>: 
+                                <input type="file" id = "resume" name = "resume" > 
+                            </p>
+                        </div>
+                        <div class="bio-row">
+                            <div class="preview-images"></div>
+                        </div>
+                        <div class="bio-row">
+                            <button class = "btn" type="submit">Submit Details</button>
+                        </div>
+                    </div>
+                    </div>
+                </form>  
         </div>
     </div>
 

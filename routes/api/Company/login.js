@@ -157,7 +157,11 @@ app.get('/:id/companyprofile', (req, res) => {
           pass_out_batch: company.batch,
           recruitment_type: company.recruitment,
           location: company.location,
-          tentative_joining_date: company.date,
+          tentative_joining_date: company.date.toLocaleString('en-us', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          }),
           job_description: company.description,
           eligible_branch: company.eligible_branch,
           min_cgpa: company.min_cgpa,
@@ -208,7 +212,11 @@ app.get('/:id/editProfile', (req, res) => {
         pass_out_batch: company.batch,
         recruitment_type: company.recruitment,
         location: company.location,
-        tentative_joining_date: company.date,
+        tentative_joining_date: company.date.toLocaleString('en-us', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }),
         job_description: company.description,
       });
     }
@@ -288,7 +296,14 @@ app.post('/:id/editProfile', (req, res) => {
         pass_out_batch: req.body.pass_out_batch,
         recruitment_type: req.body.recruitment_type,
         location: req.body.location,
-        tentative_joining_date: req.body.tentative_joining_date,
+        tentative_joining_date: req.body.tentative_joining_date.toLocaleString(
+          'en-us',
+          {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          }
+        ),
         description: req.body.description,
       },
     },

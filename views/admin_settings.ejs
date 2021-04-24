@@ -134,15 +134,15 @@
                         <div class="courses-container">
                             <div class="course">
                                 <div class="course-preview">
-                                  <form action="/admin/confirmCompany" method="POST">
-                                    <input type="hidden" name = "id" value = <%= admin._id %>>
-                                <button class="btn btn-primary" formaction=<%= remove %> type="submit">REMOVE</button>
-                                </form>
+                                  
                                 </div>
                                 <div class="course-info">
                                   <h5 class="card-title"><%= admin.name%></h5>
                                   <h6 class="card-subtitle"><%= admin.email %></h6>
-                                  
+                                  <form action="/admin/confirmCompany" method="POST">
+                                    <input type="hidden" name = "id" value = <%= admin._id %>>
+                                <button class="btn btn-primary" formaction=<%= remove %> type="submit">REMOVE</button>
+                                </form>
                                 </div>
                             </div>
                     </div>
