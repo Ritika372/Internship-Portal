@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/profile.css">
     <link rel="stylesheet" href="/css/student.css">
-    <title>Submit Experience</title>
+    <title>Add Notif</title>
 </head>
 <body>
     <div class = "container">
@@ -55,4 +55,57 @@
    
      
 </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/student.css">
+    <title>Add Notif</title>
+</head>
+<body>
+  <header class = "header">
+    <nav class="page__menu page__custom-settings menu">
+      <ul class="menu__list r-list">
+       
+        <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  home %>>Home</a></li>
+        <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  experiencelink %>>Experiences</a></li>
+        <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  confirm_companieslink %>> Confirm Companies</a></li>
+        <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  studentslink %> >Students</a></li>
+        <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  companieslink %> >Companies</a></li>
+        <li class="menu__group active"><a class="menu__link r-link text-underlined" href=<%=  notificationlink %> >Notifications</a></li>
+        <% if(main){  %>
+            <li class="menu__group"><a class="menu__link r-link text-underlined"
+                href=<%=  settings %> >Settings</a>
+              </li>
+            </div>
+          <% } %>
+      </ul>
+    </nav>          
+</header>
+        <br><br>
+
+          
+<div class = "container">
+  <div class = "submit-exp">
+      <form class="form" action=<%= Addnotificationlink %> method="POST">
+          <h2>Add New Notice</h2>
+          <p>
+            <textarea class="form-control" id="notice" rows="6" name = "notice" placeholder="Write Notice"></textarea>
+        </p>
+        <button class = "btn" type="submit">Post</button>
+        </form>
+  </div>
+  
+</div>
+
+   
+     
+</body>
 </html>
+

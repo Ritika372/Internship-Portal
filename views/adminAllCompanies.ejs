@@ -98,6 +98,7 @@
 </html> -->
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,7 +129,9 @@
           <% } %>
       </ul>
     </nav>          
-</header><br><br>
+</header>
+<br><br>
+
 <div class="table-wrapper">
   <table id="example" class="fl-table">
       <thead>
@@ -144,7 +147,7 @@
       <tbody>
         <% companies.forEach( (company) => { %>
           <tr>
-            <th scope="row"><%= student.rollno %></th>
+            <th scope="row"><%= company.companyname %></th>
             <td><%= company.email%></td>
                         <td><%= company.min_cgpa %></td>
                         <td><%= company.eligible_branch %></td>
