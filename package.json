@@ -4,7 +4,7 @@
   "description": "\"Internship and placement portal",
   "main": "app.js",
   "scripts": {
-    "start": "setNODE_ENV=production&&node app.js",
+    "start": "set NODE_ENV=production&&node app.js",
     "dev": "nodemon app.js"
   },
   "author": "",
