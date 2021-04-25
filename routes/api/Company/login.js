@@ -345,7 +345,8 @@ app.get('/:id/appliedStudents', (req, res) => {
             let newStudents = students.map((student) => {
               if (student.resume) {
                 student.resumeURL =
-                  'http://localhost:3000/' + student.resume.id + '/file';
+                  //'http://localhost:3000/' + student.resume.id + '/file';
+                  '/' + student.resume.id + '/file';
               }
               return student;
             });

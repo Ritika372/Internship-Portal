@@ -41,8 +41,8 @@ const verifyToken = async (req, res, next) => {
             return res.redirect('/admin/login');
         }
         const decrypt = await jwt.verify(token, "rohitMittalisthebest");
-        console.log(decrypt.id)
-        console.log(req.params.id);
+        //console.log(decrypt.id)
+        //console.log(req.params.id);
         if (decrypt.id === req.params.id) {
             next();
         }
@@ -66,13 +66,13 @@ app.post("/", (req, res) => {
     console.log(email);
 
     admin.findOne({ email: email }, (err, foundAdmin) => {
-        console.log("here")
+        //console.log("here")
         if (err) {
             res.send("Something Wrong Happened");
             console.log(err);
         }
         else {
-            console.log("hhe");
+            //console.log("hhe");
             if (foundAdmin) {
                 bcrypt.compare(password, foundAdmin.password, (err, result) => {
                     if (result) {
@@ -260,7 +260,7 @@ app.post('/:adminid/confirmexp', (req,res) => {
            console.log(err);
        }
        else{
-           console.log("updated successfully");
+           //console.log("updated successfully");
            InterviewExp.find({confirmed: false} , (err,experience) => {
             if(err){
                 console.log(err);
@@ -304,7 +304,7 @@ app.post('/:adminid/deleteexp', (req,res) => {
            console.log(err);
        }
        else{
-           console.log("deleted successfully");
+           //console.log("deleted successfully");
            InterviewExp.find({confirmed: false} , (err,experience) => {
             if(err){
                 console.log(err);
@@ -496,7 +496,7 @@ app.get('/:id/settings/' , (req,res)=> {
                     return res.json({msg: "Something went wrong!"});
                 }
                 else{
-                   console.log(admins);
+                   //console.log(admins);
                     res.render("admin_settings" , {
                        home:home,
                        experiencelink:experiencelink,
@@ -532,7 +532,7 @@ app.post('/:adminid/removeAdmin', (req,res) => {
              return res.json({msg: "Something went wrong!"});
          }
          else{
-            console.log(admins);
+            //console.log(admins);
             res.redirect('/admin/login/' + req.params.adminid + '/settings');
          }
         })
