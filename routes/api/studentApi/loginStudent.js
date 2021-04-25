@@ -14,7 +14,7 @@ const InterviewExp = require('../../../model/Interview');
 const notification = require('../../../model/notifications');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-var session = require('express-session');
+var session = require('cookie-session');
 var flash = require('connect-flash');
 
 const express = require('express');

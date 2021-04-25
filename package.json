@@ -4,7 +4,7 @@
   "description": "\"Internship and placement portal",
   "main": "app.js",
   "scripts": {
-    "start" : "setNODE_ENV=production&&node app.js",
+    "start": "setNODE_ENV=production&&node app.js",
     "dev": "nodemon app.js"
   },
   "author": "",
@@ -17,6 +17,7 @@
     "config": "^3.3.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.5",
+    "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",

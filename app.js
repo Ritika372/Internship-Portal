@@ -20,6 +20,7 @@ app.use(
 app.use(express.static('public'));
 app.use(compression());
 connectdb();
+var session = require('cookie-session');
 
 app.get('/', (req, res) => {
   res.render('opening');
