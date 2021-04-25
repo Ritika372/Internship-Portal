@@ -37,7 +37,9 @@ app.post('/', (req, res) => {
         });
         const msg = 'Please Click on the given button to Change the password';
         // const link ="http://localhost:3000/student/forgot_pass/check/"+token;
-        const link = '/student/forgot_pass/check/' + token;
+        const link =
+          'https://careerservices.herokuapp.com/student/forgot_pass/check/' +
+          token;
         sendemails(
           foundStudent.email,
           'Forget Password',

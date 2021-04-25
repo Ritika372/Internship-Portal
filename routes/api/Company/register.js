@@ -46,7 +46,9 @@ app.post('/', (req, res) => {
         const msg =
           'Thanks for Registering With us .Please Click on the given button to register';
         //const link = 'http://localhost:3000/company/register/confirm/' + token;
-        const link = '/company/register/confirm/' + token;
+        const link =
+          'https://careerservices.herokuapp.com/company/register/confirm/' +
+          token;
         sendemails(email, link, msg);
         res.redirect('/company/register/' + newCompany._id + '/enterdetails');
       }

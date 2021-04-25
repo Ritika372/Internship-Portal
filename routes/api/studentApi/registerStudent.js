@@ -63,7 +63,9 @@ app.post('/', (req, res) => {
         });
         const msg = 'Please Click on the given button to register';
         //const link = "http://localhost:3000/student/register/confirm/" + token;
-        const link = '/student/register/confirm/' + token;
+        const link =
+          'https://careerservices.herokuapp.com/student/register/confirm/' +
+          token;
         console.log({ link });
         sendemails(email, 'Verify Registration', link, msg, 'Verify');
         res.redirect('/student/register/' + newStudent._id + '/enterdetails');
