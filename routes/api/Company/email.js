@@ -20,7 +20,7 @@ const sendMails = (email, text, msg) => {
         console.log(err);
       } else {
         var mainOptions = {
-          from: "Ritika Goyal <ritikag.cs.18@nitj.ac.in>",
+          from: "Career Services <careerservicesnitj@gmail.com>",
           to: email,
           subject: "Verifying your registration",
           html: data,
