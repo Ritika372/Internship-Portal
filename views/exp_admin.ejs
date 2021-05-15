@@ -1,73 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/student.css">
-    <title>Experiences</title>
-</head>
-<body>
-    <div class = "container">
-        
-            <div class = "row">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                      <a class="nav-link " href=<%=  home %>>Home</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link active" href=<%=  experiencelink %>>Experiences</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href=<%=  confirm_companieslink %>> Confirm Companies</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href=<%=  studentslink %> >Students</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href=<%=  companieslink %> >Companies</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href=<%=  notificationlink %> >Notifications</a>
-                      </li>
-                      <% if(main){  %>
-                        <li class="nav-item">
-                            <a class="nav-link" href=<%=  settings %> >Settings</a>
-                          </li>
-                        </div>
-                      <% } %>
-                  </ul>
-            </div><br><br>
-        <div class = "row">
-            <div class = "col-md-8">
-                <% experience.forEach( (exp) => { %>
-                    <div class = "row">
-                        <div class = "col-md-8 offset-md-2">
-                            <div class = "card">
-                                <div class="card-body">
-                                    <h5 class="card-title"><%= exp.company %></h5>
-                                    <h6 class="card-subtitle"><%= exp.branch %></h6>
-                                    <h6 class="card-subtitle"><%= exp.choice %></h6>
-                                    <h6 class="card-subtitle"> <%=exp.rollno %></h6><br>
-                                    <p class = "card-text"><%= exp.exp %></p>
-                                    <form action="/admin/confirmexp" method="POST">
-                                        <input type="hidden" name = "id" value = <%= exp._id %>>
-                                    <button class="btn btn-primary" formaction=<%= confirmexp %> type="submit">Confirm</button>
-                                    <button class="btn btn-danger" formaction=<%= deleteexp %> type="submit">Delete</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <br>
-                <% }) %>
-            </div>
-        </div>
-    </div>
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,6 +25,7 @@
               </li>
             </div>
           <% } %>
+          <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  logOut %> >Log Out</a></li>   
       </ul>
     </nav>          
 </header>

@@ -9,6 +9,11 @@
     <title>Submit Experience</title>
 </head>
 <body>
+    <% if(message &&message.length>0){  %>
+        <div class="alert alert-danger">
+        <%= message %>
+        </div>
+      <% } %>
     <header class = "header">
 
         <nav class="page__menu page__custom-settings menu">

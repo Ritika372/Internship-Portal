@@ -1,4 +1,9 @@
 <%- include('partials/headers') %>
+<% if(message &&message.length>0){  %>
+  <div class="alert alert-danger">
+  <%= message %>
+  </div>
+<% } %>
 <form class = "loginContainer" action = "/admin/login" , method="POST">
   <div class = "container">
     <div class="form-group">

@@ -1,103 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/student.css">
-    <title>Students</title>
-</head>
-<body>
-    <div class = "container">
-        <div class = "container">
-            <div class = "row">
-              <ul class="nav nav-tabs">
-                <li class="nav-item">
-                  <a class="nav-link " href=<%=  home %>>Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link " href=<%=  experiencelink %>>Experiences</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href=<%=  confirm_companieslink %>> Confirm Companies</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" href=<%=  studentslink %> >Students</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href=<%=  companieslink %> >Companies</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href=<%=  notificationlink %> >Notifications</a>
-                  </li>
-                  <% if(main){  %>
-                    <li class="nav-item">
-                        <a class="nav-link" href=<%=  settings %> >Settings</a>
-                      </li>
-                    </div>
-                  <% } %>
-              </ul>
-            </div>
-        </div><br><br>
-        <div class = "row">
-            <div class = "col-12">
-           
-                <table id="example" class="display" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th scope="col">Roll Number</th>
-                        <th scope="col">FirstName</th>
-                        <th scope="col">LastName</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">CGPA</th>
-                        <th scope="col">Branch</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                <% students.forEach( (student) => { %>
-                      <tr>
-                        <th scope="row"><%= student.rollno %></th>
-                        <td><%= student.firstname %></td>
-                        <td><%= student.lastname %></td>
-                        <td><%= student.personal_email %></td>
-                        <td><%= student.cgpa %></td>
-                        <td><%= student.branch %></td>
-                      </tr>
-                    
-                  <% }) %>
-                </tbody>
-              </table>
-            </div>
-        </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
-    <script>
-      $(document).ready(function() {
-          $('#example').DataTable( {
-              dom: 'Bfrtip',
-              buttons: [
-                  'copyHtml5',
-                  'excelHtml5',
-                  'csvHtml5',
-                  'pdfHtml5'
-              ]
-          } );
-      } );
-    </script>
-</body>
-</html> -->
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -127,6 +27,7 @@
               </li>
             </div>
           <% } %>
+          <li class="menu__group"><a class="menu__link r-link text-underlined" href=<%=  logOut %> >Log Out</a></li>   
       </ul>
     </nav>          
 </header>
