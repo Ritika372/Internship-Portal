@@ -64,8 +64,8 @@ app.post('/', (req, res) => {
   let password = req.body.password;
   Student.findOne({ rollno: rollno }, (err, foundStudent) => {
     if (err) {
-      res.send('Something Wrong Happened');
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       if (foundStudent) {
         bcrypt.compare(password, foundStudent.password, (err, result) => {
@@ -76,11 +76,13 @@ app.post('/', (req, res) => {
                 '/student/login/' + foundStudent._id + '/studentprofile'
               );
             } catch (error) {
-              res.send(error);
+              console.log(error);
+              return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
             }
             //Redirecting to the student profile
           } else if (err) {
             console.log(err);
+            return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
           }
         });
       } else {
@@ -96,12 +98,12 @@ const verifyMail = async (req, res, next) => {
   const id = req.params.id || '';
   if (!id) {
     req.flash('message', 'First Register yourself');
-
     return res.redirect('/student/login');
   } else {
     Student.findById({ _id: id }, (err, student) => {
       if (err) {
         console.log(err);
+        return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
       } else {
         if (student) {
           if (student.confirmed) {
@@ -124,8 +126,9 @@ app.use('/:id', verifyMail);
 app.get('/:id/change_pswrd', (req, res) => {
   Student.findOne({ _id: req.params.id }, (err, foundStudent) => {
     if (err) {
-      res.send('Something Wrong Happened');
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
+  
     } else {
       if (foundStudent) {
         const expiration = 604800000;
@@ -135,10 +138,7 @@ app.get('/:id/change_pswrd', (req, res) => {
           expiresIn: '7d',
         });
         const msg = 'Please Click on the given button to Change the password';
-        //const link = 'http://localhost:3000/student/forgot_pass/check/' + token;
-        const link =
-          'https://careerservices.herokuapp.com/student/forgot_pass/check/' +
-          token;
+        const link ='https://careerservices.herokuapp.com/student/forgot_pass/check/' +token;
         sendemails(
           foundStudent.email,
           'Change Password',
@@ -149,7 +149,8 @@ app.get('/:id/change_pswrd', (req, res) => {
         req.flash('message', 'Check Your Emails');
         res.redirect('/student/login/' + req.params.id + '/editProfile');
       } else {
-        res.send('First Register yourself');
+        req.flash('message', 'First Register yourself');
+        return res.redirect('/student/login');
       }
     }
   });
@@ -161,16 +162,19 @@ const verifyToken = async (req, res, next) => {
   const token = req.cookies['studentLogin'] || '';
   try {
     if (!token) {
+      req.flash('message', 'Wrong Link!! Login Again');    
       return res.redirect('/student/login');
     }
     const decrypt = await jwt.verify(token, 'rohitMittalisthebest');
     if (decrypt.id === req.params.id) {
       next();
     } else {
+      req.flash('message', 'Wrong Link!! Login Again');  
       return res.redirect('/student/login');
     }
   } catch (err) {
     console.log(err);
+    req.flash('message', 'Something Wrong Plz login Again');
     return res.redirect('/student/login');
   }
 };
@@ -199,7 +203,6 @@ app.get('/:id/studentprofile', async (req, res) => {
         if (student.resume) {
           resumeUrl = '/student/login/' + student.resume.id + '/file';
         }
-
         res.render('studentprofile', {
           profile: profile,
           read_experience: read_experience,
@@ -250,6 +253,7 @@ app.get('/:id/experiences', (req, res) => {
     const log_out = '/student/login/' + req.params.id + '/logOut';
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       res.render('Experiences', {
         profile: profile,
@@ -272,16 +276,15 @@ app.get('/:id/experiences/:experienceId/details', (req, res) => {
     //profile read_experience write_experience edit_profile are the links given to the buttons on the student profile
     const profile = '/student/login/' + req.params.id + '/studentprofile';
     const read_experience = '/student/login/' + req.params.id + '/experiences';
-    const write_experience =
-      '/student/login/' + req.params.id + '/submitexperience';
+    const write_experience ='/student/login/' + req.params.id + '/submitexperience';
     const edit_profile = '/student/login/' + req.params.id + '/editProfile';
     const company_apply = '/student/login/' + req.params.id + '/Company';
-    const notificationlink =
-      '/student/login/' + req.params.id + '/notifications';
+    const notificationlink ='/student/login/' + req.params.id + '/notifications';
     const applied = '/student/login/' + req.params.id + '/applied';
     const log_out = '/student/login/' + req.params.id + '/logOut';
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       res.render('experience_det', {
         profile: profile,
@@ -303,6 +306,7 @@ app.get('/:id/experiences/:experienceId/details', (req, res) => {
 
 //renders the submitting a new experience page
 app.get('/:id/submitexperience', (req, res) => {
+  var k = req.flash('message');
   //profile read_experience write_experience edit_profile are the links given to the buttons on the student profile
   const profile = '/student/login/' + req.params.id + '/studentprofile';
   const read_experience = '/student/login/' + req.params.id + '/experiences';
@@ -314,6 +318,7 @@ app.get('/:id/submitexperience', (req, res) => {
   const log_out = '/student/login/' + req.params.id + '/logOut';
   const applied = '/student/login/' + req.params.id + '/applied';
   res.render('submitExp', {
+    message: k,
     profile: profile,
     applied: applied,
     read_experience: read_experience,
@@ -334,7 +339,7 @@ app.post('/:id/submitexperience', (req, res) => {
   let rollno = '';
   Student.findById({ _id: req.params.id }, (err, student) => {
     if (err) {
-      return res.json({ msg: 'Something went wrong!' });
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       if (student) {
         rollno = student.rollno;
@@ -349,12 +354,12 @@ app.post('/:id/submitexperience', (req, res) => {
           if (err) {
             console.log(err);
           } else {
-            res.redirect('/student/login/' + req.params.id + '/studentprofile');
-            // res.send("Experience submitted successfully!. Please wait for the admin to confirm.")
+
+            res.redirect('/student/login/' + req.params.id + '/submitexperience');
           }
         });
       } else {
-        res.send('Something wrong happened');
+        return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
       }
     }
   });
@@ -379,7 +384,8 @@ app.get('/:id/editProfile', (req, res) => {
   const change_pswrd = '/student/login/' + req.params.id + '/change_pswrd';
   Student.findById({ _id: req.params.id }, (err, student) => {
     if (err) {
-      return res.json({ msg: 'Something went wrong!' });
+      console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       res.render('editProfile', {
         profile: profile,
@@ -419,7 +425,6 @@ app.get('/:id/editProfile', (req, res) => {
 });
 
 app.post('/:id/uploadResume', uploadFile.single('resume'), (req, res) => {
-  console.log({ file: req.file });
 
   Student.findByIdAndUpdate(
     { _id: req.params.id },
@@ -432,7 +437,7 @@ app.post('/:id/uploadResume', uploadFile.single('resume'), (req, res) => {
     (err, student) => {
       if (err) {
         console.log({ err });
-        return res.json({ msg: 'Something went wrong!' });
+        return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
       } else {
         //redirects to student profile
         req.flash('message', 'Resume Changed');
@@ -471,9 +476,10 @@ app.post('/:id/editProfile', (req, res) => {
     { new: true },
     (err, student) => {
       if (err) {
-        return res.json({ msg: 'Something went wrong!' });
+        return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
       } else {
-        res.redirect('/student/login/' + req.params.id + '/studentprofile');
+        req.flash('message', 'Profile Updated');
+        res.redirect('/student/login/' + req.params.id + '/editProfile');
       }
     }
   );
@@ -491,7 +497,8 @@ app.get('/:id/Company', (req, res) => {
   const applied = '/student/login/' + req.params.id + '/applied';
   Student.findById({ _id: req.params.id }, (error, student) => {
     if (error) {
-      res.send('Something wrong happened');
+      console.log(error);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       Company.find(
         {
@@ -502,6 +509,7 @@ app.get('/:id/Company', (req, res) => {
         (err, company) => {
           if (err) {
             console.log(err);
+            return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
           } else {
             res.render('companies', {
               profile: profile,
@@ -529,19 +537,15 @@ app.get('/:id/:companyId/apply', (req, res) => {
     { new: true },
     (err, c) => {
       if (err) {
-        return res.json({ msg: 'Something went wrong!' });
+        console.log(err);
+        return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
       } else {
         Student.findByIdAndUpdate(
           { _id: req.params.id },
           { $push: { companies_applied: req.params.companyId } },
           { new: true },
           (error, s) => {
-            if (error) {
-              return res.json({ msg: 'Something went wrong!' });
-            } else {
-              res.redirect('/student/login/' + req.params.id + '/Company');
-              //res.send("Applied!");
-            }
+            res.redirect('/student/login/' + req.params.id + '/Company');
           }
         );
       }
@@ -562,8 +566,8 @@ app.get('/:id/:companyId/details', (req, res) => {
   const applied = '/student/login/' + req.params.id + '/applied';
   Company.findById({ _id: companyid }, (error, company) => {
     if (error) {
-      console.log(error);
-      res.send('Something wrong happened');
+      console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       res.render('CompanyDetails_stud', {
         profile: profile,
@@ -617,8 +621,8 @@ app.get('/:id/applied', (req, res) => {
   const applied = '/student/login/' + req.params.id + '/applied';
   Student.findById({ _id: req.params.id }, (error, student) => {
     if (error) {
-      console.log(error);
-      res.send('Something wrong happened');
+      console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       Company.find(
         { _id: { $in: student.companies_applied } },
@@ -658,6 +662,7 @@ app.get('/:id/notifications/', (req, res) => {
   notification.find({}, (err, notices) => {
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       notices.sort(function (a, b) {
         return new Date(b.date) - new Date(a.date);

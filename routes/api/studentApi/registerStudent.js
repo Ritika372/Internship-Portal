@@ -18,24 +18,7 @@ app.use(
 app.use(cookieParser());
 
 app.use(express.static('public'));
-//
-// const uploadFile = async (req, res) => {
-//   try {
-//     await upload(req, res);
-//
-//     console.log(req.resume);
-//     if (req.resume == undefined) {
-//       return res.send(`You must select a file.`);
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     return res.send(`Error when trying upload image: ${error}`);
-//   }
-// };
 
-// module.exports = {
-//   uploadFile: uploadFile
-// };
 //Renders the starting register page
 app.get('/', (req, res) => {
   res.render('registerStudent');
@@ -54,6 +37,7 @@ app.post('/', (req, res) => {
     newStudent.save((err, result) => {
       if (err) {
         console.log(err);
+        res.send("Something Wrong Happened Plz Try Again");
       } else {
         //import jwt from 'jsonwebtoken';
         const expiration = 604800000;
@@ -78,7 +62,7 @@ const verify = async (req, res) => {
   const token = req.params.token || '';
   try {
     if (!token) {
-      return res.send('Wrong Link ');
+      return res.send('Wrong Link!! ');
     }
     const decrypt = await jwt.verify(token, 'rohitMittalisthebest');
     Student.findByIdAndUpdate(
@@ -89,7 +73,8 @@ const verify = async (req, res) => {
       { new: true },
       (err, student) => {
         if (err) {
-          return res.json({ msg: 'Something went wrong!' });
+          console.log(err);
+          return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
         } else {
           return res.json({ msg: 'Confirmed!' });
         }
@@ -109,7 +94,8 @@ app.get('/:id/enterdetails', (req, res) => {
   const link = '/student/register/' + req.params.id + '/enterdetails';
   Student.findById({ _id: req.params.id }, (err, student) => {
     if (err) {
-      return res.json({ msg: 'Something went wrong!' });
+      console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       res.render('enterDetails', {
         link: link,
@@ -150,11 +136,10 @@ app.post('/:id/enterdetails', uploadFile.single('resume'), async (req, res) => {
     { new: true },
     (err, student) => {
       if (err) {
-        console.log({ err });
-        return res.json({ msg: 'Something went wrong!' });
+        console.log(err);
+        return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
       } else {
         //redirects to student profile
-
         res.redirect('/student/login/' + req.params.id + '/studentprofile');
       }
     }
