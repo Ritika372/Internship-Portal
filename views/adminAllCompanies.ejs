@@ -38,6 +38,8 @@
                     <tr>
                       <th scope="col">Name</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Job Profile</th>
+                        <th scope="col">Duration</th>
                         <th scope="col">Minimum CGPA</th>
                         <th scope="col">Branches</th>
                         <th scope="col">Package</th>
@@ -51,12 +53,16 @@
           <tr>
             <th scope="row"><%= company.companyname %></th>
             <td><%= company.email%></td>
-                        <td><%= company.min_cgpa %></td>
-                        <td><%= company.eligible_branch %></td>
-                        <td><%= company.package %></td>
-                        <td><%= company.deadline_date %></td>
-                        <td><%= company.website %></td>
-                        <td><%= company.location %></td>
+            <td><%= company.job_profile%></td>
+            <td><%= company.duration%></td>
+            <td><%= company.min_cgpa %></td>
+            <td><%= company.eligible_branch %></td>
+            <td><%= company.package %></td>
+            <td><%= company.deadline_date.toLocaleString('en-us', { year: 'numeric', month: 'long',day: 'numeric', }) %></td>
+            <td><a href=<%= company.website %>> 
+              <%= company.website  %></a> </td>
+            <td><%= company.location %></td>
+            
           </tr>
         
       <% }) %>
@@ -79,8 +85,7 @@
               buttons: [
                   'copyHtml5',
                   'excelHtml5',
-                  'csvHtml5',
-                  'pdfHtml5'
+                  'csvHtml5'
               ]
           } );
           // $('#example_wrapper').removeClass('dataTables_wrapper')
