@@ -11,8 +11,10 @@ const sendMails = (email, subject, text, msg, link_name) => {
       pass: process.env.SENDPASS,
     },
   });
-
+  console.log("hrrr");
+  console.log(text);
   ejs.renderFile(
+  
     path.join(__dirname + "../../../../views/confirmationMail.ejs"),
     { confirmation_link: text, msg: msg, link_name: link_name },
     function (err, data) {
