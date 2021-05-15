@@ -40,75 +40,83 @@ const verifyToken = async (req, res, next) => {
   const token = req.cookies['adminLogin'] || '';
   try {
     if (!token) {
+      res.clearCookie('adminLogin');
       return res.redirect('/admin/login');
     }
     const decrypt = await jwt.verify(token, 'rohitMittalisthebest');
-    //console.log(decrypt.id)
-    //console.log(req.params.id);
     if (decrypt.id === req.params.id) {
       next();
     } else {
+      req.flash('message', 'Wrong Link Plz Login Again');
       return res.redirect('/admin/login');
     }
   } catch (err) {
     console.log(err);
+    req.flash('message', 'Error Occured Plz login Again');
     return res.redirect('/admin/login');
   }
-  // next();
 };
 
 app.get('/', (req, res) => {
-  res.render('loginAdmin');
+  var k = req.flash('message');
+  res.render('loginAdmin', { message: k });
 });
 
 app.post('/', (req, res) => {
   let email = req.body.emailAdmin;
   let password = req.body.passAdmin;
   console.log(email);
-
   admin.findOne({ email: email }, (err, foundAdmin) => {
-    //console.log("here")
     if (err) {
-      res.send('Something Wrong Happened');
       console.log(err);
+      res.send('Something Wrong Happened!! Plz Try Again');
     } else {
-      //console.log("hhe");
       if (foundAdmin) {
         bcrypt.compare(password, foundAdmin.password, (err, result) => {
+          if (err) {
+            console.log(err);
+            res.send("Something Wrong Happened!! Plz Try Again");
+          }
           if (result) {
             try {
               generateToken(res, foundAdmin._id, foundAdmin.email);
               res.redirect('/admin/login/' + foundAdmin._id + '/home');
             } catch (error) {
-              res.send(error);
+              console.log(error);
+              res.send("Try Again Plz");
             }
-          } else if (err) {
-            console.log(err);
           }
-        });
+          else{
+            req.flash('message', 'Password And Login Id Does not Match!! Try Again');
+            res.redirect('/admin/login');
+          }
+        }
+        );
       } else {
-        // req.flash("message","NOT ADMIN");
-        res.redirect('/admin/login');
+          req.flash('message', 'Not A Registered Admin');
+          res.redirect('/admin/login');
       }
     }
   });
 });
+
 
 app.use('/:id', verifyToken);
 
 app.get('/:id/home/', (req, res) => {
   const home = '/admin/login/' + req.params.id + '/home';
   const experiencelink = '/admin/login/' + req.params.id + '/experiences';
-  const confirm_companieslink =
-    '/admin/login/' + req.params.id + '/conf_company';
+  const confirm_companieslink ='/admin/login/' + req.params.id + '/conf_company';
   const studentslink = '/admin/login/' + req.params.id + '/Students';
   const companieslink = '/admin/login/' + req.params.id + '/Companies';
   const settings = '/admin/login/' + req.params.id + '/settings';
   const notificationlink = '/admin/login/' + req.params.id + '/notifications';
+  const logOut = '/admin/login/' + req.params.id + '/logOut';
   admin.findById({ _id: req.params.id }, (err, ADMIN) => {
     if (err) {
       console.log(err);
-    } else {
+      res.send("Something Wrong Happened!! Plz Go back and Try Again");
+    } else  {
       res.render('adminHome', {
         home: home,
         experiencelink: experiencelink,
@@ -117,12 +125,14 @@ app.get('/:id/home/', (req, res) => {
         companieslink: companieslink,
         main: ADMIN.main_admin,
         settings: settings,
+        logOut:logOut,
         notificationlink: notificationlink,
         name: ADMIN.name,
       });
     }
   });
 });
+
 
 app.get('/:id/Students/', (req, res) => {
   const home = '/admin/login/' + req.params.id + '/home';
@@ -133,6 +143,7 @@ app.get('/:id/Students/', (req, res) => {
   const companieslink = '/admin/login/' + req.params.id + '/Companies';
   const settings = '/admin/login/' + req.params.id + '/settings';
   const notificationlink = '/admin/login/' + req.params.id + '/notifications';
+  const logOut = '/admin/login/' + req.params.id + '/logOut';
   admin.findById({ _id: req.params.id }, (err, ADMIN) => {
     if (err) {
       console.log(err);
@@ -140,7 +151,7 @@ app.get('/:id/Students/', (req, res) => {
       Student.find({}, (error, students) => {
         if (error) {
           console.log(error);
-          return res.json({ msg: 'Something went wrong!' });
+          return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
         } else {
           res.render('adminStudents', {
             home: home,
@@ -150,6 +161,7 @@ app.get('/:id/Students/', (req, res) => {
             companieslink: companieslink,
             settings: settings,
             main: ADMIN.main_admin,
+            logOut:logOut,
             notificationlink: notificationlink,
             students: students,
           });
@@ -162,12 +174,12 @@ app.get('/:id/Students/', (req, res) => {
 app.get('/:id/Companies/', (req, res) => {
   const home = '/admin/login/' + req.params.id + '/home';
   const experiencelink = '/admin/login/' + req.params.id + '/experiences';
-  const confirm_companieslink =
-    '/admin/login/' + req.params.id + '/conf_company';
+  const confirm_companieslink ='/admin/login/' + req.params.id + '/conf_company';
   const studentslink = '/admin/login/' + req.params.id + '/Students';
   const companieslink = '/admin/login/' + req.params.id + '/Companies';
   const settings = '/admin/login/' + req.params.id + '/settings';
   const notificationlink = '/admin/login/' + req.params.id + '/notifications';
+  const logOut = '/admin/login/' + req.params.id + '/logOut';
   admin.findById({ _id: req.params.id }, (err, ADMIN) => {
     if (err) {
       console.log(err);
@@ -175,7 +187,7 @@ app.get('/:id/Companies/', (req, res) => {
       Company.find({}, (error, companies) => {
         if (error) {
           console.log(error);
-          return res.json({ msg: 'Something went wrong!' });
+          return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
         } else {
           res.render('adminAllCompanies', {
             home: home,
@@ -184,6 +196,7 @@ app.get('/:id/Companies/', (req, res) => {
             studentslink: studentslink,
             settings: settings,
             main: ADMIN.main_admin,
+            logOut:logOut,
             companieslink: companieslink,
             notificationlink: notificationlink,
             companies: companies,
@@ -197,22 +210,23 @@ app.get('/:id/Companies/', (req, res) => {
 app.get('/:adminid/experiences', (req, res) => {
   const home = '/admin/login/' + req.params.adminid + '/home';
   const experiencelink = '/admin/login/' + req.params.adminid + '/experiences';
-  const confirm_companieslink =
-    '/admin/login/' + req.params.adminid + '/conf_company';
+  const confirm_companieslink ='/admin/login/' + req.params.adminid + '/conf_company';
   const studentslink = '/admin/login/' + req.params.adminid + '/Students';
   const companieslink = '/admin/login/' + req.params.adminid + '/Companies';
   const confirmexp = '/admin/login/' + req.params.adminid + '/confirmexp';
   const deleteexp = '/admin/login/' + req.params.adminid + '/deleteexp';
   const settings = '/admin/login/' + req.params.adminid + '/settings';
-  const notificationlink =
-    '/admin/login/' + req.params.adminid + '/notifications';
+  const notificationlink ='/admin/login/' + req.params.adminid + '/notifications';
+  const logOut = '/admin/login/' + req.params.id + '/logOut';
   admin.findById({ _id: req.params.adminid }, (err, ADMIN) => {
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       InterviewExp.find({ confirmed: false }, (err, experience) => {
         if (err) {
           console.log(err);
+          return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
         } else {
           res.render('exp_admin', {
             home: home,
@@ -223,6 +237,7 @@ app.get('/:adminid/experiences', (req, res) => {
             confirmexp: confirmexp,
             deleteexp: deleteexp,
             settings: settings,
+            logOut:logOut,
             main: ADMIN.main_admin,
             notificationlink: notificationlink,
             experience: experience,
@@ -235,25 +250,24 @@ app.get('/:adminid/experiences', (req, res) => {
 app.post('/:adminid/confirmexp', (req, res) => {
   const home = '/admin/login/' + req.params.adminid + '/home';
   const experiencelink = '/admin/login/' + req.params.adminid + '/experiences';
-  const confirm_companieslink =
-    '/admin/login/' + req.params.adminid + '/conf_company';
+  const confirm_companieslink ='/admin/login/' + req.params.adminid + '/conf_company';
   const studentslink = '/admin/login/' + req.params.adminid + '/Students';
   const companieslink = '/admin/login/' + req.params.adminid + '/Companies';
   const confirmexp = '/admin/login/' + req.params.adminid + '/confirmexp';
   const deleteexp = '/admin/login/' + req.params.adminid + '/deleteexp';
   const settings = '/admin/login/' + req.params.adminid + '/settings';
-  const notificationlink =
-    '/admin/login/' + req.params.adminid + '/notifications';
+  const notificationlink ='/admin/login/' + req.params.adminid + '/notifications';
+  const logOut = '/admin/login/' + req.params.id + '/logOut';
   admin.findById({ _id: req.params.adminid }, (err, ADMIN) => {
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
-      InterviewExp.findByIdAndUpdate(
-        { _id: req.body.id },
-        { confirmed: true },
+      InterviewExp.findByIdAndUpdate( { _id: req.body.id },{ confirmed: true },
         (err) => {
           if (err) {
             console.log(err);
+            return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
           } else {
             //console.log("updated successfully");
             InterviewExp.find({ confirmed: false }, (err, experience) => {
@@ -269,6 +283,7 @@ app.post('/:adminid/confirmexp', (req, res) => {
                   confirmexp: confirmexp,
                   deleteexp: deleteexp,
                   settings: settings,
+                  logOut:logOut,
                   main: ADMIN.main_admin,
                   notificationlink: notificationlink,
                   experience: experience,
@@ -284,27 +299,29 @@ app.post('/:adminid/confirmexp', (req, res) => {
 app.post('/:adminid/deleteexp', (req, res) => {
   const home = '/admin/login/' + req.params.adminid + '/home';
   const experiencelink = '/admin/login/' + req.params.adminid + '/experiences';
-  const confirm_companieslink =
-    '/admin/login/' + req.params.adminid + '/conf_company';
+  const confirm_companieslink ='/admin/login/' + req.params.adminid + '/conf_company';
   const studentslink = '/admin/login/' + req.params.adminid + '/Students';
   const companieslink = '/admin/login/' + req.params.adminid + '/Companies';
   const confirmexp = '/admin/login/' + req.params.adminid + '/confirmexp';
   const deleteexp = '/admin/login/' + req.params.adminid + '/deleteexp';
   const settings = '/admin/login/' + req.params.adminid + '/settings';
-  const notificationlink =
-    '/admin/login/' + req.params.adminid + '/notifications';
+  const notificationlink ='/admin/login/' + req.params.adminid + '/notifications';
+  const logOut = '/admin/login/' + req.params.id + '/logOut';
   admin.findById({ _id: req.params.adminid }, (err, ADMIN) => {
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       InterviewExp.deleteOne({ _id: req.body.id }, (err) => {
         if (err) {
           console.log(err);
+          return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
         } else {
           //console.log("deleted successfully");
           InterviewExp.find({ confirmed: false }, (err, experience) => {
             if (err) {
               console.log(err);
+              return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
             } else {
               res.render('exp_admin', {
                 home: home,
@@ -315,6 +332,7 @@ app.post('/:adminid/deleteexp', (req, res) => {
                 confirmexp: confirmexp,
                 deleteexp: deleteexp,
                 settings: settings,
+                logOut:logOut,
                 main: ADMIN.main_admin,
                 notificationlink: notificationlink,
                 experience: experience,
@@ -330,24 +348,25 @@ app.post('/:adminid/deleteexp', (req, res) => {
 app.get('/:adminid/conf_company', (req, res) => {
   const home = '/admin/login/' + req.params.adminid + '/home';
   const experiencelink = '/admin/login/' + req.params.adminid + '/experiences';
-  const confirm_companieslink =
-    '/admin/login/' + req.params.adminid + '/conf_company';
+  const confirm_companieslink ='/admin/login/' + req.params.adminid + '/conf_company';
   const studentslink = '/admin/login/' + req.params.adminid + '/Students';
   const companieslink = '/admin/login/' + req.params.adminid + '/Companies';
   const confirmcomp = '/admin/login/' + req.params.adminid + '/confirmcompany';
   const deletecomp = '/admin/login/' + req.params.adminid + '/deletecompany';
   const settings = '/admin/login/' + req.params.adminid + '/settings';
-  const notificationlink =
-    '/admin/login/' + req.params.adminid + '/notifications';
+  const notificationlink ='/admin/login/' + req.params.adminid + '/notifications';
+  const logOut = '/admin/login/' + req.params.id + '/logOut';
   admin.findById({ _id: req.params.adminid }, (err, ADMIN) => {
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       Company.find(
         { confirmed: true, confirmedbyAdmin: false },
         (err, company) => {
           if (err) {
             console.log(err);
+            return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
           } else {
             res.render('company_admin', {
               home: home,
@@ -359,6 +378,7 @@ app.get('/:adminid/conf_company', (req, res) => {
               settings: settings,
               main: ADMIN.main_admin,
               deletecomp: deletecomp,
+              logOut:logOut,
               notificationlink: notificationlink,
               companies: company,
             });
@@ -371,18 +391,18 @@ app.get('/:adminid/conf_company', (req, res) => {
 app.post('/:adminid/confirmcompany', (req, res) => {
   const home = '/admin/login/' + req.params.adminid + '/home';
   const experiencelink = '/admin/login/' + req.params.adminid + '/experiences';
-  const confirm_companieslink =
-    '/admin/login/' + req.params.adminid + '/conf_company';
+  const confirm_companieslink ='/admin/login/' + req.params.adminid + '/conf_company';
   const studentslink = '/admin/login/' + req.params.adminid + '/Students';
   const companieslink = '/admin/login/' + req.params.adminid + '/Companies';
   const confirmcomp = '/admin/login/' + req.params.adminid + '/confirmcompany';
   const deletecomp = '/admin/login/' + req.params.adminid + '/deletecompany';
   const settings = '/admin/login/' + req.params.adminid + '/settings';
-  const notificationlink =
-    '/admin/login/' + req.params.adminid + '/notifications';
+  const notificationlink ='/admin/login/' + req.params.adminid + '/notifications';
+  const logOut = '/admin/login/' + req.params.id + '/logOut';
   admin.findById({ _id: req.params.adminid }, (err, ADMIN) => {
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       Company.findByIdAndUpdate(
         { _id: req.body.id },
@@ -390,12 +410,14 @@ app.post('/:adminid/confirmcompany', (req, res) => {
         (err) => {
           if (err) {
             console.log(err);
+            return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
           } else {
             Company.find(
               { confirmed: true, confirmedbyAdmin: false },
               (err, company) => {
                 if (err) {
                   console.log(err);
+                  return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
                 } else {
                   res.render('company_admin', {
                     home: home,
@@ -407,6 +429,7 @@ app.post('/:adminid/confirmcompany', (req, res) => {
                     settings: settings,
                     main: ADMIN.main_admin,
                     deletecomp: deletecomp,
+                    logOut:logOut,
                     notificationlink: notificationlink,
                     companies: company,
                   });
@@ -423,28 +446,30 @@ app.post('/:adminid/confirmcompany', (req, res) => {
 app.post('/:adminid/deletecompany', (req, res) => {
   const home = '/admin/login/' + req.params.adminid + '/home';
   const experiencelink = '/admin/login/' + req.params.adminid + '/experiences';
-  const confirm_companieslink =
-    '/admin/login/' + req.params.adminid + '/conf_company';
+  const confirm_companieslink ='/admin/login/' + req.params.adminid + '/conf_company';
   const studentslink = '/admin/login/' + req.params.adminid + '/Students';
   const companieslink = '/admin/login/' + req.params.adminid + '/Companies';
   const confirmcomp = '/admin/login/' + req.params.adminid + '/confirmcompany';
   const deletecomp = '/admin/login/' + req.params.adminid + '/deletecompany';
   const settings = '/admin/login/' + req.params.adminid + '/settings';
-  const notificationlink =
-    '/admin/login/' + req.params.adminid + '/notifications';
+  const notificationlink ='/admin/login/' + req.params.adminid + '/notifications';
+  const logOut = '/admin/login/' + req.params.id + '/logOut';
   admin.findById({ _id: req.params.adminid }, (err, ADMIN) => {
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       Company.deleteOne({ _id: req.body.id }, (err) => {
         if (err) {
           console.log(err);
+          return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
         } else {
           Company.find(
             { confirmed: true, confirmedbyAdmin: false },
             (err, company) => {
               if (err) {
                 console.log(err);
+                return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
               } else {
                 res.render('company_admin', {
                   home: home,
@@ -455,6 +480,7 @@ app.post('/:adminid/deletecompany', (req, res) => {
                   confirmcomp: confirmcomp,
                   settings: settings,
                   main: ADMIN.main_admin,
+                  logOut:logOut,
                   deletecomp: deletecomp,
                   notificationlink: notificationlink,
                   companies: company,
@@ -472,6 +498,7 @@ const verifyMainAdmin = async (req, res, next) => {
   admin.findById({ _id: req.params.id }, (err, ADMIN) => {
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       if (ADMIN.main_admin && ADMIN.main_admin) {
         next();
@@ -483,25 +510,27 @@ const verifyMainAdmin = async (req, res, next) => {
 };
 
 app.use('/:id/settings/', verifyMainAdmin);
+
 app.use('/:id/removeAdmin/', verifyMainAdmin);
+
 app.use('/:id/addAdmin/', verifyMainAdmin);
+
 app.get('/:id/settings/', (req, res) => {
   const home = '/admin/login/' + req.params.id + '/home';
   const experiencelink = '/admin/login/' + req.params.id + '/experiences';
-  const confirm_companieslink =
-    '/admin/login/' + req.params.id + '/conf_company';
+  const confirm_companieslink ='/admin/login/' + req.params.id + '/conf_company';
   const studentslink = '/admin/login/' + req.params.id + '/Students';
   const companieslink = '/admin/login/' + req.params.id + '/Companies';
   const settings = '/admin/login/' + req.params.id + '/settings';
   const adminlink = '/admin/login/' + req.params.id + '/removeAdmin';
   const addAdminlink = '/admin/login/' + req.params.id + '/addAdmin';
   const notificationlink = '/admin/login/' + req.params.id + '/notifications';
+  const logOut = '/admin/login/' + req.params.id + '/logOut';
   admin.find({ main_admin: false }, (error, admins) => {
     if (error) {
       console.log(error);
-      return res.json({ msg: 'Something went wrong!' });
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
-      //console.log(admins);
       res.render('admin_settings', {
         home: home,
         experiencelink: experiencelink,
@@ -511,6 +540,7 @@ app.get('/:id/settings/', (req, res) => {
         settings: settings,
         remove: adminlink,
         admins: admins,
+        logOut:logOut,
         notificationlink: notificationlink,
         addAdmin: addAdminlink,
       });
@@ -522,17 +552,18 @@ app.post('/:adminid/removeAdmin', (req, res) => {
   admin.deleteOne({ _id: req.body.id }, (err) => {
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       admin.find({}, (err, company) => {
         if (err) {
           console.log(err);
+          return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
         } else {
           admin.find({ main_admin: false }, (error, admins) => {
             if (error) {
               console.log(error);
-              return res.json({ msg: 'Something went wrong!' });
+              return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
             } else {
-              //console.log(admins);
               res.redirect('/admin/login/' + req.params.adminid + '/settings');
             }
           });
@@ -556,6 +587,7 @@ app.post('/:id/addAdmin/', (req, res) => {
     newAdmin.save((err, result) => {
       if (err) {
         console.log(err);
+        return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
       } else {
         res.redirect('/admin/login/' + req.params.id + '/settings');
       }
@@ -566,20 +598,22 @@ app.post('/:id/addAdmin/', (req, res) => {
 app.get('/:id/notifications/', (req, res) => {
   const home = '/admin/login/' + req.params.id + '/home';
   const experiencelink = '/admin/login/' + req.params.id + '/experiences';
-  const confirm_companieslink =
-    '/admin/login/' + req.params.id + '/conf_company';
+  const confirm_companieslink ='/admin/login/' + req.params.id + '/conf_company';
   const studentslink = '/admin/login/' + req.params.id + '/Students';
   const companieslink = '/admin/login/' + req.params.id + '/Companies';
   const settings = '/admin/login/' + req.params.id + '/settings';
   const notificationlink = '/admin/login/' + req.params.id + '/notifications';
   const Addnotificationlink = '/admin/login/' + req.params.id + '/Addnotice';
+  const logOut = '/admin/login/' + req.params.id + '/logOut';
   admin.findById({ _id: req.params.id }, (err, ADMIN) => {
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       notification.find({}, (err, notices) => {
         if (err) {
           console.log(err);
+          return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
         } else {
           notices.sort(function (a, b) {
             return new Date(b.date) - new Date(a.date);
@@ -592,6 +626,7 @@ app.get('/:id/notifications/', (req, res) => {
             companieslink: companieslink,
             settings: settings,
             main: ADMIN.main_admin,
+            logOut:logOut,
             notificationlink: notificationlink,
             Addnotificationlink: Addnotificationlink,
             notices: notices,
@@ -612,9 +647,11 @@ app.get('/:id/Addnotice/', (req, res) => {
   const settings = '/admin/login/' + req.params.id + '/settings';
   const notificationlink = '/admin/login/' + req.params.id + '/notifications';
   const Addnotificationlink = '/admin/login/' + req.params.id + '/Addnotice';
+  const logOut = '/admin/login/' + req.params.id + '/logOut';
   admin.findById({ _id: req.params.id }, (err, ADMIN) => {
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       res.render('addNewNotice_admin', {
         home: home,
@@ -624,6 +661,7 @@ app.get('/:id/Addnotice/', (req, res) => {
         companieslink: companieslink,
         settings: settings,
         main: ADMIN.main_admin,
+        logOut:logOut,
         notificationlink: notificationlink,
         Addnotificationlink: Addnotificationlink,
       });
@@ -633,10 +671,10 @@ app.get('/:id/Addnotice/', (req, res) => {
 
 app.post('/:id/Addnotice/', (req, res) => {
   const notice_body = req.body.notice;
-
   admin.findById({ _id: req.params.id }, (err, ADMIN) => {
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       const created_by = ADMIN.name;
       const date = new Date().getTime();
@@ -648,13 +686,18 @@ app.post('/:id/Addnotice/', (req, res) => {
       notice.save((err) => {
         if (err) {
           console.log(err);
+          return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
         } else {
           res.redirect('/admin/login/' + req.params.id + '/notifications');
-          // res.send("Experience submitted successfully!. Please wait for the admin to confirm.")
         }
       });
     }
   });
 });
 
+
+app.get('/:id/logOut/', (req, res) => {
+  res.clearCookie('adminLogin');
+  res.redirect('/admin/login');
+});
 module.exports = app;
