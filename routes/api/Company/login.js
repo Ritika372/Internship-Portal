@@ -46,7 +46,8 @@ app.post('/', (req, res) => {
   let password = req.body.password;
   Company.findOne({ email: email }, (err, foundcompany) => {
     if (err) {
-      res.send('Something Wrong Happened');
+      console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       if (foundcompany) {
         bcrypt.compare(password, foundcompany.password, (err, result) => {
@@ -57,11 +58,13 @@ app.post('/', (req, res) => {
                 '/company/login/' + foundcompany._id + '/companyprofile'
               );
             } catch (error) {
-              res.send(error);
+              console.log(error);
+              return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
             }
             //Redirecting to the company profile
           } else if (err) {
             console.log(err);
+            return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
           }
         });
       } else {
@@ -82,6 +85,7 @@ const verifyMail = async (req, res, next) => {
     Company.findById({ _id: id }, (err, company) => {
       if (err) {
         console.log(err);
+        return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
       } else {
         if (company) {
           if (company.confirmed && company.confirmedbyAdmin) {
@@ -108,16 +112,22 @@ const verifyToken = async (req, res, next) => {
   const token = req.cookies['CompanyLogin'] || '';
   try {
     if (!token) {
+      res.clearCookie('CompanyLogin');
+      req.flash('message', 'Wrong Link!! Login Again');
       return res.redirect('/company/login');
     }
     const decrypt = await jwt.verify(token, 'rohitMittalisthebest');
     if (decrypt.id === req.params.id) {
       next();
     } else {
+      res.clearCookie('CompanyLogin');
+      req.flash('message', 'Wrong Link!! Login Again');
       return res.redirect('/company/login');
     }
   } catch (err) {
     console.log(err);
+    res.clearCookie('CompanyLogin');
+    req.flash('message', 'Something Wrong Happended!! Login Again');
     return res.redirect('/company/login');
   }
 };
@@ -136,7 +146,8 @@ app.get('/:id/companyprofile', (req, res) => {
   const log_out = '/company/login/' + req.params.id + '/logOut';
   Company.findById({ _id: req.params.id }, (err, company) => {
     if (err) {
-      return res.json({ msg: 'Something went wrong!' });
+      console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       if (company) {
         res.render('companyprofile', {
@@ -191,7 +202,8 @@ app.get('/:id/editProfile', (req, res) => {
   const Addnotificationlink = '/company/login/' + req.params.id + '/Addnotice';
   Company.findById({ _id: req.params.id }, (err, company) => {
     if (err) {
-      return res.json({ msg: 'Something went wrong!' });
+      console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       res.render('editCompanyProfile', {
         profile: profile,
@@ -234,10 +246,12 @@ app.get('/:id/Addnotice/', (req, res) => {
   Company.findById({ _id: req.params.id }, (err, ADMIN) => {
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       notification.find({}, (err, notices) => {
         if (err) {
           console.log(err);
+          return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
         } else {
           res.render('addNewNotice_company', {
             message: msg,
@@ -259,6 +273,7 @@ app.post('/:id/Addnotice/', (req, res) => {
   Company.findById({ _id: req.params.id }, (err, company) => {
     if (err) {
       console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       const created_by = company.companyname;
       const date = new Date().getTime();
@@ -270,6 +285,7 @@ app.post('/:id/Addnotice/', (req, res) => {
       notice.save((err) => {
         if (err) {
           console.log(err);
+          return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
         } else {
           req.flash('message', 'NOTICE ADDED');
           res.redirect('/company/login/' + req.params.id + '/Addnotice');
@@ -310,7 +326,8 @@ app.post('/:id/editProfile', (req, res) => {
     { new: true },
     (err, company) => {
       if (err) {
-        return res.json({ msg: 'Something went wrong!' });
+        console.log(err);
+        return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
       } else {
         res.redirect('/company/login/' + req.params.id + '/companyprofile');
       }
@@ -327,7 +344,8 @@ app.get('/:id/appliedStudents', (req, res) => {
   const log_out = '/company/login/' + req.params.id + '/logOut';
   Company.findById({ _id: req.params.id }, (err, company) => {
     if (err) {
-      res.send('Something wrong happened');
+      console.log(err);
+      return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
       if (company) {
         let studentIds = company.students;
@@ -335,7 +353,7 @@ app.get('/:id/appliedStudents', (req, res) => {
         Student.find({ _id: { $in: newStudentIds } }, (error, students) => {
           if (error) {
             console.log(error);
-            return res.json({ msg: 'Something went wrong!' });
+            return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
           } else {
             for (student in students) {
               if (student.resume) {
@@ -345,6 +363,7 @@ app.get('/:id/appliedStudents', (req, res) => {
             let newStudents = students.map((student) => {
               if (student.resume) {
                 student.resumeURL =
+                'https://careerservices.herokuapp.com/'+
                   //'http://localhost:3000/' + student.resume.id + '/file';
                   '/' + student.resume.id + '/file';
               }
