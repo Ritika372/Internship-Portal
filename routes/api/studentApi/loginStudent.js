@@ -128,6 +128,7 @@ app.get('/:id/change_pswrd', (req, res) => {
     if (err) {
       console.log(err);
       return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
+  
     } else {
       if (foundStudent) {
         const expiration = 604800000;
@@ -258,8 +259,11 @@ app.get('/:id/experiences', (req, res) => {
         if (exper.exp) {
           exper.exp =exper.exp.substring(0,50)+ "...";
         }
+        else
+        {exper.exp="...";}
         return exper;
       });
+      
       res.render('Experiences', {
         profile: profile,
         applied: applied,
