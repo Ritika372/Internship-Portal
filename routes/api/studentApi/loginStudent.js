@@ -128,7 +128,6 @@ app.get('/:id/change_pswrd', (req, res) => {
     if (err) {
       console.log(err);
       return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
-  
     } else {
       if (foundStudent) {
         const expiration = 604800000;
@@ -255,6 +254,12 @@ app.get('/:id/experiences', (req, res) => {
       console.log(err);
       return res.json({ msg: 'Something went wrong! Plz Go back and Try Again' });
     } else {
+      let updated_experiences = experience.map((exper) => {
+        if (exper.exp) {
+          exper.exp =exper.exp.substring(0,50)+ "...";
+        }
+        return exper;
+      });
       res.render('Experiences', {
         profile: profile,
         applied: applied,
@@ -265,7 +270,7 @@ app.get('/:id/experiences', (req, res) => {
         edit_profile: edit_profile,
         log_out: log_out,
         studentId: req.params.id,
-        experience: experience,
+        experience: updated_experiences,
       });
     }
   });
