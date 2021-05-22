@@ -70,14 +70,18 @@ After this his login account will be created.
 ## Internship/Job Provider 
 
 # New Internship/Job provider Registration 
+
 Any Internship/Job provider is allowed to create his/her account on this portal if constraints are met. The Internship/job provider will open this portal and click on signup to create his/ her company account. He/ She will add the following information for the registration.
+
   •	Employer Email
   •	Company name
   •	Company Website Link
   •	Type of business (MNC, Start up, Govt.)
   •	Job Sector (e.g., IT sector, Marketing Sector)
   •	Working/Aim of company. 
+
 After registering confirmation will be done by the administrator. After this he/ she will  be informed via mail. After this he will have to add the following data:
+
   •	Provide job title.
   •	Provide salary upper/lower limit.
   •	Type (Intern/Placement)
